@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --randomize --bg-fill '~/Media/Wallpapers/*' 
+feh --bg-scale 
