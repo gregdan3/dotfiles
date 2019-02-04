@@ -40,9 +40,7 @@ call plug#begin()
 Plug 'valloric/youcompleteme'		 "auto-completer for a lot of languages
 Plug 'tpope/vim-surround'			 "select a word to add some paired symbol around it
 Plug 'tpope/vim-fugitive'			 "git information and commands
-Plug 'yggdroot/indentline'			 "display indent line 
 Plug 'vim-airline/vim-airline'		 "fancy status bar
-Plug 'jiangmiao/auto-pairs'			 "auto-typing closing characters
 Plug 'scrooloose/nerdtree'			 "file explorer inside vim
 Plug 'xuyuanp/nerdtree-git-plugin'	 "display git info for file explorer
 Plug 'scrooloose/syntastic'			 "variant linter
