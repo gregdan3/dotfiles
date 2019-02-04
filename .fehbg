@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --bg-fill '~/Media/Wallpapers/botw title.jpg' '~/Media/Wallpapers/plantera.png' 
