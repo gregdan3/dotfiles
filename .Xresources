@@ -25,6 +25,11 @@ XTerm*selectToClipboard: true
 ! *foreground: #D7D0C7
 ! *background: #151515
 
+! colors for man pages according to archwiki
+URxvt.colorIT:      #87af5f
+URxvt.colorBD:      #d7d7d7
+URxvt.colorUL:      #87afd7
+
 
 ! Navy and Ivory, dotshare.it
 URxvt.foreground: 	#E8DFD6
