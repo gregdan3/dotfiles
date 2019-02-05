@@ -95,6 +95,8 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
+alias vim='vim .'  # open ended vim opens in current dir
+alias ':q'=exit
 
 xhost +local:root > /dev/null 2>&1
 
