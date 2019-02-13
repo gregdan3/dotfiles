@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --bg-scale 
+feh --bg-scale '/home/gregdan3/Media/Wallpapers/terezi drawing.jpg' 

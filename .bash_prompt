@@ -31,7 +31,7 @@ prompt_git() {
 			fi;
 
 			# Check for unstaged changes.
-			if ! $(git diff-files --quiet --ignore-submodules --); then
+			if ! $(git diff-files --quiet --ignore-submodules); then
 				s+='!';
 			fi;
 
@@ -54,7 +54,7 @@ prompt_git() {
 			git rev-parse --short HEAD 2> /dev/null || \
 			echo '(unknown)')";
 
-		[ -n "${s}" ] && s=" [${s}]";
+		[ -n "${s}" ] && s="[${s}]";
 
 		echo -e "${1}${branchName}${2}${s}";
 	else
@@ -63,23 +63,6 @@ prompt_git() {
 }
 
 if tput setaf 1 &> /dev/null; then
-# 	tput sgr0; # reset colors
-# 	bold=$(tput bold);
-# 	reset=$(tput sgr0);
-# 	# Solarized colors, taken from http://git.io/solarized-colors.
-# 	black=$(tput setaf 0);
-# 	blue=$(tput setaf 33);
-#    cyan=$(tput setaf 37);
-# 	green=$(tput setaf 64);
-#	orange=$(tput setaf 166);
-#	purple=$(tput setaf 125);
-#	red=$(tput setaf 124);
-#	violet=$(tput setaf 61);
-#	white=$(tput setaf 15);
-#	yellow=$(tput setaf 136);
-	# TODO: add light colors of each
-#else
-
 	bold=""$(tput bold);
 	dim="$(tput dim)"
 	underline="$(tput setaf 0)"
@@ -97,8 +80,8 @@ if tput setaf 1 &> /dev/null; then
 	lightyellow="$(tput setaf 11)";
 	blue="$(tput setaf 4)";
 	lightblue="$(tput setaf 12)";
-	magenta="$(tput setaf 5)";
-	lightmagenta="$(tput setaf 13)";
+	purple="$(tput setaf 5)";
+	lightpurple="$(tput setaf 13)";
 	cyan="$(tput setaf 6)";
 	lightcyan="$(tput setaf 14)";
 	white="$(tput setaf 7)";
@@ -110,14 +93,14 @@ fi;
 if [[ "${USER}" == "root" ]]; then
 	userStyle="${bold}${red}";
 else
-	userStyle="${bold}${lightgreen}";  # username
+	userStyle="${bold}${lightyellow}";  # username
 fi;
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
 	hostStyle="${bold}${red}";
 else
-	hostStyle="${bold}${lightcyan}";
+	hostStyle="${bold}${cyan}";
 fi;
 
 # Set the terminal title and prompt.

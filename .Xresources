@@ -14,43 +14,68 @@ XTerm*faceSize:          11
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
-*background:                      #222D31
-*foreground:                      #d8d8d8
+! *background:                      #222D31
+! *foreground:                      #d8d8d8
 *fading:                          8
 *fadeColor:                       black
 *cursorColor:                     #1ABB9B
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
 
-! *foreground: #D7D0C7
-! *background: #151515
-
-! colors for man pages according to archwiki
-URxvt.colorIT:      #87af5f
-URxvt.colorBD:      #d7d7d7
-URxvt.colorUL:      #87afd7
-
 
 ! Navy and Ivory, dotshare.it
-URxvt.foreground: 	#E8DFD6
-URxvt.background: 	#021B21
-URxvt.cursorColor:  #2E3340
-URxvt.color0:       #032C36
-URxvt.color8:       #065F73
-URxvt.color1:       #C2454E
-URxvt.color9:       #EF5847
-URxvt.color2:       #7CBF9E
-URxvt.color10:      #A2D9B1
-URxvt.color3:       #8A7A63
-URxvt.color11:      #BEB090
-URxvt.color4:       #2E3340
-URxvt.color12:      #61778D
-URxvt.color5:       #FF5879
-URxvt.color13:      #FF99A1
-URxvt.color6:       #44B5B1
-URxvt.color14:      #9ED9D8
-URxvt.color7:       #F2F1B9
-URxvt.color15:      #F6F6C9
+! URxvt.foreground: 	#E8DFD6
+! URxvt.background: 	#021B21
+! URxvt.cursorColor:  #2E3340
+! URxvt.color0:       #032C36
+! URxvt.color8:       #065F73
+! URxvt.color1:       #C2454E
+! URxvt.color9:       #EF5847
+! URxvt.color2:       #7CBF9E
+! URxvt.color10:      #A2D9B1
+! URxvt.color3:       #8A7A63
+! URxvt.color11:      #BEB090
+! URxvt.color4:       #2E3340
+! URxvt.color12:      #61778D
+! URxvt.color5:       #FF5879
+! URxvt.color13:      #FF99A1
+! URxvt.color6:       #44B5B1
+! URxvt.color14:      #9ED9D8
+! URxvt.color7:       #F2F1B9
+! URxvt.color15:      #F6F6C9
+
+! sexcolors, dotshare.it
+*background: #000000
+!black
+*color0:    #252525
+*color8:    #454545
+!red
+*color1:     #FF9F95
+*color9:     #FF8D80
+!green
+*color2:    #A6E22E
+*color10:   #B6E354
+!yellow
+*color3:    #FD971F
+*color11:   #FD971F
+!blue
+*color4:    #435e87
+*color12:   #587aa4
+!magenta
+*color5:    #789ec6
+*color13:   #46a4ff
+!cyan
+*color6:    #5E7175
+*color14:   #A3BABF
+!white
+*color7:    #DBDCDC
+*color15:  #FDFDFD
+
+
+! URxvt*borderColor:        #151515
+! URxvt*colorBD:            #ffffff
+! URxvt*cursorColor:        #ff8939
+! URxvt*cursorColor2:       #151515
 
 Xcursor.theme: 		Adwaita
 Xcursor.size:		0
@@ -67,7 +92,6 @@ URxvt*boldItalicFont:	xft:TerminessTTF Nerd Font mono:pixelsize=36:style=Bold It
 URxvt.letterSpace:	0
 
 URxvt.depth:                      32
-! URxvt.background:                 [100]#222D31
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
@@ -93,7 +117,11 @@ URxvt.keysym.Control-Up:          \033[1;5A
 URxvt.keysym.Shift-Control-Up:    \033[1;6A
 URxvt.keysym.Control-Down:        \033[1;5B
 URxvt.keysym.Shift-Control-Down:  \033[1;6B
-! Rxvt.perl-ext-common:             ...,clipboard
+
+
+
+
+! URxvt.perl-ext-common:             ...,clipboard
 ! URxvt.keysym.M-C-c:               perl:clipboard:copy
 ! URxvt.keysym.M-v:                 perl:clipboard:paste
 ! URxvt.keysym.M-C-v:               perl:clipboard:paste_escaped
