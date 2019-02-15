@@ -272,7 +272,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+0 exec --no-startup-id blurlock
+# bindsym $mod+0 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -287,7 +287,7 @@ exec --no-startup-id xfce4-power-manager
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 # exec --no-startup-id start_conky_solarized
-exec --no-startup-id xautolock -time 5 -locker blurlock
+# exec --no-startup-id xautolock -time 5 -locker blurlock
 
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
