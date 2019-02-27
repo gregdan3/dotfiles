@@ -13,9 +13,9 @@ window_maximize=false
 # start in full screen mode (true/false)
 window_fullscreen=false
 # the window width in pixels (when not maximized)
-window_width=3840
+window_width=1233
 # the window height in pixels
-window_height=2104
+window_height=2046
 # scrollbar step increment (in pixels)
 scrollbar_speed=30
 # the step increment in the zoom dialog box
@@ -51,7 +51,7 @@ autosave_enabled=false
 # delay for periodic autosaves (in seconds)
 autosave_delay=5
 # default path for open/save (leave blank for current directory)
-default_path=/home/gregdan3/git/CS/355
+default_path=/home/gregdan3/Downloads
 # use pressure sensitivity to control pen stroke width (true/false)
 pressure_sensitivity=false
 # minimum width multiplier
@@ -132,11 +132,11 @@ highlighter_ruler=false
 # default highlighter is in shape recognizer mode (true/false)
 highlighter_recognizer=false
 # button 2 tool (pen, eraser, highlighter, text, selectregion, selectrect, vertspace, hand, image)
-btn2_tool=pen
+btn2_tool=eraser
 # button 2 brush linked to primary brush (true/false) (overrides all other settings)
 btn2_linked=true
 # button 2 brush color (for pen or highlighter only)
-btn2_color=black
+btn2_color=white
 # button 2 brush thickness (pen, eraser, or highlighter only)
 btn2_thickness=2
 # button 2 ruler mode (true/false) (for pen or highlighter only)
@@ -146,11 +146,11 @@ btn2_recognizer=false
 # button 2 eraser mode (eraser only)
 btn2_erasermode=0
 # button 3 tool (pen, eraser, highlighter, text, selectregion, selectrect, vertspace, hand, image)
-btn3_tool=pen
+btn3_tool=eraser
 # button 3 brush linked to primary brush (true/false) (overrides all other settings)
 btn3_linked=true
 # button 3 brush color (for pen or highlighter only)
-btn3_color=black
+btn3_color=white
 # button 3 brush thickness (pen, eraser, or highlighter only)
 btn3_thickness=2
 # button 3 ruler mode (true/false) (for pen or highlighter only)
