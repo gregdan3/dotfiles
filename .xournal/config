@@ -13,9 +13,9 @@ window_maximize=false
 # start in full screen mode (true/false)
 window_fullscreen=false
 # the window width in pixels (when not maximized)
-window_width=1873
+window_width=3840
 # the window height in pixels
-window_height=2046
+window_height=2104
 # scrollbar step increment (in pixels)
 scrollbar_speed=30
 # the step increment in the zoom dialog box
@@ -51,7 +51,7 @@ autosave_enabled=false
 # delay for periodic autosaves (in seconds)
 autosave_delay=5
 # default path for open/save (leave blank for current directory)
-default_path=/home/gregdan3/Downloads
+default_path=/home/gregdan3/git/CS/260
 # use pressure sensitivity to control pen stroke width (true/false)
 pressure_sensitivity=false
 # minimum width multiplier
