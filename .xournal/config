@@ -13,7 +13,7 @@ window_maximize=false
 # start in full screen mode (true/false)
 window_fullscreen=false
 # the window width in pixels (when not maximized)
-window_width=1233
+window_width=1873
 # the window height in pixels
 window_height=2046
 # scrollbar step increment (in pixels)
