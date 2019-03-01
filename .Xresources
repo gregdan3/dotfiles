@@ -1,5 +1,5 @@
-Xft.dpi:       96
-Xft.antialias: false 
+Xft.dpi:       212
+Xft.antialias: true
 Xft.hinting:   false
 Xft.rgba:      rgb
 Xft.autohint:  false 
