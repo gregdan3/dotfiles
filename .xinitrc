@@ -64,6 +64,4 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-~/.fehbg &
-
 exec $(get_session)
