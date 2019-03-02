@@ -98,4 +98,4 @@ ex ()
 source ~/.bash_prompt
 
 # alias for git directory belonging to my dotfiles
-alias config='/usr/bin/git --git-dir=/home/gregdan3/.dotfiles/ --work-tree=/home/gregdan3'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

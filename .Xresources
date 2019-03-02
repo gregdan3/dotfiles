@@ -80,13 +80,13 @@ XTerm*selectToClipboard: true
 Xcursor.theme: Adwaita
 Xcursor.size:		0
 
-URxvt*font:         	xft:TerminessTTF Nerd Font Mono:pixelsize=36:style=Medium, \
+URxvt*font:         	xft:xos4 Terminus:pixelsize=36:style=Medium, \
 						xft:Symbols Nerd Font
-URxvt*boldFont:			xft:TerminessTTF Nerd Font Mono:pixelsize=36:style=Bold, \
+URxvt*boldFont:			xft:xos4 Terminus:pixelsize=36:style=Bold, \
 						xft:Symbols Nerd Font
-URxvt*italicFont:   	xft:TerminessTTF Nerd Font Mono:pixelsize=36:style=Italic, \
+URxvt*italicFont:   	xft:xos4 Terminus:pixelsize=36:style=Italic, \
 						xft:Symbols Nerd Font
-URxvt*boldItalicFont:	xft:TerminessTTF Nerd Font mono:pixelsize=36:style=Bold Italic, \
+URxvt*boldItalicFont:	xft:xos4 Terminus:pixelsize=36:style=Bold Italic, \
 						xft:Symbols Nerd Font
 
 URxvt.letterSpace:	0
@@ -100,7 +100,7 @@ URxvt*foreground:                 grey
 URxvt*saveLines:                  5000
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
-URxvt*inheritPixmap:            true
+URxvt*inheritPixmap:            false
 URxvt*transparent:              true
 URxvt*shading:                  30
 
