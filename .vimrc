@@ -18,7 +18,9 @@ set termencoding=utf8
 set autochdir
 " set spell
 set ttyfast 						"redraw faster 
-
+set undofile
+set undodir=~/.vim/undodir
+set mouse=a
 
 " search settings
 set ignorecase
