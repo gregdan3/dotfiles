@@ -1,0 +1,17 @@
+# ignoring subdirectories 
+*/*
+
+# my repos
+git
+
+# junk and histories
+.python_history
+.bash_history
+.viminfo
+.fehbg
+
+
+# NEVER EVER ADD
+.Xauthority
+.esd_auth
+
