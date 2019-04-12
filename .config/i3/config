@@ -33,7 +33,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -fn "xos4 terminus" # -nb ${term_background} # -nf $term_foreground # -sb $term_color14 -sf $term_color13
 
 # intentionally blank out background since transparency is a little odd
 bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg
