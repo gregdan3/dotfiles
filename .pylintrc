@@ -61,16 +61,17 @@ confidence=
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
 disable=print-statement,
-        # fixme,
-		# line-too-long,
-		# too-many-arguments,
-		# too-many-instance-attributes,
-		# logging-fstring-interpolation,
-		# trailing-whitespace,
+        fixme,
+		line-too-long,
+		too-many-arguments,
+		too-many-instance-attributes,
+		logging-fstring-interpolation,
+		import-error,                   # was broken in many contexts
+        # trailing-whitespace,
 		# too-many-branches,
-		# len-as-condition,
-		# missing-docstring,
-		# invalid-name,
+		len-as-condition,
+		missing-docstring,
+		invalid-name,
 		# trailing-newlines,
 		# too-many-locals,
 		# no-self-use
