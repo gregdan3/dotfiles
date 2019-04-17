@@ -4,6 +4,7 @@
 
 alias cp="cp -i"                #  confirm before overwriting something
 alias df='df -h'                # human-readable sizes
+alias du='du -h'                # ditto
 alias free='free -m'            # show sizes in MB
 alias rm='rm -iv'               # confirm before deletion
 alias np='nano -w PKGBUILD'
