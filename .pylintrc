@@ -63,7 +63,7 @@ confidence=
 disable=print-statement,
         fixme,
 		line-too-long,
-		too-many-arguments,
+		# too-many-arguments,
 		too-many-instance-attributes,
 		attribute-defined-outside-init,
         logging-fstring-interpolation,
