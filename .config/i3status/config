@@ -36,14 +36,14 @@ cpu_temperature _first_ {
     format = " 🌡 %degrees°C "
     max_threshold = 75
     format_above_threshold = " 🤒  %degrees°C "
-    # path = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input"
+    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
 }
 
 cpu_temperature 0 {
     format = " 🌡 %degrees°C "
     max_threshold = 75
     format_above_threshold = " 🤒  %degrees°C "
-    # path = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input"
+    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
 }
 
 load {
