@@ -4,11 +4,11 @@
 ! pinkscale, 
 ! thinkpad has weird white color
 Xft.dpi:       120 
-Xft.antialias: true
-Xft.hinting:   true
-Xft.rgba:      rgba
-Xft.autohint:  true 
-Xft.hintstyle: hintfull
+Xft.antialias: false 
+Xft.hinting:   false 
+Xft.autohint:  false 
+Xft.rgba:      none 
+Xft.hintstyle: hintnone
 Xft.lcdfilter: lcddefault
 
 *highlightTextColor:     #000000
@@ -16,7 +16,7 @@ Xft.lcdfilter: lcddefault
 
 ! Font config
 # define mainfont xos4 Terminus
-# define backfont PowerlineSymbols
+# define backfont TerminessTTF Nerd Font Mono 
 URxvt*font:         	xft:mainfont:size=12:style=Medium, \
 						xft:backfont:size=12
 URxvt*boldFont:			xft:mainfont:size=12:style=Bold, \
@@ -25,7 +25,7 @@ URxvt*italicFont:   	xft:mainfont:size=12:style=Italic, \
 						xft:backfont:size=12
 URxvt*boldItalicFont:	xft:mainfont:size=12:style=Bold Italic, \
 						xft:backfont:size=12
-URxvt*letterSpace:  0  
+URxvt*letterSpace: -1 
 URxvt*lineSpace: 0 
 
 
