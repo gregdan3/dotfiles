@@ -70,6 +70,7 @@ disable=print-statement,
 		import-error,                   # was broken in many contexts
         # trailing-whitespace,
 		too-many-branches,
+        too-many-statements,
 		len-as-condition,
 		missing-docstring,
 		invalid-name,
