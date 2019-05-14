@@ -4,11 +4,11 @@
 ! pinkscale, 
 ! thinkpad has weird white color
 Xft.dpi:       120 
-Xft.antialias: false 
-Xft.hinting:   false 
-Xft.autohint:  false 
-Xft.rgba:      none 
-Xft.hintstyle: hintnone
+Xft.antialias: true 
+Xft.hinting:   true 
+Xft.autohint:  true 
+Xft.rgba:      rgba 
+Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 
 *highlightTextColor:     #000000
