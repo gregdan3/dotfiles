@@ -8,7 +8,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
+new_window pixel 0 
 new_float normal
 
 # Hide borders
@@ -249,12 +249,12 @@ bar {
         statusline $term_foreground
         separator  $term_foreground
 
-        # name_of_area     border  backgr. text
-        focused_workspace  $term_color0 $term_color4    $term_foreground
-        active_workspace   $term_color0 $term_background $term_foreground
-        inactive_workspace $term_color0 $term_background $term_foreground
-        binding_mode       $term_color0 $term_color9    $term_foreground
-        urgent_workspace   $term_color0 $term_color9   $term_foreground
+        # name_of_area     border           backgr.             text
+        focused_workspace  $term_color0     $term_color4        $term_foreground
+        active_workspace   $term_color0     $term_background    $term_foreground
+        inactive_workspace $term_color0     $term_background    $term_foreground
+        binding_mode       $term_color0     $term_color9        $term_foreground
+        urgent_workspace   $term_color0     $term_color9        $term_foreground
     }
 }
 
@@ -262,12 +262,12 @@ bar {
 bindsym $mod+m bar mode toggle
 
 # Theme colors
-# class                   border  backgr. text    indic.   child_border
-  client.focused          $term_color0 $term_color14 $term_foreground #FDF6E3
-  client.focused_inactive $term_color0 $term_background $term_foreground #454948
-  client.unfocused        $term_color0 $term_background $term_foreground #454948
-  client.urgent           $term_color0 $term_color9 $term_foreground #268BD2
-  client.placeholder      $term_color0 #0c0c0c #ffffff #000000
+# class                   border        backgr.             text                indic.      child_border
+  client.focused          $term_color0  $term_color14       $term_foreground    #FDF6E3     #FFFFFF
+  client.focused_inactive $term_color0  $term_background    $term_foreground    #454948     #FFFFFF   
+  client.unfocused        $term_color0  $term_background    $term_foreground    #454948     #FFFFFF   
+  client.urgent           $term_color0  $term_color9        $term_foreground    #268BD2     #FFFFFF   
+  client.placeholder      $term_color0  $term_background    $term_foreground             #000000     #FFFFFF   
 
   client.background       $term_background
 
@@ -276,7 +276,7 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 14
+gaps inner 8 
 gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
