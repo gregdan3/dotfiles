@@ -203,6 +203,7 @@ mode "resize" {
 
 # Autostart applications
 exec xset -b  # disable keyboard beep
+exec --no-startup-id compton --config ~/.config/compton/compton.conf
 exec --no-startup-id volumeicon  # volume tray icon
 exec --no-startup-id nm-applet  # network manager tray icon
 # exec --no-startup-id blueman-applet  # bluetooth service
@@ -267,7 +268,7 @@ bindsym $mod+m bar mode toggle
   client.focused_inactive $term_color0  $term_background    $term_foreground    #454948     #FFFFFF   
   client.unfocused        $term_color0  $term_background    $term_foreground    #454948     #FFFFFF   
   client.urgent           $term_color0  $term_color9        $term_foreground    #268BD2     #FFFFFF   
-  client.placeholder      $term_color0  $term_background    $term_foreground             #000000     #FFFFFF   
+  client.placeholder      $term_color0  $term_background    $term_foreground    #000000     #FFFFFF   
 
   client.background       $term_background
 
