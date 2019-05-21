@@ -203,7 +203,7 @@ mode "resize" {
 
 # Autostart applications
 exec xset -b  # disable keyboard beep
-exec --no-startup-id compton --config ~/.config/compton/compton.conf
+# exec --no-startup-id compton --config ~/.config/compton/compton.conf
 exec --no-startup-id volumeicon  # volume tray icon
 exec --no-startup-id nm-applet  # network manager tray icon
 # exec --no-startup-id blueman-applet  # bluetooth service
