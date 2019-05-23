@@ -46,12 +46,11 @@ set history=1000
 call plug#begin()
 Plug 'valloric/youcompleteme'		 "auto-completer for a lot of languages
 Plug 'python/black'                  "python code formatter
-" Plug 'tpope/vim-surround'			 "select a word to add some paired symbol around it
 Plug 'tpope/vim-fugitive'			 "git information and commands
 Plug 'vim-airline/vim-airline'		 "fancy status bar
 Plug 'scrooloose/nerdtree'			 "file explorer inside vim
 Plug 'xuyuanp/nerdtree-git-plugin'	 "display git info for file explorer
-Plug 'scrooloose/syntastic'			 "variant linter
+"Plug 'scrooloose/syntastic'			 "variant linter
 Plug 'w0rp/ale'						 "linting
 call plug#end()
 
