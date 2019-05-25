@@ -9,7 +9,10 @@
 # E262 inline comment should start with '# '
 # E265 block comment should start with '# '
 # E501 line too long
+# W503 line break before binary operator
+# W504 line break after binary operator
 
-ignore=E221,E222,E262,E265,E501
+ignore=E221,E222,E262,E265,E501,W503,W504
 
+max-complexity=5
 max-line-length=80
