@@ -13,9 +13,6 @@ alias ':q'=exit
 alias ':e'=vim
 alias sl=ls
 alias vi=vim
-alias nano=vim
-alias emacs=vim
-alias svim='sudo vim'
 
 # alias for git directory belonging to my dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
