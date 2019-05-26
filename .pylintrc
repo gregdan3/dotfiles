@@ -65,6 +65,7 @@ disable=print-statement,
 		line-too-long,
 		too-many-arguments,
 		too-many-instance-attributes,
+		# attribute-defined-outside-init,
         logging-fstring-interpolation,
 		import-error,                   # was broken in many contexts
         trailing-whitespace,
@@ -75,7 +76,8 @@ disable=print-statement,
 		invalid-name,
 		trailing-newlines,
 		too-many-locals,
-        bad-continuation
+        bad-continuation,
+        bad-whitespace
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
