@@ -46,13 +46,16 @@ set history=1000
 " plugins
 call plug#begin()
 Plug 'valloric/youcompleteme'		 "auto-completer for a lot of languages
+Plug 'w0rp/ale'						 "linting
+Plug 'airblade/vim-gitgutter'        "gitlens for vim
 Plug 'python/black'                  "python code formatter
 Plug 'tpope/vim-fugitive'			 "git information and commands
+" Plug 'tpope/vim-eunuch'              "unix terminal commands in vim
+" Plug 'tpope/vim-surround'            "surround selection with paired symbols
+Plug 'jpalardy/vim-slime'            "repl in vim
 Plug 'vim-airline/vim-airline'		 "fancy status bar
 Plug 'scrooloose/nerdtree'			 "file explorer inside vim
 Plug 'xuyuanp/nerdtree-git-plugin'	 "display git info for file explorer
-"Plug 'scrooloose/syntastic'			 "variant linter
-Plug 'w0rp/ale'						 "linting
 call plug#end()
 
 
