@@ -59,4 +59,4 @@ shopt -s histappend
 
 source ~/.bash_commands  # commands and aliases 
 source ~/.bash_prompt    # prompt 
-
+source ~/.bash_vars      # envvars
