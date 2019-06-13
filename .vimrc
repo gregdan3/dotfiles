@@ -52,7 +52,6 @@ if g:remoteSession
     call plug#begin()
     Plug 'vim-syntastic/syntastic'       "lightweight syntax checker
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
-    Plug 'python/black'                  "python code formatter
     Plug 'tpope/vim-fugitive'			 "git information and commands
     Plug 'tpope/vim-surround'            "surround selection with paired symbols
     Plug 'vim-airline/vim-airline'		 "fancy status bar
