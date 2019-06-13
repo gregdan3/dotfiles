@@ -39,33 +39,42 @@ set wildmode=longest,full,list
 set title							
 set history=1000
 
-
 " autoclean whitespace for specified filetypes
     autocmd FileType c,cpp,java,php,python,javascript,css,html autocmd BufWritePre <buffer> %s/\s\+$//e
 
-" plugins
-call plug#begin()
-Plug 'valloric/youcompleteme'		 "auto-completer for a lot of languages
-Plug 'w0rp/ale'						 "linting
-Plug 'airblade/vim-gitgutter'        "gitlens for vim
-" Plug 'lervag/vimtex'                 "LaTeX helper
-Plug 'python/black'                  "python code formatter
-Plug 'tpope/vim-fugitive'			 "git information and commands
-" Plug 'tpope/vim-eunuch'              "unix terminal commands in vim
-Plug 'tpope/vim-surround'            "surround selection with paired symbols
-" Plug 'jpalardy/vim-slime'            "repl in vim
-Plug 'vim-airline/vim-airline'		 "fancy status bar
-Plug 'scrooloose/nerdtree'			 "file explorer inside vim
-Plug 'xuyuanp/nerdtree-git-plugin'	 "display git info for file explorer
-Plug 'ccraciun/vim-dreammaker'
-call plug#end()
 
-
-" autorun
-" TODO: only execute this in git repos
-" autocmd vimenter * NERDTreeToggle
-
-
+" if remote session:
+" change color scheme
+" don't use heavier plugins
+let g:remoteSession = !($SSH_TTY ==? '')
+if g:remoteSession
+    colorscheme darkblue
+    call plug#begin()
+    Plug 'vim-syntastic/syntastic'       "lightweight syntax checker
+    Plug 'airblade/vim-gitgutter'        "gitlens for vim
+    Plug 'python/black'                  "python code formatter
+    Plug 'tpope/vim-fugitive'			 "git information and commands
+    Plug 'tpope/vim-surround'            "surround selection with paired symbols
+    Plug 'vim-airline/vim-airline'		 "fancy status bar
+    Plug 'scrooloose/nerdtree'			 "file explorer inside vim
+    call plug#end()
+else
+    call plug#begin()
+    Plug 'valloric/youcompleteme'		 "auto-completer for a lot of languages
+    Plug 'w0rp/ale'						 "linting
+    Plug 'airblade/vim-gitgutter'        "gitlens for vim
+    Plug 'python/black'                  "python code formatter
+    Plug 'tpope/vim-fugitive'			 "git information and commands
+    Plug 'tpope/vim-surround'            "surround selection with paired symbols
+    Plug 'vim-airline/vim-airline'		 "fancy status bar
+    Plug 'scrooloose/nerdtree'			 "file explorer inside vim
+    " Plug 'lervag/vimtex'                 "LaTeX helper
+    " Plug 'tpope/vim-eunuch'              "unix terminal commands in vim
+    " Plug 'jpalardy/vim-slime'            "repl in vim
+    " Plug 'xuyuanp/nerdtree-git-plugin'   "display git info for file explorer
+    " Plug 'ccraciun/vim-dreammaker'       "syntax highlighting for BYOND
+    call plug#end()
+endif
 
 " air-line
 " let g:airline_powerline_fonts = 1
@@ -91,11 +100,6 @@ let g:airline_symbols_ascii = 1
 
 " keybinds
 map <C-n> :NERDTreeToggle<CR>
-
-let g:remoteSession = !($SSH_TTY ==? '')
-if g:remoteSession
-    colorscheme darkblue
-endif
 
 " Borrowed from http://dotshare.it/dots/8329/
 " Ignore these filenames during enhanced command line completion.
