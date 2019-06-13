@@ -41,7 +41,7 @@ set history=1000
 
 
 " autoclean whitespace for specified filetypes
-    autocmd FileType c,cpp,java,php,python,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
+    autocmd FileType c,cpp,java,php,python,javascript,css,html autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " plugins
 call plug#begin()
