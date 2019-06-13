@@ -89,12 +89,13 @@ call plug#end()
 let g:airline_powerline_fonts = 0
 let g:airline_symbols_ascii = 1
 
-
 " keybinds
 map <C-n> :NERDTreeToggle<CR>
 
-
-
+let g:remoteSession = !($SSH_TTY ==? '')
+if g:remoteSession
+    colorscheme darkblue
+endif
 
 " Borrowed from http://dotshare.it/dots/8329/
 " Ignore these filenames during enhanced command line completion.
