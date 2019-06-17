@@ -40,7 +40,7 @@ set title
 set history=1000
 
 " autoclean whitespace for specified filetypes
-    autocmd FileType c,cpp,java,php,python,javascript,css,html autocmd BufWritePre <buffer> %s/\s\+$//e
+    autocmd FileType c,cpp,java,php,python,javascript,css,html,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 
 
 " if remote session:
