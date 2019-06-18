@@ -98,14 +98,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias cp="cp -i"                #  confirm before overwriting something
-alias df='df -h'                # human-readable sizes
-alias du='du -h'                # ditto
-alias free='free -m'            # ditto-er 
-alias rm='rm -iv'               # confirm before deletion
-alias ':q'=exit
-alias ':e'=vim
-alias sl=ls
-alias vi=vim
-
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+source ~/.bash_alias

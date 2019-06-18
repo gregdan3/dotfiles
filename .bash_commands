@@ -1,3 +1,7 @@
+#
+# ~/.bash_commands
+#
+
 prompt_git() {
 	local s='';
 	local branchName='';
