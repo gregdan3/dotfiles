@@ -4,6 +4,8 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
+set $terminal termite
+
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
 
@@ -27,7 +29,7 @@ font xft:xos4 terminus 14
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -39,7 +41,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run -fn "xos4 terminus" # -nb ${term_b
 bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg
 
 # AUDIO/SOUND SECTION
-bindsym $mod+Ctrl+m exec urxvt -e 'alsamixer'
+bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 3
@@ -47,10 +49,10 @@ bindsym XF86MonBrightnessDown exec light -U 3
 
 # Start Applications
 bindsym $mod+F2 exec chromium
-bindsym $mod+F3 exec urxvt -e htop
-# bindsym $mod+F4 exec urxvt -e ranger
-bindsym $mod+F4 exec urxvt -e nnn 
-bindsym $mod+F5 exec urxvt -e gtop
+bindsym $mod+F3 exec $terminal -e htop
+# bindsym $mod+F4 exec $terminal -e ranger
+bindsym $mod+F4 exec $terminal -e nnn 
+bindsym $mod+F5 exec $terminal -e gtop
 
 
 # screenshot tools
@@ -211,11 +213,11 @@ exec --no-startup-id nm-applet  # network manager tray icon
 exec_always feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
 
 
-# Color palette used for the urxvt ( ~/.Xresources file )
+# Color palette used for the $terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
 # https://i3wm.org/docs/userguide.html#xresources
 # Change the variable name at the place you want to match the color
-# of your urxvt like this:
+# of your $terminal like this:
 set_from_resource $term_background background
 set_from_resource $term_foreground foreground
 set_from_resource $term_color0     color0
