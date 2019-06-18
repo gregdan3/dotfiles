@@ -8,6 +8,7 @@ public_html
 # junk and histories
 .python_history
 .bash_history
+.zsh_history
 .viminfo
 .fehbg
 
