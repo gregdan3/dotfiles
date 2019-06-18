@@ -11,6 +11,8 @@ public_html
 .zsh_history
 .viminfo
 .fehbg
+.install4j
+.zcompdump-Zendikar-5.7.1
 
 
 # NEVER EVER ADD
