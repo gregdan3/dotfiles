@@ -57,6 +57,7 @@ shopt -s expand_aliases
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
 
-source ~/.bash_commands  # commands and aliases 
+source ~/.bash_commands  # commands
+source ~/.bash_alias     # aliases
 source ~/.bash_prompt    # prompt 
 source ~/.bash_vars      # envvars
