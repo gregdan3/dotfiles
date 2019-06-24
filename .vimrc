@@ -1,9 +1,9 @@
 " visual settings
-syntax enable
-set ruler
-set wrap
+syntax enable                   " color text in files that allow it
+set ruler                       " display position on statusbar
+set wrap                        " display long lines on next line
 set linebreak
-set showmatch
+set showmatch                   " highlight matching paired symbol
 " set cc=81
 
 
@@ -16,71 +16,75 @@ set tabstop=4
 set shiftwidth=4
 set encoding=utf8
 set termencoding=utf8
-set autochdir
-" set spell
-set ttyfast 						"redraw faster 
-set undofile
-set undodir=~/.vim/undodir
-set mouse=a
+set autochdir                   " ensure working directory = directory of vim
+set ttyfast                     " redraw faster 
+set undofile                    " enable preserved histories across sessions
+set undodir=~/.vim/undodir      " store histories in specific dir instead of same as file
+set mouse=a                     " enable mouse
+
 
 " search settings
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
+set ignorecase                  " no case = any case
+set smartcase                   " adding case = case sensitive
+set hlsearch                    " highlight results
+set incsearch                   " jump to nearest result as you search
 
 
 " information settings
-set number
-set relativenumber
-set laststatus=2
-set wildmenu
-set wildmode=longest,full,list
-set title							
-set history=1000
+set number                      " line numbers
+set relativenumber              " distances from cursor in line numbers
+set laststatus=2                " display statusline always
+set wildmenu                    " 
+set wildmode=longest,full,list  " 
+set title                       "      
+set history=1000                " preserve n changes 
 
 " autoclean whitespace for specified filetypes
     autocmd FileType c,cpp,java,php,python,javascript,css,html,markdown,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
 
-" if remote session:
-" change color scheme
-" don't use heavier plugins
+" check if remote session
 let g:remoteSession = !($SSH_TTY ==? '')
 if g:remoteSession
     colorscheme darkblue
     call plug#begin()
+    " plugins that are unique to remote use
     Plug 'vim-syntastic/syntastic'       "lightweight syntax checker
 
+    " plugins that are common to local and remote sessions
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
-    Plug 'tpope/vim-fugitive'			 "git information and commands
+    Plug 'tpope/vim-fugitive'            "git information and commands
     Plug 'tpope/vim-surround'            "surround selection with paired symbols
-    Plug 'vim-airline/vim-airline'		 "fancy status bar
-    Plug 'scrooloose/nerdtree'			 "file explorer inside vim
+    Plug 'vim-airline/vim-airline'       "fancy status bar
+    Plug 'scrooloose/nerdtree'           "file explorer inside vim
     call plug#end()
 else
     call plug#begin()
-    Plug 'w0rp/ale'						 "linting
-    Plug 'valloric/youcompleteme'		 "auto-completer for a lot of languages
+    " plugins that are unique to local use
+    Plug 'w0rp/ale'                      "linting
+    Plug 'valloric/youcompleteme'        "auto-completer for a lot of languages
     Plug 'python/black'                  "python code formatter
 
-    " Plug 'will133/vim-dirdiff'           ":DirDiff command for visual diff
-    " Plug 'lervag/vimtex'                 "LaTeX helper
-    " Plug 'tpope/vim-eunuch'              "unix terminal commands in vim
-    " Plug 'jpalardy/vim-slime'            "repl in vim
-    " Plug 'xuyuanp/nerdtree-git-plugin'   "display git info for file explorer
+    " plugins I am not using currently
+    " Plug 'will133/vim-dirdiff'         "DirDiff command for visual diff
+    " Plug 'lervag/vimtex'               "LaTeX helper
+    " Plug 'tpope/vim-eunuch'            "unix terminal commands in vim
+    " Plug 'jpalardy/vim-slime'          "repl in vim
+    " Plug 'xuyuanp/nerdtree-git-plugin' "display git info for file explorer
 
+    " plugins that are common to local and remote sessions
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
-    Plug 'tpope/vim-fugitive'			 "git information and commands
+    Plug 'tpope/vim-fugitive'            "git information and commands
     Plug 'tpope/vim-surround'            "surround selection with paired symbols
-    Plug 'vim-airline/vim-airline'		 "fancy status bar
-    Plug 'scrooloose/nerdtree'			 "file explorer inside vim
+    Plug 'vim-airline/vim-airline'       "fancy status bar
+    Plug 'scrooloose/nerdtree'           "file explorer inside vim
     call plug#end()
 endif
+
 
 " air-line
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-		let g:airline_symbols = {}
+        let g:airline_symbols = {}
 endif
 
 let g:airline_left_sep = '»'
@@ -95,6 +99,7 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+
 
 " keybinds
 map <C-n> :NERDTreeToggle<CR>
