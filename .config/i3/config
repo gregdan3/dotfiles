@@ -4,6 +4,7 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
+# Set terminal 
 set $terminal termite
 
 # set default desktop layout (default is tiling)
@@ -48,11 +49,12 @@ bindsym XF86MonBrightnessUp exec light -A 3
 bindsym XF86MonBrightnessDown exec light -U 3
 
 # Start Applications
-bindsym $mod+F2 exec chromium
-bindsym $mod+F3 exec $terminal -e htop
+bindsym $mod+o exec chromium
+
+# bindsym $mod+F3 exec $terminal -e htop
 # bindsym $mod+F4 exec $terminal -e ranger
-bindsym $mod+F4 exec $terminal -e nnn 
-bindsym $mod+F5 exec $terminal -e gtop
+# bindsym $mod+F4 exec $terminal -e nnn 
+# bindsym $mod+F5 exec $terminal -e gtop
 
 
 # screenshot tools
@@ -183,10 +185,6 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h resize shrink width 5 px or 5 ppt
         bindsym j resize grow height 5 px or 5 ppt
         bindsym k resize shrink height 5 px or 5 ppt
