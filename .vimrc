@@ -40,8 +40,7 @@ set title
 set history=1000
 
 " autoclean whitespace for specified filetypes
-    autocmd FileType c,cpp,java,php,python,javascript,css,html,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
-
+    autocmd FileType c,cpp,java,php,python,javascript,css,html,markdown,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " if remote session:
 " change color scheme
@@ -51,6 +50,7 @@ if g:remoteSession
     colorscheme darkblue
     call plug#begin()
     Plug 'vim-syntastic/syntastic'       "lightweight syntax checker
+
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
     Plug 'tpope/vim-fugitive'			 "git information and commands
     Plug 'tpope/vim-surround'            "surround selection with paired symbols
@@ -59,43 +59,42 @@ if g:remoteSession
     call plug#end()
 else
     call plug#begin()
-    Plug 'valloric/youcompleteme'		 "auto-completer for a lot of languages
     Plug 'w0rp/ale'						 "linting
-    Plug 'airblade/vim-gitgutter'        "gitlens for vim
+    Plug 'valloric/youcompleteme'		 "auto-completer for a lot of languages
     Plug 'python/black'                  "python code formatter
-    Plug 'tpope/vim-fugitive'			 "git information and commands
-    Plug 'tpope/vim-surround'            "surround selection with paired symbols
-    Plug 'vim-airline/vim-airline'		 "fancy status bar
-    Plug 'scrooloose/nerdtree'			 "file explorer inside vim
+
+    " Plug 'will133/vim-dirdiff'           ":DirDiff command for visual diff
     " Plug 'lervag/vimtex'                 "LaTeX helper
     " Plug 'tpope/vim-eunuch'              "unix terminal commands in vim
     " Plug 'jpalardy/vim-slime'            "repl in vim
     " Plug 'xuyuanp/nerdtree-git-plugin'   "display git info for file explorer
-    " Plug 'ccraciun/vim-dreammaker'       "syntax highlighting for BYOND
+
+    Plug 'airblade/vim-gitgutter'        "gitlens for vim
+    Plug 'tpope/vim-fugitive'			 "git information and commands
+    Plug 'tpope/vim-surround'            "surround selection with paired symbols
+    Plug 'vim-airline/vim-airline'		 "fancy status bar
+    Plug 'scrooloose/nerdtree'			 "file explorer inside vim
     call plug#end()
 endif
 
 " air-line
-" let g:airline_powerline_fonts = 1
-" if !exists('g:airline_symbols')
-" 		let g:airline_symbols = {}
-" endif
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+		let g:airline_symbols = {}
+endif
 
-" let g:airline_left_sep = '»'
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '«'
-" let g:airline_right_sep = '◀'
-" let g:airline_symbols.linenr = '␊'
-" let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.branch = '䷖'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline_symbols.paste = '∥'
-" let g:airline_symbols.whitespace = 'Ξ'
-
-let g:airline_powerline_fonts = 0
-let g:airline_symbols_ascii = 1
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '䷖'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " keybinds
 map <C-n> :NERDTreeToggle<CR>
