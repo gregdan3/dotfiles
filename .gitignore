@@ -9,7 +9,7 @@ public_html
 .python_history
 .bash_history
 .zsh_history
-.viminfo
+.viminf*
 .fehbg
 .install4j
 .zcompdump-Zendikar-5.7.1
