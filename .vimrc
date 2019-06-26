@@ -20,7 +20,9 @@ set autochdir                   " ensure working directory = directory of vim
 set ttyfast                     " redraw faster 
 set undofile                    " enable preserved histories across sessions
 set undodir=~/.vim/undodir      " store histories in specific dir instead of same as file
+" set viminfo=n~/.vim/viminfo/ "TODO
 set mouse=a                     " enable mouse
+filetype indent on              " autoindent per filetype
 
 
 " search settings
@@ -37,6 +39,7 @@ set laststatus=2                " display statusline always
 set wildmenu                    " 
 set wildmode=longest,full,list  " 
 set title                       "      
+set showcmd                     " show currently typed command
 set history=1000                " preserve n changes 
 
 " autoclean whitespace for specified filetypes
