@@ -13,9 +13,11 @@ public_html
 .fehbg
 .install4j
 .zcompdump-Zendikar-5.7.1
+NTUSER*
 
 
 # NEVER EVER ADD
 .Xauthority
 .esd_auth
+random.dat
 
