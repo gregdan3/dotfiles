@@ -212,6 +212,7 @@ python-pandas
 python-pandas-datareader
 python-phonenumbers
 python-pip
+python-pipenv
 python-psycopg2
 python-pydocstyle
 python-pylint
