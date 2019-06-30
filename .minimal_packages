@@ -1,3 +1,5 @@
+acpi
+acpid
 autoconf
 automake
 bash
@@ -74,13 +76,18 @@ tar
 terminus-font
 termite
 texinfo
+tlp
+tp_smapi
+ttf-roboto
 usbutils
 util-linux
 vim
 volumeicon
+which
 xf86-input-keyboard
 xf86-input-mouse
 xf86-video-intel
 xorg-server
 xorg-xinit
 xorg-xrandr
+zsh
