@@ -19,6 +19,7 @@ bandit
 bash
 bash-completion
 bdf-unifont
+bigloo
 binutils
 bison
 bluez
@@ -26,12 +27,17 @@ bpf
 bzip2
 cabal-install
 cabextract
+ccache
 cgroup_event_listener
+chicken
 chromium
 clang
+clisp
 clojure
 cmake
+coffeescript
 coreutils
+cowsay
 cpio
 cpupower
 cryptsetup
@@ -52,6 +58,8 @@ dmidecode
 docker
 docx2txt
 dos2unix
+dosbox
+dosfstools
 dtools
 e2fsprogs
 efibootmgr
@@ -87,6 +95,9 @@ gettext
 ghc
 ghc-static
 git
+gitlab
+gitlab-runner
+gitlab-shell
 glances
 glibc
 go
@@ -145,6 +156,7 @@ mesa
 mftrace
 mongo-c-driver
 mono
+moreutils
 mpv
 mtools
 mtr
@@ -205,6 +217,7 @@ python-aiohttp
 python-aioresponses
 python-aiorpcx
 python-black
+python-bottle
 python-bottleneck
 python-cchardet
 python-cloudpickle
@@ -232,6 +245,7 @@ python-psycopg2
 python-pydocstyle
 python-pylint
 python-pymongo
+python-pyocr
 python-pyqt5
 python-pystemmer
 python-pytables
@@ -239,8 +253,10 @@ python-pytest
 python-pywinrm
 python-qtpy
 python-scapy
+python-scipy
 python-selenium
 python-sqlalchemy
+python-sqlitedict
 python-sshtunnel
 python-tweepy
 python-unidecode
