@@ -14,6 +14,8 @@ public_html
 .install4j
 .zcompdump*
 NTUSER*
+.dbshell
+.mongorc.js
 
 
 # NEVER EVER ADD
