@@ -65,11 +65,11 @@ else
     " plugins that are unique to local use
     Plug 'w0rp/ale'                      "linting
     Plug 'valloric/youcompleteme'        "auto-completer for a lot of languages
-    Plug 'python/black'                  "python code formatter
+    Plug 'python/black', {'for': 'python'} "python code formatter
+    Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
 
     " plugins I am not using currently
     " Plug 'will133/vim-dirdiff'         "DirDiff command for visual diff
-    " Plug 'lervag/vimtex'               "LaTeX helper
     " Plug 'tpope/vim-eunuch'            "unix terminal commands in vim
     " Plug 'jpalardy/vim-slime'          "repl in vim
     " Plug 'xuyuanp/nerdtree-git-plugin' "display git info for file explorer
