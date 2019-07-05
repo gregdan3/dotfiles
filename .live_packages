@@ -18,7 +18,6 @@ asciiquarium
 atool
 autoconf
 automake
-awesome-terminal-fonts
 bandit
 bash
 bash-completion
@@ -33,12 +32,12 @@ bumblebee
 bzip2
 cabal-install
 cabextract
-cantata
 ccache
 ccid
 cgroup_event_listener
 chicken
 chromium
+chrpath
 clang
 clisp
 clojure
@@ -69,11 +68,9 @@ docker
 docker-compose
 docx2txt
 dos2unix
-dosbox
 dosfstools
 dtc
 dtools
-dwarffortress
 e2fsprogs
 ecb
 efibootmgr
@@ -125,7 +122,6 @@ grub
 gtop
 gzip
 haskell-edit-distance
-hddtemp
 highlight
 hlint
 htop
@@ -144,7 +140,6 @@ iw
 jad
 jfsutils
 julia
-keepass
 kotlin
 less
 lhasa
@@ -199,7 +194,6 @@ nltk-data
 nmap
 nnn
 nodejs-less
-non-sequencer
 noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
@@ -270,9 +264,11 @@ python-flask
 python-flask-restful
 python-flask-script
 python-gevent
+python-gevent-websocket
 python-google-api-python-client
 python-google-auth
 python-google-auth-httplib2
+python-grequests
 python-jsonpickle
 python-lxml
 python-matplotlib
@@ -311,13 +307,9 @@ qbittorrent
 r
 rabbitmq
 ragel
-ranger
 realtime-privileges
 reflector
-reiserfsprogs
 rhino
-rmlint
-rofi
 rsync
 rt-tests
 rtirq
@@ -377,7 +369,6 @@ tree
 ttf-droid
 ttf-font-awesome
 ttf-inconsolata
-ttf-ionicons
 ttf-opensans
 ttf-roboto
 tuna
