@@ -22,4 +22,5 @@ NTUSER*
 .Xauthority
 .esd_auth
 random.dat
+.gitconfig
 
