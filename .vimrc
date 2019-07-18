@@ -9,7 +9,7 @@ set showmatch                   " highlight matching paired symbol
 
 " functional settings
 set autoindent
-set smartindent
+" set smartindent
 set smarttab
 set expandtab
 set tabstop=4
