@@ -44,6 +44,8 @@ set history=1000                " preserve n changes
 
 " autoclean whitespace for specified filetypes
     autocmd FileType c,cpp,java,php,python,javascript,css,html,markdown,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
+" autorun PythonBlack in python files
+    autocmd FileType python autocmd BufWritePre <buffer> Black
 
 " check if remote session
 let g:remoteSession = !($SSH_TTY ==? '')
