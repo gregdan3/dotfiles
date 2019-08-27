@@ -16,6 +16,9 @@ public_html
 NTUSER*
 .dbshell
 .mongorc.js
+.steampath
+.steampid
+.pulse-cookie
 
 
 # NEVER EVER ADD
