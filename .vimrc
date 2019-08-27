@@ -68,13 +68,14 @@ else
     Plug 'w0rp/ale'                      "linting
     Plug 'valloric/youcompleteme'        "auto-completer for a lot of languages
     Plug 'python/black', {'for': 'python'} "python code formatter
-    Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
+    " TODO: vim-jad?
 
     " plugins I am not using currently
     " Plug 'will133/vim-dirdiff'         "DirDiff command for visual diff
     " Plug 'tpope/vim-eunuch'            "unix terminal commands in vim
     " Plug 'jpalardy/vim-slime'          "repl in vim
     " Plug 'xuyuanp/nerdtree-git-plugin' "display git info for file explorer
+    " Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
 
     " plugins that are common to local and remote sessions
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
