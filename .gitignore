@@ -20,7 +20,7 @@ NTUSER*
 
 # NEVER EVER ADD
 .Xauthority
+.aws
 .esd_auth
 random.dat
 .gitconfig
-
