@@ -75,7 +75,7 @@ else
     " Plug 'tpope/vim-eunuch'            "unix terminal commands in vim
     " Plug 'jpalardy/vim-slime'          "repl in vim
     " Plug 'xuyuanp/nerdtree-git-plugin' "display git info for file explorer
-    " Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
+    Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
 
     " plugins that are common to local and remote sessions
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
