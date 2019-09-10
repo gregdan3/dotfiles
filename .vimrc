@@ -107,6 +107,12 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
 
+" vimtex
+let g:tex_flavor = 'latex'
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_compiler_progname = 'latexmk'
+
 " keybinds
 map <C-n> :NERDTreeToggle<CR>
 
