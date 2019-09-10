@@ -76,6 +76,17 @@ else
     " Plug 'jpalardy/vim-slime'          "repl in vim
     " Plug 'xuyuanp/nerdtree-git-plugin' "display git info for file explorer
     Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
+        let g:tex_flavor = 'latex'
+        let g:vimtex_view_method = 'zathura'
+        let g:vimtex_view_general_viewer = 'zathura'
+        let g:vimtex_compiler_progname = 'latexmk'
+        set conceallevel=1
+        let g:tex_conceal='abdmg'
+
+    Plug 'sirver/ultisnips', {'for': ['plaintex', 'tex']}
+        let g:UltiSnipsExpandTrigger = '<tab>'
+        let g:UltiSnipsJumpForwardTrigger = '<tab>'
+        let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
     " plugins that are common to local and remote sessions
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
@@ -108,10 +119,6 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 
 " vimtex
-let g:tex_flavor = 'latex'
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_view_general_viewer = 'zathura'
-let g:vimtex_compiler_progname = 'latexmk'
 
 " keybinds
 map <C-n> :NERDTreeToggle<CR>
