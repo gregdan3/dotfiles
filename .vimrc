@@ -4,12 +4,9 @@ set ruler                       " display position on statusbar
 set wrap                        " display long lines on next line
 set linebreak
 set showmatch                   " highlight matching paired symbol
-" set cc=81
-
 
 " functional settings
 set autoindent
-" set smartindent
 set smarttab
 set expandtab
 set tabstop=4
@@ -20,7 +17,6 @@ set autochdir                   " ensure working directory = directory of vim
 set ttyfast                     " redraw faster 
 set undofile                    " enable preserved histories across sessions
 set undodir=~/.vim/undodir      " store histories in specific dir instead of same as file
-" set viminfo=n~/.vim/viminfo/ "TODO
 set mouse=a                     " enable mouse
 filetype indent on              " autoindent per filetype
 
@@ -68,15 +64,13 @@ else
     Plug 'w0rp/ale'                      "linting
     Plug 'valloric/youcompleteme'        "auto-completer for a lot of languages
     Plug 'python/black', {'for': 'python'} "python code formatter
-    " TODO: vim-jad?
+    Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
+    Plug 'sirver/ultisnips', {'for': ['plaintex', 'tex']}
 
     " plugins I am not using currently
-    " Plug 'will133/vim-dirdiff'         "DirDiff command for visual diff
     " Plug 'tpope/vim-eunuch'            "unix terminal commands in vim
     " Plug 'jpalardy/vim-slime'          "repl in vim
     " Plug 'xuyuanp/nerdtree-git-plugin' "display git info for file explorer
-    Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
-    Plug 'sirver/ultisnips', {'for': ['plaintex', 'tex']}
 
     " plugins that are common to local and remote sessions
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
