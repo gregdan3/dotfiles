@@ -86,8 +86,6 @@ ipython
 iw
 java-openjfx
 less
-lib32-jack
-lib32-libpulse
 libcss
 libtool
 libtraceevent
@@ -209,8 +207,6 @@ sed
 shadow
 splint
 stack
-steam
-steam-native-runtime
 strace
 sudo
 sysfsutils
