@@ -186,6 +186,7 @@ python-sqlalchemy
 python-sqlitedict
 python-sshtunnel
 python-stopit
+python-sympy
 python-tweepy
 python-unidecode
 python-wtforms
