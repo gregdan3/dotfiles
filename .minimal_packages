@@ -51,7 +51,6 @@ man-db
 man-pages
 mdadm
 nano
-neofetch
 netctl
 network-manager-applet
 networkmanager
@@ -77,7 +76,6 @@ terminus-font
 termite
 texinfo
 tlp
-tp_smapi
 ttf-roboto
 usbutils
 util-linux
