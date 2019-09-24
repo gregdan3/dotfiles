@@ -6,6 +6,7 @@ set linebreak
 set showmatch                   " highlight matching paired symbol
 
 " functional settings
+" set foldmethod=indent
 set autoindent
 set smarttab
 set expandtab
@@ -66,6 +67,9 @@ else
     Plug 'python/black', {'for': 'python'} "python code formatter
     Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
     Plug 'sirver/ultisnips', {'for': ['plaintex', 'tex']}
+    " Plug 'brianclements/vim-lilypond', {'for': ['ly', 'ily']}
+
+
 
     " plugins I am not using currently
     " Plug 'tpope/vim-eunuch'            "unix terminal commands in vim
