@@ -7,6 +7,7 @@ set showmatch                   " highlight matching paired symbol
 
 " functional settings
 " set foldmethod=indent
+" set conceallevel=1
 set autoindent
 set smarttab
 set expandtab
@@ -40,7 +41,7 @@ set showcmd                     " show currently typed command
 set history=1000                " preserve n changes 
 
 " autoclean whitespace for specified filetypes
-    autocmd FileType c,cpp,java,php,python,javascript,css,html,markdown,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
+    autocmd FileType c,cpp,java,php,python,javascript,css,html,markdown,yaml,tex autocmd BufWritePre <buffer> %s/\s\+$//e
 " autorun PythonBlack in python files
     autocmd FileType python autocmd BufWritePre <buffer> Black
 
@@ -49,42 +50,44 @@ let g:remoteSession = !($SSH_TTY ==? '')
 if g:remoteSession
     colorscheme darkblue
     call plug#begin()
-    " plugins that are unique to remote use
+    " unique to remote use
     Plug 'vim-syntastic/syntastic'       "lightweight syntax checker
 
-    " plugins that are common to local and remote sessions
+    " common to local and remote sessions
+    " Plug 'tpope/vim-surround'            "surround selection with paired symbols
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
     Plug 'tpope/vim-fugitive'            "git information and commands
-    Plug 'tpope/vim-surround'            "surround selection with paired symbols
     Plug 'vim-airline/vim-airline'       "fancy status bar
     Plug 'scrooloose/nerdtree'           "file explorer inside vim
     call plug#end()
 else
     call plug#begin()
-    " plugins that are unique to local use
+    " unique to local use
     Plug 'w0rp/ale'                      "linting
     Plug 'valloric/youcompleteme'        "auto-completer for a lot of languages
     Plug 'python/black', {'for': 'python'} "python code formatter
-    Plug 'lervag/vimtex', {'for': ['plaintex', 'tex']}   "LaTeX helper
-    Plug 'sirver/ultisnips', {'for': ['plaintex', 'tex']}
-    " Plug 'brianclements/vim-lilypond', {'for': ['ly', 'ily']}
+    Plug 'lervag/vimtex', {'for': 'tex'}   "LaTeX helper
+    Plug 'sirver/ultisnips', {'for': 'tex'}  " faster snippets completion
 
+    " NOTE: you can :echo glob($VIMRUNTIME . '/ftplugin/*.vim') to see filetypes
+    " NOTE: you can :PlugStatus to see running plugins
 
-
-    " plugins I am not using currently
+    " not using currently
     " Plug 'tpope/vim-eunuch'            "unix terminal commands in vim
     " Plug 'jpalardy/vim-slime'          "repl in vim
     " Plug 'xuyuanp/nerdtree-git-plugin' "display git info for file explorer
+    " Plug 'tpope/vim-surround'          "surround selection with paired symbols
 
-    " plugins that are common to local and remote sessions
+    " common to local and remote sessions
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
     Plug 'tpope/vim-fugitive'            "git information and commands
-    Plug 'tpope/vim-surround'            "surround selection with paired symbols
     Plug 'vim-airline/vim-airline'       "fancy status bar
     Plug 'scrooloose/nerdtree'           "file explorer inside vim
     call plug#end()
 endif
 
+" ycm extra conf for c and other compilation
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 " air-line
 let g:airline_powerline_fonts = 1
@@ -111,7 +114,6 @@ let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_compiler_progname = 'latexmk'
-set conceallevel=1
 let g:tex_conceal='abdmg'
 
 " UltiSnips
