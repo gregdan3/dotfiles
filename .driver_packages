@@ -116,11 +116,11 @@ mtools
 musl
 nano
 neofetch
-net-tools
 netctl
 netperf
-network-manager-applet
+net-tools
 networkmanager
+network-manager-applet
 ngrep
 nmap
 noto-fonts-cjk
@@ -196,8 +196,8 @@ ranger
 realtime-privileges
 rmlint
 rofi
-rt-tests
 rtirq
+rt-tests
 ruby-docs
 rust
 rxvt-unicode
