@@ -52,8 +52,8 @@ man-pages
 mdadm
 nano
 netctl
-network-manager-applet
 networkmanager
+network-manager-applet
 openssh
 pacman
 pacman-contrib
