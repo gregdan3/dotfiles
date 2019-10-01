@@ -183,8 +183,6 @@ screen
 sed
 shadow
 stack
-steam
-steam-native-runtime
 strace
 sudo
 sysfsutils
