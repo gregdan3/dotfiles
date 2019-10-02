@@ -5,6 +5,7 @@ set linebreak
 set display+=lastline           " always show last line of paragraph
 set scrolloff=3                 " show n lines above/below when scrolling
 set sidescrolloff=5             " show n columns to sides when scrolling
+set lazyredraw                  " don't draw screen during command execution
 highlight CursorLineNr cterm=bold term=bold ctermfg=11
 
 " non-visual but related settings
@@ -12,15 +13,17 @@ set noerrorbells
 set novisualbell
 
 " functional settings
-set foldmethod=indent
+" set magic                     " grep regex instead of vim regex
+set foldmethod=indent           " fold based on indent level
 set nofoldenable                " no fold by default
-" set conceallevel=1
+" set conceallevel=1              " fold by default to maximum level
 set autoindent
 set smarttab
-set expandtab
+set expandtab                   " replace tab with space
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set shiftround                  " round 'shift' to shiftwidth
 set encoding=utf8
 set termencoding=utf8
 set backspace=indent,eol,start  " allow backspace across [chars]
@@ -178,4 +181,5 @@ set wildignore+=*.sw?             " Vim swap files
 set wildignore+=.DS_Store         " Mac files
 set wildignore+=*/tmp/*           " MacOSX/Linux
 set wildignore+=*\\tmp\\*         " Windows
+set wildignore+=*pycache*
 " }}}
