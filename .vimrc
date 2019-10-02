@@ -64,7 +64,7 @@ else
     call plug#begin()
     " unique to local use
     Plug 'w0rp/ale'                      "linting
-    Plug 'valloric/youcompleteme'        "auto-completer for a lot of languages
+    Plug 'valloric/youcompleteme', {'for': ['python', 'tex', 'css', 'html', 'c', 'cpp', 'asm', 'vim']}
     Plug 'python/black', {'for': 'python'} "python code formatter
     Plug 'lervag/vimtex', {'for': 'tex'}   "LaTeX helper
     Plug 'sirver/ultisnips', {'for': 'tex'}  " faster snippets completion
