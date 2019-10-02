@@ -1,9 +1,7 @@
 " visual settings
 syntax enable                   " color text in files that allow it
-set ruler                       " display position on statusbar
 set wrap                        " display long lines on next line
 set linebreak
-set showmatch                   " highlight matching paired symbol
 
 " functional settings
 " set foldmethod=indent
@@ -12,6 +10,7 @@ set autoindent
 set smarttab
 set expandtab
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set encoding=utf8
 set termencoding=utf8
@@ -31,8 +30,10 @@ set incsearch                   " jump to nearest result as you search
 
 
 " information settings
+set ruler                       " display position on statusbar
 set number                      " line numbers
 set relativenumber              " distances from cursor in line numbers
+set showmatch                   " highlight matching paired symbol
 set laststatus=2                " display statusline always
 set wildmenu                    " 
 set wildmode=longest,full,list  " 
@@ -54,7 +55,7 @@ if g:remoteSession
     Plug 'vim-syntastic/syntastic'       "lightweight syntax checker
 
     " common to local and remote sessions
-    " Plug 'tpope/vim-surround'            "surround selection with paired symbols
+    Plug 'tpope/vim-surround'            "surround selection with paired symbols
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
     Plug 'tpope/vim-fugitive'            "git information and commands
     Plug 'vim-airline/vim-airline'       "fancy status bar
@@ -62,10 +63,11 @@ if g:remoteSession
     call plug#end()
 else
     call plug#begin()
-    " unique to local use
+    " local use
     Plug 'w0rp/ale'                      "linting
     Plug 'valloric/youcompleteme', {'for': ['python', 'tex', 'css', 'html', 'c', 'cpp', 'asm', 'vim']}
     Plug 'python/black', {'for': 'python'} "python code formatter
+    Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }  " markdown helper
     Plug 'lervag/vimtex', {'for': 'tex'}   "LaTeX helper
     Plug 'sirver/ultisnips', {'for': 'tex'}  " faster snippets completion
 
@@ -75,10 +77,9 @@ else
     " not using currently
     " Plug 'tpope/vim-eunuch'            "unix terminal commands in vim
     " Plug 'jpalardy/vim-slime'          "repl in vim
-    " Plug 'xuyuanp/nerdtree-git-plugin' "display git info for file explorer
-    " Plug 'tpope/vim-surround'          "surround selection with paired symbols
 
     " common to local and remote sessions
+    Plug 'tpope/vim-surround'          "surround selection with paired symbols
     Plug 'airblade/vim-gitgutter'        "gitlens for vim
     Plug 'tpope/vim-fugitive'            "git information and commands
     Plug 'vim-airline/vim-airline'       "fancy status bar
@@ -115,6 +116,11 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_compiler_progname = 'latexmk'
 let g:tex_conceal='abdmg'
+let g:vimtex_quickfix_ignore_all_warnings = 1
+let g:vimtex_quickfix_latexlog = {  
+    \ 'overfull' : 0, 
+    \ 'underfull' : 0,
+    \}
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = '<C-c>'
@@ -124,6 +130,30 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-z>'
 
 " keybinds
 map <C-n> :NERDTreeToggle<CR>
+
+" Ignore junk files in NerdTree
+let NERDTreeIgnore=[
+    \ 'node_modules$[[dir]]',
+    \ '.git$[[dir]]',
+    \ '.vscode$[[dir]]',
+    \ '.idea$[[dir]]',
+    \ '.DS_Store$[[file]]',
+    \ '.swp$[[file]]',
+    \ 'hdevtools.sock$[[file]]',
+    \ '.synctex.gz[[file]]',
+    \ '.fls[[file]]',
+    \ '.fdb_latexmk[[file]]',
+    \ '.aux[[file]]'
+\ ]
+
+let NERDTreeShowHidden=1
+let NERDTreeShowBookmarks=1
+
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
 " Borrowed from http://dotshare.it/dots/8329/
 " Ignore these filenames during enhanced command line completion.
