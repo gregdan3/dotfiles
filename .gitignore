@@ -21,7 +21,9 @@ NTUSER*
 .steampath
 .steampid
 .pulse-cookie
-
+.units_history
+*.png
+  
 
 # NEVER EVER ADD
 .Xauthority
