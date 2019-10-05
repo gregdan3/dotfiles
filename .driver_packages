@@ -29,6 +29,7 @@ cpupower
 cryptsetup
 cups
 cvs
+cython
 device-mapper
 dhcpcd
 dialog
@@ -99,6 +100,8 @@ lilypond
 linux
 linux-firmware
 linux-headers
+linux-lts
+linux-lts-headers
 llvm
 logrotate
 ltrace
@@ -114,6 +117,7 @@ mftrace
 moreutils
 mtools
 nano
+nasm
 neofetch
 net-tools
 netctl
@@ -127,6 +131,7 @@ noto-fonts-emoji
 noto-fonts-extra
 ntfs-3g
 ntop
+nuitka
 odt2txt
 openjpeg
 openmp
@@ -152,10 +157,10 @@ proselint
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
+pypy3
 python-black
 python-pip
 python-pipenv
-python-pydocstyle
 python-pylint
 python-sympy
 python-unidecode
@@ -187,12 +192,19 @@ tar
 telegram-desktop
 termite
 texinfo
+texlive-bibtexextra
 texlive-fontsextra
+texlive-formatsextra
 texlive-music
+texlive-pictures
+texlive-pstricks
+texlive-publishers
+texlive-science
 tidy
 tk
 tlp
 tmon
+tpacpi-bat
 tree
 ttf-droid
 ttf-font-awesome
@@ -200,6 +212,7 @@ ttf-inconsolata
 ttf-ionicons
 ttf-opensans
 ttf-roboto
+units
 unrar
 usbutils
 util-linux
