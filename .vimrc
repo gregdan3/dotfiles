@@ -81,7 +81,6 @@ else
     Plug 'w0rp/ale'                      "linting
     Plug 'valloric/youcompleteme', {'for': ['python', 'tex', 'css', 'html', 'c', 'cpp', 'asm', 'vim']}
     Plug 'python/black', {'for': 'python'} "python code formatter
-    Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }  " markdown helper
     Plug 'lervag/vimtex', {'for': 'tex'}   "LaTeX helper
     Plug 'sirver/ultisnips', {'for': 'tex'}  " faster snippets completion
 
