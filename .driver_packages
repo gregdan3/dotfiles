@@ -9,6 +9,7 @@ atool
 autoconf
 automake
 bandit
+base
 bash
 bash-completion
 binutils
@@ -18,7 +19,6 @@ bluez
 bluez-utils
 bpf
 bzip2
-cabal-install
 ccache
 chromium
 clang
@@ -59,8 +59,6 @@ gcc
 gcc-libs
 gdb
 gettext
-ghc
-ghc-static
 git
 glances
 glibc
@@ -181,7 +179,6 @@ schedtool
 screen
 sed
 shadow
-stack
 strace
 sudo
 sysfsutils
@@ -219,6 +216,7 @@ util-linux
 vi
 vim
 vint
+vlc
 vnstat
 volumeicon
 vorbis-tools
