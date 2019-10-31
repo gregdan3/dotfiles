@@ -56,16 +56,19 @@ set showcmd                     " show currently typed command
 set history=1000                " preserve n changes
 
 " autoclean whitespace for specified filetypes
-    autocmd FileType c,cpp,java,php,python,javascript,css,html,markdown,yaml,tex,vim autocmd BufWritePre <buffer> %s/\s\+$//e
-" autorun PythonBlack in python files
-    autocmd FileType python autocmd BufWritePre <buffer> Black
+
+" Google's autoformat on file write
+augroup autoformat_settings
+  autocmd FileType python autocmd BufWritePre <buffer> Black
+  autocmd FileType c,cpp,java,javascript,css,html,markdown,yaml,tex,vim autocmd BufWritePre <buffer> %s/\s\+$//e
+augroup END
 
 " check if remote session
 let g:remoteSession = !($SSH_TTY ==? '')
 if g:remoteSession
     colorscheme darkblue
     call plug#begin()
-    " unique to remote use
+    " for remote use
     Plug 'vim-syntastic/syntastic'       "lightweight syntax checker
 
     " common to local and remote sessions
@@ -79,9 +82,9 @@ else
     call plug#begin()
     " local use
     Plug 'w0rp/ale'                      "linting
-    Plug 'valloric/youcompleteme', {'for': ['python', 'tex', 'css', 'html', 'c', 'cpp', 'asm', 'vim']}
-    Plug 'python/black', {'for': 'python'} "python code formatter
-    Plug 'lervag/vimtex', {'for': 'tex'}   "LaTeX helper
+    Plug 'valloric/youcompleteme', {'for': ['python', 'tex', 'css', 'html', 'c', 'cpp', 'asm', 'vim', 'java']}
+    Plug 'python/black', {'for': 'python'}  "python code formatter
+    Plug 'lervag/vimtex', {'for': 'tex'}    "LaTeX helper
     Plug 'sirver/ultisnips', {'for': 'tex'}  " faster snippets completion
 
     " NOTE: you can :echo glob($VIMRUNTIME . '/ftplugin/*.vim') to see filetypes
@@ -99,6 +102,7 @@ else
     Plug 'scrooloose/nerdtree'           "file explorer inside vim
     call plug#end()
 endif
+
 
 " ycm extra conf for c and other compilation
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
