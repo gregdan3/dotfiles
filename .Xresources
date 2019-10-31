@@ -15,7 +15,7 @@ Xft.lcdfilter: lcddefault
 *highlightColor:         #c1ddff
 
 ! Font config
-# define mainfont xos4 Terminus
+# define mainfont Terminus (TTF)
 # define backfont FontAwesome 
 URxvt*font:         	xft:mainfont:size=12:style=Medium, \
 						xft:backfont:size=12
