@@ -7,3 +7,11 @@ set mark-symlinked-directories On
 set show-all-if-ambiguous On
 set show-all-if-unmodified On
 set visible-stats On
+set bell-style none  
+# never show bell
+set match-hidden-files On
+# ensure hidden files are seen/matter in term completion
+set editing-mode vi
+# use vi keybinds for interaction
+set echo-control-characters On
+# show ^C, for example
