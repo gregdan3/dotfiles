@@ -71,6 +71,7 @@ grub
 gtop
 gzip
 hardinfo
+hddtemp
 hexyl
 highlight
 htop
@@ -165,6 +166,7 @@ qbittorrent
 realtime-privileges
 rmlint
 rofi
+rsync
 rtirq
 rtmpdump
 ruby
