@@ -13,6 +13,7 @@ bandit
 base
 bash
 bash-completion
+bat
 binutils
 bison
 blueman
@@ -70,11 +71,13 @@ grub
 gtop
 gzip
 hardinfo
+hexyl
 highlight
 htop
 hwinfo
 i3-gaps
 i3status
+icoutils
 iftop
 inetutils
 intel-ucode
@@ -86,6 +89,7 @@ iputils
 ipython
 irssi
 iw
+jq
 less
 libcss
 libtool
@@ -100,6 +104,7 @@ linux-lts
 linux-lts-headers
 llvm
 logrotate
+lostfiles
 lshw
 ltrace
 lvm2
@@ -156,7 +161,6 @@ python-pip
 python-pipenv
 python-pylint
 python-sympy
-python-unidecode
 qbittorrent
 realtime-privileges
 rmlint
@@ -217,10 +221,12 @@ volumeicon
 vorbis-tools
 vulkan-intel
 w3m
+watchexec
 wget
 which
 whois
 wireshark-cli
+wireshark-qt
 wpa_supplicant
 xaw3d
 xdotool
@@ -242,6 +248,8 @@ xorg-xrandr
 xorg-xrdb
 xorg-xset
 xreader
+youtube-dl
+z
 zathura
 zathura-pdf-mupdf
 zip
