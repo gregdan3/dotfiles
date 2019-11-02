@@ -12,8 +12,6 @@ prompt_git() {
 		# check if the current directory is in .git before running git checks
 		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
            
-            # save the current repo to an env var for convenience
-            export LASTREPO=$PWD
 			# Ensure the index is up to date.
 			git update-index --really-refresh -q &>/dev/null;
 
