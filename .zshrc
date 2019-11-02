@@ -98,4 +98,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.bash_alias
+# source ~/.bash_commands  # commands, maybe not compatible
+source ~/.bash_alias     # aliases
+source ~/.bash_vars      # envvars
