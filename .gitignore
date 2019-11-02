@@ -26,6 +26,7 @@ NTUSER*
 .python_history*
 .bash_history
 .zsh_history
+.tig_history
 
 # NEVER EVER ADD
 .Xauthority
