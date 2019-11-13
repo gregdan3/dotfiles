@@ -28,7 +28,6 @@ cups
 cvs
 dhcpcd
 dialog
-discord
 dmenu
 dmidecode
 docker
@@ -159,7 +158,6 @@ sassc
 schedtool
 screen
 sed
-steam
 strace
 sudo
 sysfsutils
