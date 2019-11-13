@@ -69,7 +69,7 @@ if g:remoteSession
     colorscheme darkblue
     call plug#begin()
     " for remote use
-    Plug 'vim-syntastic/syntastic'       "lightweight syntax checker
+    Plug 'vim-syntastic/syntastic'       "lightweight syntax checker w/o async
 
     " common to local and remote sessions
     Plug 'tpope/vim-surround'            "surround selection with paired symbols
@@ -82,8 +82,10 @@ else
     call plug#begin()
     " local use
     Plug 'w0rp/ale'                      "linting
-    Plug 'valloric/youcompleteme', {'for': ['python', 'tex', 'css', 'html', 'c', 'cpp', 'asm', 'vim', 'java']}
+    Plug 'valloric/youcompleteme', {'for': ['python', 'tex', 'css', 'html', 'c', 'cpp', 'asm', 'vim', 'java', 'markdown']}
     Plug 'python/black', {'for': 'python'}  "python code formatter
+    Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}  "markdown auto preview
+    " FIRST TIME SETUP FOR markdown-preview.nvim: call mkdp#util#install()
     Plug 'lervag/vimtex', {'for': 'tex'}    "LaTeX helper
     Plug 'sirver/ultisnips', {'for': 'tex'}  " faster snippets completion
 
@@ -112,6 +114,10 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
         let g:airline_symbols = {}
 endif
+
+" markdown-preview.nvim
+let g:mkdp_auto_start = 1  " autostart when entering markdown buffer
+
 
 " let g:airline_left_sep = '▶'
 " let g:airline_right_sep = '◀'
@@ -161,8 +167,8 @@ let NERDTreeIgnore=[
     \ '.aux[[file]]'
 \ ]
 
-let NERDTreeShowHidden=1
-let NERDTreeShowBookmarks=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeShowBookmarks=1
 
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
