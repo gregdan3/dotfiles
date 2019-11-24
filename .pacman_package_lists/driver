@@ -1,6 +1,7 @@
 acpi
 acpi_call
 acpid
+aircrack-ng
 alsa-firmware
 alsa-utils
 apache
@@ -15,8 +16,6 @@ bat
 binutils
 bison
 blueman
-bluez
-bluez-utils
 bpf
 ccache
 chromium
@@ -26,6 +25,7 @@ cpio
 cpupower
 cups
 cvs
+cython
 dhcpcd
 dialog
 dmenu
@@ -37,7 +37,9 @@ efibootmgr
 emacs
 eslint
 fakeroot
+fdupes
 feh
+figlet
 file
 findutils
 firefox
@@ -69,6 +71,7 @@ i3status
 icoutils
 iftop
 inetutils
+intel-media-driver
 intel-ucode
 iotop
 ipcalc
@@ -83,8 +86,9 @@ lilypond
 linux
 linux-firmware
 linux-headers
-llvm
+llvm7
 logrotate
+lolcat
 lostfiles
 lshw
 ltrace
@@ -113,6 +117,7 @@ noto-fonts-extra
 npm
 ntfs-3g
 ntop
+ocaml
 odt2txt
 openjpeg
 openmp
@@ -128,7 +133,6 @@ pepper-flash
 perf
 pkgconf
 pkgfile
-poetry
 polkit
 postgresql-libs
 powerline-fonts
@@ -145,7 +149,6 @@ qbittorrent
 realtime-privileges
 rmlint
 rofi
-rsync
 rtirq
 rtmpdump
 ruby
@@ -168,11 +171,21 @@ texinfo
 texlive-bibtexextra
 texlive-fontsextra
 texlive-formatsextra
+texlive-games
+texlive-humanities
+texlive-langchinese
+texlive-langcyrillic
+texlive-langextra
+texlive-langgreek
+texlive-langjapanese
+texlive-langkorean
+texlive-latexextra
 texlive-music
 texlive-pictures
 texlive-pstricks
 texlive-publishers
 texlive-science
+throttled
 tk
 tlp
 tmon
@@ -189,9 +202,11 @@ units
 unrar
 usbutils
 util-linux
+vagrant
 vi
 vim
 vint
+virtualbox
 vlc
 vnstat
 volumeicon
@@ -206,10 +221,12 @@ wireshark-cli
 wireshark-qt
 wpa_supplicant
 xaw3d
+xclip
 xdotool
 xf86-input-keyboard
 xf86-input-mouse
 xf86-input-synaptics
+xf86-video-intel
 xorg-bdftopcf
 xorg-fonts-misc
 xorg-mkfontscale
