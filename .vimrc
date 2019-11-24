@@ -5,7 +5,7 @@ set linebreak
 set display+=lastline           " always show last line of paragraph
 set scrolloff=3                 " show n lines above/below when scrolling
 set sidescrolloff=5             " show n columns to sides when scrolling
-set lazyredraw                  " don't draw screen during command execution
+" set lazyredraw                  " don't draw screen during command execution
 highlight CursorLineNr cterm=bold term=bold ctermfg=11
 
 " non-visual but related settings
@@ -60,7 +60,7 @@ set history=1000                " preserve n changes
 " Google's autoformat on file write
 augroup autoformat_settings
   autocmd FileType python autocmd BufWritePre <buffer> Black
-  autocmd FileType c,cpp,java,javascript,css,html,markdown,yaml,tex,vim autocmd BufWritePre <buffer> %s/\s\+$//e
+  autocmd FileType c,cpp,java,javascript,css,html,markdown,md,yaml,tex,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 augroup END
 
 " check if remote session
@@ -117,8 +117,10 @@ endif
 
 " markdown-preview.nvim
 let g:mkdp_auto_start = 1  " autostart when entering markdown buffer
+let g:mkdp_browser = 'chromium'  " TODO: open in new window
 
 
+" airline characters to use
 " let g:airline_left_sep = '▶'
 " let g:airline_right_sep = '◀'
 " let g:airline_symbols.linenr = '␊'
@@ -135,7 +137,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_viewer = 'zathura'
-let g:vimtex_compiler_progname = 'latexmk'
+let g:vimtex_compiler_progname = 'tectonic'
 let g:tex_conceal='abdmg'
 let g:vimtex_quickfix_ignore_all_warnings = 1
 let g:vimtex_quickfix_latexlog = {
