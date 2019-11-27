@@ -82,7 +82,7 @@ else
     call plug#begin()
     " local use
     Plug 'w0rp/ale'                      "linting
-    Plug 'valloric/youcompleteme', {'for': ['python', 'tex', 'css', 'html', 'c', 'cpp', 'asm', 'vim', 'java', 'markdown']}
+    Plug 'valloric/youcompleteme', {'for': ['python', 'css', 'html', 'c', 'cpp', 'asm', 'vim', 'java', 'markdown', 'sh', 'bash', 'shell']}
     Plug 'python/black', {'for': 'python'}  "python code formatter
     Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}  "markdown auto preview
     " FIRST TIME SETUP FOR markdown-preview.nvim: call mkdp#util#install()
