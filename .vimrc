@@ -51,6 +51,8 @@ set ttyfast                     " redraw faster
 set undofile                    " enable preserved histories across sessions
 set undodir=~/.vim/undodir      " store histories in specific dir instead of same as file
 set mouse=a                     " enable mouse
+set splitbelow                  " Open :split buffers on bottom
+set splitright                  " Open :vsplit buffers on right
 " set conceallevel=1            " fold by default to maximum level
 " set magic                     " grep regex instead of vim regex
 " set ttimeout                  " after input, wait for more characters
@@ -91,6 +93,22 @@ set history=1000                " preserve n changes
 
 " vim efficiency settings
 set lazyredraw                  " don't draw screen during command execution
+
+
+" remaps
+" Easier buffer navigation
+" hjkl
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+" arrow keys
+nnoremap <C-H> <C-W><Left>
+nnoremap <C-J> <C-W><Down>
+nnoremap <C-K> <C-W><Up>
+nnoremap <C-L> <C-W><Right>
+
+
 
 
 " remember last edited location when reopening file, if valid
