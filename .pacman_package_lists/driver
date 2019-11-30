@@ -9,6 +9,7 @@ astyle
 atool
 autoconf
 automake
+autorandr
 bandit
 base
 bash-completion
@@ -117,12 +118,14 @@ noto-fonts-extra
 npm
 ntfs-3g
 ntop
+nuitka
 ocaml
 odt2txt
 openjpeg
 openmp
 openssh
 openssl-1.0
+os-prober
 p7zip
 pacman
 pacman-contrib
@@ -164,6 +167,7 @@ sed
 strace
 sudo
 sysfsutils
+syslinux
 sysstat
 telegram-desktop
 termite
@@ -206,7 +210,6 @@ vagrant
 vi
 vim
 vint
-virtualbox
 vlc
 vnstat
 volumeicon
