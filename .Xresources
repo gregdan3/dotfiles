@@ -1,13 +1,13 @@
 #include "./.xcolors/sexcolors"
 ! sexcolors, erebus, gruvboxdark, crystalcave
 ! solarized, frozenwasteland, pastelbeans, jellybeans
-! pinkscale, 
+! pinkscale,
 ! thinkpad has weird white color
 Xft.dpi:       96
-Xft.antialias: true 
-Xft.hinting:   true 
-Xft.autohint:  true 
-Xft.rgba:      rgba 
+Xft.antialias: true
+Xft.hinting:   true
+Xft.autohint:  true
+Xft.rgba:      rgba
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 
@@ -16,7 +16,7 @@ Xft.lcdfilter: lcddefault
 
 ! Font config
 # define mainfont Terminus (TTF)
-# define backfont FontAwesome 
+# define backfont FontAwesome
 URxvt*font:         	xft:mainfont:size=12:style=Medium, \
 						xft:backfont:size=12
 URxvt*boldFont:			xft:mainfont:size=12:style=Bold, \
@@ -25,20 +25,20 @@ URxvt*italicFont:   	xft:mainfont:size=12:style=Italic, \
 						xft:backfont:size=12
 URxvt*boldItalicFont:	xft:mainfont:size=12:style=Bold Italic, \
 						xft:backfont:size=12
-URxvt*letterSpace: -1 
-URxvt*lineSpace: 0 
+URxvt*letterSpace: -1
+URxvt*lineSpace: 0
 
 
 ! visual URxvt settings
 URxvt.depth:                      32
 URxvt*cursorBlink:                true
 ! fade out terminals that do not have focus
-*fading:                          25 
-*fadeColor:                       #000000 
+*fading:                          25
+*fadeColor:                       #000000
 
-! functional URxvt settings 
+! functional URxvt settings
 URxvt*scrollBar:                  false
-URxvt*mouseWheelScrollPage:       false 
+URxvt*mouseWheelScrollPage:       false
 URxvt*saveLines:                  12000
 URxvt*visualBell:                 false
 URxvt*urgentOnBell:               false
