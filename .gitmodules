@@ -4,9 +4,3 @@
 [submodule ".emacs.d"]
 	path = .emacs.d
 	url = git@github.com:syl20bnr/spacemacs.git
-[submodule "tmux-config/.tmux/plugins/tpm"]
-	path = tmux-config/.tmux/plugins/tpm
-	url = git@github.com:tmux-plugins/tpm.git
-[submodule ".tmux/plugins/tpm"]
-	path = .tmux/plugins/tpm
-	url = git@github.com:tmux-plugins/tpm.git
