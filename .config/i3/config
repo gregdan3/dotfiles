@@ -178,19 +178,19 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        bindsym h resize shrink width 5 px or 5 ppt
+# These bindings trigger as soon as you enter the resize mode
+    bindsym h resize shrink width 5 px or 5 ppt
         bindsym j resize grow height 5 px or 5 ppt
         bindsym k resize shrink height 5 px or 5 ppt
         bindsym l resize grow width 5 px or 5 ppt
 
-        # same bindings, but for the arrow keys
+# same bindings, but for the arrow keys
         bindsym Left resize shrink width 5 px or 5 ppt
         bindsym Down resize grow height 5 px or 5 ppt
         bindsym Up resize shrink height 5 px or 5 ppt
         bindsym Right resize grow width 5 px or 5 ppt
 
-        # exit resize mode: Enter or Escape
+# exit resize mode: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -231,26 +231,26 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-    i3bar_command i3bar
-    status_command i3status
-    position bottom
+i3bar_command i3bar
+status_command i3status
+position bottom
 
-    # strip_workspace_numbers yes
+# strip_workspace_numbers yes
 
-    font xft:Terminus (TTF) 12
+font xft:Terminus (TTF) 12
 
-    colors {
-        background $term_background
-        statusline $term_foreground
-        separator  $term_foreground
+colors {
+background $term_background
+statusline $term_foreground
+separator  $term_foreground
 
-        # name_of_area     border           backgr.             text
-        focused_workspace  $term_color0     $term_color4        $term_foreground
-        active_workspace   $term_color0     $term_background    $term_foreground
-        inactive_workspace $term_color0     $term_background    $term_foreground
-        binding_mode       $term_color0     $term_color9        $term_foreground
-        urgent_workspace   $term_color0     $term_color9        $term_foreground
-    }
+# name_of_area     border           backgr.             text
+focused_workspace  $term_color0     $term_color4        $term_foreground
+active_workspace   $term_color0     $term_background    $term_foreground
+inactive_workspace $term_color0     $term_background    $term_foreground
+binding_mode       $term_color0     $term_color9        $term_foreground
+urgent_workspace   $term_color0     $term_color9        $term_foreground
+}
 }
 
 # hide/unhide i3status bar
@@ -258,13 +258,13 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border        backgr.             text                indic.      child_border
-  client.focused          $term_color0  $term_color14       $term_foreground    #FDF6E3     #FFFFFF
-  client.focused_inactive $term_color0  $term_background    $term_foreground    #454948     #FFFFFF
-  client.unfocused        $term_color0  $term_background    $term_foreground    #454948     #FFFFFF
-  client.urgent           $term_color0  $term_color9        $term_foreground    #268BD2     #FFFFFF
-  client.placeholder      $term_color0  $term_background    $term_foreground    #000000     #FFFFFF
+client.focused          $term_color0  $term_color14       $term_foreground    #FDF6E3     #FFFFFF
+client.focused_inactive $term_color0  $term_background    $term_foreground    #454948     #FFFFFF
+client.unfocused        $term_color0  $term_background    $term_foreground    #454948     #FFFFFF
+client.urgent           $term_color0  $term_color9        $term_foreground    #268BD2     #FFFFFF
+client.placeholder      $term_color0  $term_background    $term_foreground    #000000     #FFFFFF
 
-  client.background       $term_background
+client.background       $term_background
 
 #############################
 ### settings for i3-gaps: ###
@@ -293,13 +293,13 @@ set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
+    bindsym o      mode "$mode_gaps_outer"
         bindsym i      mode "$mode_gaps_inner"
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
+    bindsym plus  gaps inner current plus 5
         bindsym minus gaps inner current minus 5
         bindsym 0     gaps inner current set 0
 
@@ -311,7 +311,7 @@ mode "$mode_gaps_inner" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
+    bindsym plus  gaps outer current plus 5
         bindsym minus gaps outer current minus 5
         bindsym 0     gaps outer current set 0
 
