@@ -10,10 +10,8 @@ if !isdirectory($HOME.'/.vim/sessions')
     call mkdir($HOME.'/.vim/sessions', '', 0700)
 endif
 
-" NOTES for other dirs in ~/.vim
-" autoload is handled by vim
-" plugged is handled by vimplug
-" UltiSnips and black are handled by respective plugins
+" check if remote session
+let g:remoteSession = !($SSH_TTY ==? '')
 
 " NOTE: try :shell for in-vim shell stuff
 set shell=/usr/bin/env\ sh
@@ -42,8 +40,8 @@ set novisualbell
 " functional settings
 set foldmethod=indent           " fold based on indent level
 set nofoldenable                " no fold by default
-set encoding=utf8
-set termencoding=utf8
+set encoding=utf8               " always write utf-8 encoded files
+set termencoding=utf8           " characters appear in utf-8
 set backspace=indent,eol,start  " allow backspace across [chars]
 set autoread                    " if file is changed outside vim, reload it
 set autochdir                   " ensure working directory = directory of vim
@@ -96,62 +94,67 @@ set lazyredraw                  " don't draw screen during command execution
 
 
 " remaps
+" let mapleader=''              " TODO: choose a leader
+
 " Easier buffer navigation
-" hjkl
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
-" arrow keys
-nnoremap <C-H> <C-W><Left>
-nnoremap <C-J> <C-W><Down>
-nnoremap <C-K> <C-W><Up>
-nnoremap <C-L> <C-W><Right>
+" hjkl needs Ctrl but arrow keys do not?
+nnoremap <C-Left> <C-W><Left>
+nnoremap <C-Down> <C-W><Down>
+nnoremap <C-Up> <C-W><Up>
+nnoremap <C-Right> <C-W><Right>
+
+" disable arrow key navigation
+" nnoremap <Left> :echoe "Use h to move left!"<CR>
+" nnoremap <Right> :echoe "Use l to move right!"<CR>
+" nnoremap <Up> :echoe "Use k to move up!"<CR>
+" nnoremap <Down> :echoe "Use j to move down!"<CR>
 
 
-
-
+" autocommands
 " remember last edited location when reopening file, if valid
 augroup remember_last_position
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+augroup autoformatters
+    autocmd BufWritePre <buffer> %s/\s\+$//e    " clean whitespace at eol, always
 augroup END
 
 
-augroup autoformat_settings
-  autocmd FileType python autocmd BufWritePre <buffer> Black  " python autoformatter
-  autocmd BufWritePre <buffer> %s/\s\+$//e  " clean whitespace at eol, always
-augroup END
 
-
-" check if remote session
-let g:remoteSession = !($SSH_TTY ==? '')
-if g:remoteSession
+""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN SETTINGS EXCLUSIVELY BELOW THIS POINT "
+""""""""""""""""""""""""""""""""""""""""""""""""
+if g:remoteSession                              " remote plugins
     " colorscheme gruvbox
     colorscheme darkblue
     call plug#begin()
-    " for remote use
-    Plug 'vim-syntastic/syntastic'              " lightweight syntax checker w/o async
+    Plug 'vim-syntastic/syntastic'              " linter w/o async
 
     " common to local and remote sessions
-    Plug 'tpope/vim-surround'                   " surround selection with paired symbols
     Plug 'airblade/vim-gitgutter'               " gitlens for vim
     Plug 'tpope/vim-fugitive'                   " git information and commands
     Plug 'vim-airline/vim-airline'              " fancy status bar
     Plug 'scrooloose/nerdtree'                  " file explorer inside vim
     call plug#end()
-else
+else                                            " local plugins
     call plug#begin()
     " local use
-    " colorscheme gruvbox
-    Plug 'w0rp/ale'                             " linting
+    Plug 'w0rp/ale'                             " linter
+    Plug 'Chiel92/vim-autoformat'               " generalized autoformatter
     Plug 'valloric/youcompleteme', {'for': ['python', 'css', 'html', 'c', 'cpp', 'asm', 'vim', 'java', 'markdown']}
-    Plug 'python/black', {'for': 'python'}      " python code formatter
+    " NOTE: DO NOT ENABLE FOR TEX FILES! 500+ word buffers stress the CPU
     Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}
     " NOTE: FIRST TIME SETUP FOR markdown-preview.nvim: call mkdp#util#install()
+    " TODO: Find a way to do this first time setup automatically?
     Plug 'lervag/vimtex', {'for': 'tex'}        " LaTeX previewer
     Plug 'sirver/ultisnips', {'for': 'tex'}     " faster snippets completion
 
-    " NOTE: you can :echo glob($VIMRUNTIME . '/ftplugin/*.vim') to see filetypes
+    " NOTE: you can :echo glob($VIMRUNTIME . '/ftplugin/*.vim') to see filetypes available
     " NOTE: you can :PlugStatus to see running plugins
 
     " not using currently
@@ -159,9 +162,10 @@ else
     " Plug 'jpalardy/vim-slime'                 " send buffer data to [session] i.e.
     " Plug 'Konfekt/FastFold'                   " apparently folding = slow in vim
     " Plug 'xolox/vim-session'                  " session management
+    " Plug 'tpope/vim-surround'                 " surround selection with paired symbols
+    " Plug 'python/black', {'for': 'python'}    " python code formatter
 
     " common to local and remote sessions
-    Plug 'tpope/vim-surround'                   " surround selection with paired symbols
     Plug 'airblade/vim-gitgutter'               " gitlens for vim
     Plug 'tpope/vim-fugitive'                   " git information and commands
     Plug 'vim-airline/vim-airline'              " fancy status bar
@@ -169,26 +173,43 @@ else
     call plug#end()
 endif
 
+" remaps for plugins
+nmap <C-n> :NERDTreeToggle<CR>                  " open NERDTree with Ctrl+n in normal mode
 
-" ycm extra conf for c and other compilation
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+nmap <leader>1 <Plug>AirlineSelectTab1          " i3-style buffer selection while in normal mode
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
-" markdown-preview.nvim
-let g:mkdp_auto_start = 1                   " autostart when entering markdown buffer
-let g:mkdp_auto_open = 1                    " start buffer when editing markdown, even if closed
-let g:mkdp_browser = 'chromium'             " TODO: open in new window?
-let g:mkdp_path_to_chrome = ''
-let g:mkdp_open_to_the_world = 0            " can make preview visible on LAN
+
+" autocommands for plugins
+augroup autoformatters_plugins
+    " autocmd FileType python autocmd BufWritePre <buffer> Black  " python autoformatter
+    autocmd BufWritePre <buffer> Autoformat     " autoformatter using any installed formatter
+augroup END
+
+
+" NERDTree Settings
+let g:NERDTreeShowHidden=1
+let g:NERDTreeShowBookmarks=1
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1              " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1      " highlights the folder name
 
 
 " air-line
-let g:airline_powerline_fonts = 0           " TODO: what does this even do
+let g:airline_powerline_fonts = 0               " TODO: what does this even do
 if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
-
-" airline characters to use
-let g:airline_left_sep = ''                 " omit for cleanliness
+let g:airline_left_sep = ''                     " omit for cleanliness
 let g:airline_right_sep = ''
 " let g:airline_left_sep = '▶'
 " let g:airline_right_sep = '◀'
@@ -197,26 +218,38 @@ let g:airline_right_sep = ''
 " let g:airline_symbols.linenr = '␊'
 " let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = ''        " no symbol for column num
+let g:airline_symbols.maxlinenr = ''            " no symbol for column num
 
 " specific buffers/settings
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.spell = ''            " omit spell indicator; you'll know.
+let g:airline_symbols.spell = ''                " omit spell indicator; you'll know.
 " let g:airline_symbols.paste = 'ρ'
 " let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'           " TODO: when is this used
-let g:airline_symbols.crypt = '⩐'           " TODO: when is this used
-let g:airline_symbols.whitespace = 'Ξ'      " TODO: when is this used
+let g:airline_symbols.paste = '∥'               " TODO: when are these three used
+let g:airline_symbols.crypt = '⩐'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " git specific symbols
-" let g:airline_symbols.branch = '⎇'        "
-let g:airline_symbols.branch = '𝌎'          " tetragram for 'branch'
-let g:airline_symbols.notexists = 'Ɇ'       " buffer not tracked by git
-let g:airline_symbols.dirty='*'             " untracked changes; displays after branch name
+let g:airline_symbols.branch = '𝌎'              " tetragram for 'branch'
+let g:airline_symbols.notexists = 'Ɇ'           " buffer not tracked by git
+let g:airline_symbols.dirty='*'                 " untracked changes; displays after branch name
 " I use what matches my zsh prompt
 
-let g:airline#extensions#tabline#enabled = 1  " display all open buffers on top bar
-let g:airline#extensions#tabline#formatter = 'default'  " format top bar with [formatter]
+let g:airline#extensions#tabline#enabled = 1                " display all open buffers on top bar
+let g:airline#extensions#tabline#tab_nr_type = 1            " how to format tab number type
+let g:airline#extensions#tabline#show_tab_nr = 1            " what # tab is this
+let g:airline#extensions#tabline#buffer_nr_show = 1         " what # buffer is this
+let g:airline#extensions#tabline#nametruncate = 16          " max buffer name of 16 chars
+let g:airline#extensions#tabline#fnamecollapse = 2          " max buffer name of 16 chars
+let g:airline#extensions#tabline#formatter = 'default'      " format top bar with [formatter]
+
+
+" markdown-preview.nvim
+let g:mkdp_auto_start = 1                   " autostart when entering markdown buffer
+let g:mkdp_auto_open = 1                    " start buffer when editing markdown, even if closed
+let g:mkdp_browser = 'chromium'             " TODO: open in new window?
+let g:mkdp_path_to_chrome = ''
+let g:mkdp_open_to_the_world = 0            " can make preview visible on LAN
 
 
 " vimtex
@@ -227,9 +260,9 @@ let g:vimtex_compiler_progname = 'tectonic'
 let g:tex_conceal='abdmg'
 let g:vimtex_quickfix_ignore_all_warnings = 1
 let g:vimtex_quickfix_latexlog = {
-    \ 'overfull' : 0,
-    \ 'underfull' : 0,
-    \}
+            \ 'overfull' : 0,
+            \ 'underfull' : 0,
+            \}
 
 
 " UltiSnips
@@ -238,12 +271,5 @@ let g:UltiSnipsJumpForwardTrigger = '<C-b>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-z>'
 
 
-" NERDTree Settings
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeShowHidden=1
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+" ycm extra conf for c and other compilation
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
