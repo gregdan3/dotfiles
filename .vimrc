@@ -190,7 +190,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " autocommands for plugins
 augroup autoformatters_plugins
     " autocmd FileType python autocmd BufWritePre <buffer> Black  " python autoformatter
-    autocmd BufWritePre <buffer> Autoformat     " autoformatter using any installed formatter
+    autocmd FileType python,java,c,cpp,tex,latex,plaintex,vim,sh,shell autocmd BufWritePre <buffer> Autoformat     " autoformatter using any installed formatter
 augroup END
 
 
@@ -236,9 +236,9 @@ let g:airline_symbols.dirty='*'                 " untracked changes; displays af
 " I use what matches my zsh prompt
 
 let g:airline#extensions#tabline#enabled = 1                " display all open buffers on top bar
-let g:airline#extensions#tabline#tab_nr_type = 1            " how to format tab number type
-let g:airline#extensions#tabline#show_tab_nr = 1            " what # tab is this
-let g:airline#extensions#tabline#buffer_nr_show = 1         " what # buffer is this
+" let g:airline#extensions#tabline#tab_nr_type = 1            " how to format tab number type
+" let g:airline#extensions#tabline#show_tab_nr = 1            " what # tab is this
+" let g:airline#extensions#tabline#buffer_nr_show = 1         " what # buffer is this
 let g:airline#extensions#tabline#nametruncate = 16          " max buffer name of 16 chars
 let g:airline#extensions#tabline#fnamecollapse = 2          " max buffer name of 16 chars
 let g:airline#extensions#tabline#formatter = 'default'      " format top bar with [formatter]
