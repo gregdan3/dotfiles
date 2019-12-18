@@ -145,25 +145,34 @@ else                                            " local plugins
     call plug#begin()
     " local use
     Plug 'w0rp/ale'                             " linter
-    Plug 'Chiel92/vim-autoformat'               " generalized autoformatter
-    Plug 'valloric/youcompleteme', {'for': ['python', 'css', 'html', 'c', 'cpp', 'asm', 'vim', 'java', 'markdown']}
+
+    Plug 'valloric/youcompleteme'               " autocompletion engine
     " NOTE: DO NOT ENABLE FOR TEX FILES! 500+ word buffers stress the CPU
+    " TODO: disable for tex/plaintex buffers automatically?
     Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}
     " NOTE: FIRST TIME SETUP FOR markdown-preview.nvim: call mkdp#util#install()
-    " TODO: Find a way to do this first time setup automatically?
-    Plug 'lervag/vimtex', {'for': 'tex'}        " LaTeX previewer
-    Plug 'sirver/ultisnips', {'for': 'tex'}     " faster snippets completion
+    " TODO: Find a way to do this automatically?
+
+    " only for LaTeX
+    Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}        " LaTeX previewer
+    Plug 'sirver/ultisnips', {'for': ['tex', 'plaintex']}     " faster snippets completion
+
+    " formatters
+    let otherTypes = ['c', 'cpp', 'sh', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex', 'make']
+    Plug 'python/black', {'for': 'python'}
+    Plug 'rust-lang/rust.vim', {'for': 'rust'}  " this comes with other cool things too
+    Plug 'Chiel92/vim-autoformat', {'for': otherTypes}
 
     " NOTE: you can :echo glob($VIMRUNTIME . '/ftplugin/*.vim') to see filetypes available
     " NOTE: you can :PlugStatus to see running plugins
 
     " not using currently
+    " Plug 'google/vim-codefmt', {'for': otherTypes}
     " Plug 'tpope/vim-eunuch'                   " unix terminal commands in vim
     " Plug 'jpalardy/vim-slime'                 " send buffer data to [session] i.e.
     " Plug 'Konfekt/FastFold'                   " apparently folding = slow in vim
     " Plug 'xolox/vim-session'                  " session management
     " Plug 'tpope/vim-surround'                 " surround selection with paired symbols
-    " Plug 'python/black', {'for': 'python'}    " python code formatter
 
     " common to local and remote sessions
     Plug 'airblade/vim-gitgutter'               " gitlens for vim
@@ -189,8 +198,9 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " autocommands for plugins
 augroup autoformatters_plugins
-    " autocmd FileType python autocmd BufWritePre <buffer> Black  " python autoformatter
-    autocmd FileType python,java,c,cpp,tex,latex,plaintex,vim,sh,shell autocmd BufWritePre <buffer> Autoformat     " autoformatter using any installed formatter
+    autocmd FileType python autocmd BufWritePre <buffer> Black
+    autocmd FileType rust autocmd BufWritePre <buffer> RustFmt
+    autocmd FileType java,c,cpp,tex,latex,plaintex,vim,sh,shell autocmd BufWritePre <buffer> Autoformat     " autoformatter using any installed formatter
 augroup END
 
 
