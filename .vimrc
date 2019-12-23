@@ -46,6 +46,7 @@ set ttyfast                     " redraw faster
 set undofile                    " enable preserved histories across sessions
 set undodir=~/.vim/undodir      " store histories in specific dir instead of same as file
 set mouse=a                     " enable mouse
+set ttymouse=sgr                " change how vim understands mouse inputs
 set splitbelow                  " Open :split buffers on bottom
 set splitright                  " Open :vsplit buffers on right
 " set conceallevel=1            " fold by default to maximum level
