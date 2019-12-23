@@ -5,7 +5,7 @@
 set $mod Mod4
 
 # Set terminal
-set $terminal termite
+set $terminal st
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
