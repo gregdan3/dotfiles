@@ -6,9 +6,6 @@ endif
 if !isdirectory($HOME.'/.vim/undodir')
     call mkdir($HOME.'/.vim/undodir', '', 0700)
 endif
-if !isdirectory($HOME.'/.vim/sessions')
-    call mkdir($HOME.'/.vim/sessions', '', 0700)
-endif
 
 " check if remote session
 let g:remoteSession = !($SSH_TTY ==? '')
@@ -125,6 +122,8 @@ augroup autoformatters
 augroup END
 
 
+let otherTypes = ['c', 'cpp', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex']
+" keep track of alternative types for autoformat to run in
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SETTINGS EXCLUSIVELY BELOW THIS POINT "
@@ -158,7 +157,6 @@ else                                            " local plugins
     Plug 'sirver/ultisnips', {'for': ['tex', 'plaintex']}     " faster snippets completion
 
     " formatters
-    let otherTypes = ['c', 'cpp', 'sh', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex', 'make']
     Plug 'python/black', {'for': 'python'}
     Plug 'rust-lang/rust.vim', {'for': 'rust'}  " this comes with other cool things too
     Plug 'Chiel92/vim-autoformat', {'for': otherTypes}
@@ -169,9 +167,8 @@ else                                            " local plugins
     " not using currently
     " Plug 'google/vim-codefmt', {'for': otherTypes}
     " Plug 'tpope/vim-eunuch'                   " unix terminal commands in vim
-    " Plug 'jpalardy/vim-slime'                 " send buffer data to [session] i.e.
+    " Plug 'jpalardy/vim-slime'                 " send buffer data to [session]
     " Plug 'Konfekt/FastFold'                   " apparently folding = slow in vim
-    " Plug 'xolox/vim-session'                  " session management
     " Plug 'tpope/vim-surround'                 " surround selection with paired symbols
 
     " common to local and remote sessions
@@ -200,7 +197,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 augroup autoformatters_plugins
     autocmd FileType python autocmd BufWritePre <buffer> Black
     autocmd FileType rust autocmd BufWritePre <buffer> RustFmt
-    autocmd FileType java,c,cpp,tex,latex,plaintex,vim,sh,shell autocmd BufWritePre <buffer> Autoformat     " autoformatter using any installed formatter
+    autocmd FileType otherTypes autocmd BufWritePre <buffer> Autoformat     " autoformatter using any installed formatter
 augroup END
 
 
