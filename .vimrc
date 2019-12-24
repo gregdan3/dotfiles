@@ -37,6 +37,7 @@ set novisualbell
 " functional settings
 set foldmethod=indent           " fold based on indent level
 set nofoldenable                " no fold by default
+set nocompatible                " disable vi compatability settings
 set encoding=utf8               " always write utf-8 encoded files
 set termencoding=utf8           " characters appear in utf-8
 set backspace=indent,eol,start  " allow backspace across [chars]
