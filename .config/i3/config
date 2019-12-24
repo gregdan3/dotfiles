@@ -11,15 +11,51 @@ set $terminal st
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
+# for_window [class="^.*"] border pixel 0
 new_window pixel 1
 new_float normal
 
-# Hide borders
-hide_edge_borders none
+# Hide borders on screen edges none|vertical|horizontal|both|smart
+# smart doesn't seem to work?
+hide_edge_borders both
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:Terminus (TTF) 12
+
+# Color palette used for the $terminal ( ~/.Xresources file )
+# Colors are gathered based on the documentation:
+# https://i3wm.org/docs/userguide.html#xresources
+# Change the variable name at the place you want to match the color
+# of your $terminal like this:
+# NOTE: Since I use Termite/st, xresources will not always agree with my term colors!
+#   0/8: black/d_grey
+#   1/9: red
+#  2/10: green
+#  3/11: yellow
+#  4/12: blue
+#  5/13: purple
+#  6/14: cyan
+#  7/15: l_grey/white
+# bg/fg: depends on light/dark theme, usually close to black/white respectively
+set_from_resource $term_background background
+set_from_resource $term_foreground foreground
+set_from_resource $term_color0     color0
+set_from_resource $term_color1     color1
+set_from_resource $term_color2     color2
+set_from_resource $term_color3     color3
+set_from_resource $term_color4     color4
+set_from_resource $term_color5     color5
+set_from_resource $term_color6     color6
+set_from_resource $term_color7     color7
+set_from_resource $term_color8     color8
+set_from_resource $term_color9     color9
+set_from_resource $term_color10    color10
+set_from_resource $term_color11    color11
+set_from_resource $term_color12    color12
+set_from_resource $term_color13    color13
+set_from_resource $term_color14    color14
+set_from_resource $term_color15    color15
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -30,26 +66,28 @@ bindsym $mod+Return exec $terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_run -fn "Terminus (TTF)"
-
 # intentionally blank out background since transparency is a little odd
 bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg
 
 # AUDIO/SOUND SECTION
-bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
+bindsym $mod+Ctrl+m exec $terminal -e "alsamixer"
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 3
 bindsym XF86MonBrightnessDown exec light -U 3
 
-# Start Applications
-bindsym $mod+o exec chromium
+# Apps on binds
+bindsym $mod+o exec "chromium --disable-notifications --disable-breakpad --disable-crash-reporter --disable-background-networking --fast-start --no-report-upload --no-referrers"
+
+# start program launcher
+# sf = selected font, sb = selected background
+# nf = normal font,   nb = normal background
+bindsym $mod+d exec dmenu_run -fn "Terminus (TTF)" -sf "$term_color15" -sb "$term_color13" -nf "$term_color7" -nb "$term_background"
 
 # screenshot tools
-bindsym $mod+Print exec --no-startup-id i3-scrot
-bindsym $mod+Ctrl+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Print exec i3-scrot
+bindsym $mod+Ctrl+Print --release exec i3-scrot -w
+bindsym $mod+Shift+Print --release exec i3-scrot -s
 
 # intentionally disable focus on mouse
 focus_follows_mouse no
@@ -102,16 +140,18 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+s sticky toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# I literally never use this
+# bindsym $mod+a focus parent
 
-#navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+# navigate workspaces next / previous
+# I literally never use this
+# bindsym $mod+Ctrl+Right workspace next
+# bindsym $mod+Ctrl+Left workspace prev
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
-# something like: set $ws1 1:mail
-#                 set $ws2 2:
+# ex: set $ws1 1:mail
+#     set $ws2 2:
 set $ws1 1
 set $ws2 2
 set $ws3 3
@@ -160,11 +200,12 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # Move to scratchpad
-bindsym $mod+minus move scratchpad
-bindsym $mod+plus scratchpad show
+# I literally never use this
+# bindsym $mod+minus move scratchpad
+# bindsym $mod+plus scratchpad show
 
 # switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
+# for_window [urgent=latest] focus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -173,83 +214,63 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Autostart applications
+# NOTE: --no-startup-id means that i3 will not wait on the app or produce a workspace
+# for it. This is good for autostarting apps, but terrible for binding-produced apps
+# like dmenu.
 exec xset -b  # disable keyboard beep
 exec --no-startup-id volumeicon  # volume tray icon
 exec --no-startup-id nm-applet  # network manager tray icon
-exec --no-startup-id blueman-applet  # bluetooth service
+# exec --no-startup-id blueman-applet  # bluetooth service
 # exec --no-startup-id compton -b
-exec_always feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
-
-
-# Color palette used for the $terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your $terminal like this:
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
+exec_always --no-startup-id feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-i3bar_command i3bar
-status_command i3status
-position bottom
+    i3bar_command i3bar
+    status_command i3status
+    position top
+    strip_workspace_numbers no  # if a workspace has a name, do not remove the number
+    font xft:Terminus (TTF) 12
+    colors {
+        background $term_background
+        statusline $term_color15
+        separator  $term_foreground
 
-# strip_workspace_numbers yes
+        # note to self: 0-7 are 'normal', 8-15 are 'bright'... generally
+        # https://jeffkreeftmeijer.com/vim-16-color/
+        # text should ALWAYS be 7/15
+        # relevant borders should ALWAYS be term_foreground
+        # urgent should ALWAYS be 1/9
 
-font xft:Terminus (TTF) 12
-
-colors {
-background $term_background
-statusline $term_foreground
-separator  $term_foreground
-
-# name_of_area     border           backgr.             text
-focused_workspace  $term_color0     $term_color4        $term_foreground
-active_workspace   $term_color0     $term_background    $term_foreground
-inactive_workspace $term_color0     $term_background    $term_foreground
-binding_mode       $term_color0     $term_color9        $term_foreground
-urgent_workspace   $term_color0     $term_color9        $term_foreground
-}
+        # these affect JUST the i3bar
+        # name_of_area     border             backgr.            text
+        focused_workspace  $term_foreground   $term_color12      $term_color7
+        active_workspace   $term_foreground   $term_color5       $term_color7
+        inactive_workspace $term_background   $term_background   $term_color15
+        binding_mode       $term_foreground   $term_color9       $term_color7
+        urgent_workspace   $term_foreground   $term_color1       $term_color7
+    }
 }
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
-# Theme colors
-# class                   border        backgr.             text                indic.      child_border
-client.focused          $term_color0  $term_color14       $term_foreground    #FDF6E3     #FFFFFF
-client.focused_inactive $term_color0  $term_background    $term_foreground    #454948     #FFFFFF
-client.unfocused        $term_color0  $term_background    $term_foreground    #454948     #FFFFFF
-client.urgent           $term_color0  $term_color9        $term_foreground    #268BD2     #FFFFFF
-client.placeholder      $term_color0  $term_background    $term_foreground    #000000     #FFFFFF
-
-client.background       $term_background
+# Theme colors, primarily affects tab/menu bars
+# I don't care for the difference between focused and focused_inactive
+# class                   border             background         text            indicator          child_border
+client.focused            $term_background   $term_color12      $term_color7    $term_color1       $term_foreground
+client.focused_inactive   $term_background   $term_color12      $term_color7    $term_color1       $term_foreground
+client.unfocused          $term_color0       $term_background   $term_color15   $term_color8       $term_color0
+client.urgent             $term_foreground   $term_color1       $term_color7    $term_color1       $term_background
+client.placeholder        $term_foreground   $term_background   $term_color7    $term_background   $term_background
+client.background                            $term_background
 
 # Set inner/outer gaps
-gaps inner 8
-gaps outer -2
+gaps inner 0  # 8
+gaps outer 0  # -2
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
@@ -258,76 +279,75 @@ smart_gaps on
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
-
-#########
-# Modes #
-#########
-
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
     bindsym h resize shrink width 5 px or 5 ppt
-        bindsym j resize grow height 5 px or 5 ppt
-        bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
 
-# same bindings, but for the arrow keys
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 5 px or 5 ppt
+    bindsym Down resize grow height 5 px or 5 ppt
+    bindsym Up resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
 
-# exit resize mode: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    # exit resize mode: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner, (b) borders
+set $mode_gaps Window Sizing: (o) outer gaps, (i) inner gaps, (b) window borders
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_borders Borders: +|-|0
+
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
     bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym b      mode "$mode_borders"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    bindsym i      mode "$mode_gaps_inner"
+    bindsym b      mode "$mode_borders"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
+
 mode "$mode_gaps_inner" {
     bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
+    bindsym minus gaps inner current minus 5
+    bindsym 0     gaps inner current set 0
 
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     gaps inner all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
+
 mode "$mode_gaps_outer" {
     bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
+    bindsym minus gaps outer current minus 5
+    bindsym 0     gaps outer current set 0
 
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     gaps outer all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
-mode "$mode_borders" {
-        # TODO
-        bindsym 0 border none
-        bindsym + border pixel plus 1
-        bindsym - border pixel minus 1
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+mode "$mode_borders" {
+    # TODO
+    bindsym plus border pixel plus 1
+    bindsym minus border pixel minus 1
+    bindsym 0 border none
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
