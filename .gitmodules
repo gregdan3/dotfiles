@@ -4,3 +4,6 @@
 [submodule ".tmux"]
 	path = .tmux
 	url = git@github.com:gpakosz/.tmux.git
+[submodule ".vim/autoload"]
+	path = .vim/autoload
+	url = git@github.com:junegunn/vim-plug.git
