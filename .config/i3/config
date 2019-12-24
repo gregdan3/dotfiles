@@ -223,7 +223,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i
 exec xset -b  # disable keyboard beep
 exec --no-startup-id volumeicon  # volume tray icon
 exec --no-startup-id nm-applet  # network manager tray icon
-# exec --no-startup-id blueman-applet  # bluetooth service
+exec --no-startup-id blueman-applet  # bluetooth service
 # exec --no-startup-id compton -b
 exec_always --no-startup-id feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
 
