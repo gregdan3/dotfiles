@@ -73,8 +73,8 @@ bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg
 bindsym $mod+Ctrl+m exec $terminal -e "alsamixer"
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 3
-bindsym XF86MonBrightnessDown exec light -U 3
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 3
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 3
 
 # Apps on binds
 bindsym $mod+o exec "chromium --disable-notifications --disable-breakpad --disable-crash-reporter --disable-background-networking --fast-start --no-report-upload --no-referrers"
@@ -82,7 +82,7 @@ bindsym $mod+o exec "chromium --disable-notifications --disable-breakpad --disab
 # start program launcher
 # sf = selected font, sb = selected background
 # nf = normal font,   nb = normal background
-bindsym $mod+d exec dmenu_run -fn "Terminus (TTF)" -sf "$term_color15" -sb "$term_color13" -nf "$term_color7" -nb "$term_background"
+bindsym $mod+d exec dmenu_run -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_color15" -nb "$term_background"
 
 # screenshot tools
 bindsym $mod+Print exec i3-scrot
@@ -220,10 +220,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i
 # NOTE: --no-startup-id means that i3 will not wait on the app or produce a workspace
 # for it. This is good for autostarting apps, but terrible for binding-produced apps
 # like dmenu.
-exec xset -b  # disable keyboard beep
+exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id volumeicon  # volume tray icon
 exec --no-startup-id nm-applet  # network manager tray icon
-exec --no-startup-id blueman-applet  # bluetooth service
+# exec --no-startup-id blueman-applet  # bluetooth service
 # exec --no-startup-id compton -b
 exec_always --no-startup-id feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
 

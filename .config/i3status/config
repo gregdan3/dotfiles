@@ -89,12 +89,13 @@ battery all {
     low_threshold = 10
     format_down = ""
 
-    format = " %status %percentage "
+    format = " %status%percentage "
     status_bat = "🔋"
     status_chr = "⚡"
     status_full = "☻"
     status_unk = "???"
 
+    # format = "%status %percentage"
     # format = "%status %percentage %remaining %emptytime"
     # status_chr = ""
     # status_bat = "☉"
