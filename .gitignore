@@ -1,4 +1,4 @@
-# ignoring subdirectories 
+# ignoring subdirectories
 */*
 
 # my repos
@@ -34,3 +34,8 @@ NTUSER*
 .esd_auth
 random.dat
 .gitconfig
+.password-store*
+.password-store*/*
+
+
+
