@@ -124,7 +124,7 @@ augroup autoformatters
 augroup END
 
 
-let otherTypes = ['c', 'cpp', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex']
+let otherTypes = ['c', 'cpp', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex', 'rkt', 'racket']
 " keep track of alternative types for autoformat to run in
 
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -161,6 +161,7 @@ else                                            " local plugins
     " formatters
     Plug 'python/black', {'for': 'python'}
     Plug 'rust-lang/rust.vim', {'for': 'rust'}  " this comes with other cool things too
+    Plug 'wlangstroth/vim-racket', {'for': ['rkt', 'racket']}
     Plug 'Chiel92/vim-autoformat', {'for': otherTypes}
 
     " NOTE: you can :echo glob($VIMRUNTIME . '/ftplugin/*.vim') to see filetypes available
