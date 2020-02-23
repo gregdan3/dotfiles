@@ -11,7 +11,11 @@ endif
 let g:remoteSession = !($SSH_TTY ==? '')
 
 " NOTE: try :shell for in-vim shell stuff
-set shell=/usr/bin/env\ sh
+if filereadable('/bin/fish')  " TODO: maybe do this in a more compatible way, like checking $PATH?
+    set shell=/usr/bin/env\ fish\ --login
+else
+    set shell=/usr/bin/env\ sh\ --login
+endif
 
 " visual settings
 syntax enable                   " syntax highlighting for applicable buffers
@@ -100,11 +104,11 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
-" hjkl needs Ctrl but arrow keys do not?
-nnoremap <C-Left> <C-W><Left>
-nnoremap <C-Down> <C-W><Down>
-nnoremap <C-Up> <C-W><Up>
-nnoremap <C-Right> <C-W><Right>
+" these maps do not work for no reason
+" nnoremap <C-Left>   <C-W><C-H>
+" nnoremap <C-Down>   <C-W><C-J>
+" nnoremap <C-Up>     <C-W><C-K>
+" nnoremap <C-Right>  <C-W><C-L>
 
 " disable arrow key navigation
 " nnoremap <Left> :echoe "Use h to move left!"<CR>
