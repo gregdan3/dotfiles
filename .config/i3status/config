@@ -21,6 +21,7 @@ order += "cpu_temperature all"
 order += "memory"
 # order += "load"
 order += "disk /"
+order += "disk /home/"
 order += "ethernet _first_"
 order += "wireless _first_"
 order += "battery all"
@@ -52,7 +53,15 @@ load {
 }
 
 disk "/" {
-    format = " 🖴 %used / %total "
+    format = " / 🖴 %used / %total "
+
+    # format = " m.2 %used / %total "
+    # format = " ⛁ %used / %total "
+
+}
+
+disk "/home/" {
+    format = " ⌂ 🖴 %used / %total "
 
     # format = " m.2 %used / %total "
     # format = " ⛁ %used / %total "
