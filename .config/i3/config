@@ -200,9 +200,8 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # Move to scratchpad
-# I literally never use this
-# bindsym $mod+minus move scratchpad
-# bindsym $mod+plus scratchpad show
+bindsym $mod+minus move scratchpad
+bindsym $mod+plus scratchpad show
 
 # switch to workspace with urgent window automatically
 # for_window [urgent=latest] focus
@@ -220,6 +219,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i
 # NOTE: --no-startup-id means that i3 will not wait on the app or produce a workspace
 # for it. This is good for autostarting apps, but terrible for binding-produced apps
 # like dmenu.
+exec --no-startup-id xautolock -time 10 -locker 'i3lock -e -c 222222'
+# ignore empty pw, dark grey background
 exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id volumeicon  # volume tray icon
 exec --no-startup-id nm-applet  # network manager tray icon
