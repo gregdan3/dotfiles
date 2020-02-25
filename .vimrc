@@ -19,13 +19,9 @@ endif
 
 " visual settings
 syntax enable                   " syntax highlighting for applicable buffers
-set wrap                        " display long lines on next line
-set linebreak                   " word wrap between words, not within
+set wrap                        " wrap long lines to next display line
+set linebreak                   " wrap between words, not within
 " NOTE: You can move the cursor inside display lines with g[hjkl]
-set textwidth=0                 " wrap words to new line based on columns written.
-set wrapmargin=1                " wrap words to new display line based on terminal size.
-" buffer of one so that my cursor cannot appear to be on the beginning of next line when it is on the end of the previous line.
-" NOTE: display line and newline are DISTINCT; display lines are still on same newline
 set display+=lastline           " always show last line of paragraph
 set scrolloff=3                 " show n lines above/below when scrolling
 set sidescrolloff=5             " show n columns to sides when scrolling
@@ -62,7 +58,6 @@ filetype indent on              " autoindent per filetype
 
 
 " formatting settings
-set formatoptions-=t            " disable auto-formatting based on wrapping settings, SOMETIMES?
 set autoindent                  " newlines inherit indent level
 set smarttab                    " ... but only when sensible
 set expandtab                   " replace tab with space
@@ -70,6 +65,13 @@ set tabstop=4                   " n-width tabs
 set softtabstop=4               " do not enforce tab width on existing tabs... essentially
 set shiftwidth=4                " when moving text with [<>], move by n
 set shiftround                  " round 'shift' to shiftwidth
+set textwidth=80                " wrap to new buffer line based on column width.
+" set wrapmargin=1              " wrap to new buffer line based on terminal size.
+" NOTE: This setting is really jank in i3 and other wm, so I disabled
+set formatoptions+=tc           " enable auto-formatting based on textwidth
+                                " same but for comments
+set noendofline                 " disable automatically added newline
+                                " most code formatters do this anyway
 
 
 " search settings
