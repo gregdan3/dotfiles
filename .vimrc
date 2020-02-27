@@ -11,10 +11,11 @@ endif
 let g:remoteSession = !($SSH_TTY ==? '')
 
 " NOTE: try :shell for in-vim shell stuff
-if filereadable('/bin/fish')  " TODO: maybe do this in a more compatible way, like checking $PATH?
-    set shell=/usr/bin/env\ fish\ --login
+" :term is cool too
+if filereadable('/bin/fish')
+    set shell=/bin/fish\ --login
 else
-    set shell=/usr/bin/env\ sh\ --login
+    set shell=/bin/bash\ --login
 endif
 
 " visual settings
@@ -26,6 +27,7 @@ set display+=lastline           " always show last line of paragraph
 set scrolloff=3                 " show n lines above/below when scrolling
 set sidescrolloff=5             " show n columns to sides when scrolling
 " set colorcolumn=80            " highlight nth column
+" set t_Co=256                  " override TERM derived color capability
 
 highlight CursorLineNr cterm=bold term=bold ctermfg=11  " ruler formatting
 
@@ -37,9 +39,10 @@ set novisualbell
 " functional settings
 set foldmethod=indent           " fold based on indent level
 set nofoldenable                " no fold by default
-set nocompatible                " disable vi compatability settings
+" set nocompatible              " disable vi compatability settings
 set encoding=utf8               " always write utf-8 encoded files
 set termencoding=utf8           " characters appear in utf-8
+scriptencoding=utf8             " just for this file, since it has multibyte chars
 set backspace=indent,eol,start  " allow backspace across [chars]
 set autoread                    " if file is changed outside vim, reload it
 set autochdir                   " ensure working directory = directory of vim
@@ -151,12 +154,12 @@ if g:remoteSession                              " remote plugins
 else                                            " local plugins
     call plug#begin()
     " local use
-    Plug 'w0rp/ale'                             " linter
+    Plug 'dense-analysis/ale'                   " linter
 
     Plug 'valloric/youcompleteme'               " autocompletion engine
     " NOTE: DO NOT ENABLE FOR TEX FILES! 500+ word buffers stress the CPU
     " TODO: disable for tex/plaintex buffers automatically?
-    Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}
+    " Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}
     " NOTE: FIRST TIME SETUP FOR markdown-preview.nvim: call mkdp#util#install()
     " TODO: Find a way to do this automatically?
 
@@ -210,7 +213,7 @@ augroup autoformatters_plugins
 augroup END
 
 
-" NERDTree Settings
+" NERDTree
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeFileExtensionHighlightFullName = 1
@@ -221,7 +224,7 @@ let g:NERDTreeHighlightFoldersFullName = 1      " highlights the folder name
 
 
 " air-line
-let g:airline_powerline_fonts = 0               " TODO: what does this even do
+let g:airline_powerline_fonts = 0               " do not use default symbols
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -251,14 +254,16 @@ let g:airline_symbols.notexists = 'Ɇ'           " buffer not tracked by git
 let g:airline_symbols.dirty='*'                 " untracked changes; displays after branch name
 " I use what matches my zsh prompt
 
-let g:airline#extensions#tabline#enabled = 1                " display all open buffers on top bar
-" let g:airline#extensions#tabline#tab_nr_type = 1            " how to format tab number type
-" let g:airline#extensions#tabline#show_tab_nr = 1            " what # tab is this
-" let g:airline#extensions#tabline#buffer_nr_show = 1         " what # buffer is this
-let g:airline#extensions#tabline#nametruncate = 16          " max buffer name of 16 chars
-let g:airline#extensions#tabline#fnamecollapse = 2          " max buffer name of 16 chars
-let g:airline#extensions#tabline#formatter = 'default'      " format top bar with [formatter]
+let g:airline#extensions#tabline#enabled = 1           " display all open buffers on top bar
+" let g:airline#extensions#tabline#tab_nr_type = 1     " how to format tab number type
+" let g:airline#extensions#tabline#show_tab_nr = 1     " what # tab is this
+" let g:airline#extensions#tabline#buffer_nr_show = 1  " what # buffer is this
+let g:airline#extensions#tabline#nametruncate = 16     " max buffer name of 16 chars
+let g:airline#extensions#tabline#fnamecollapse = 2     " max buffer name of 16 chars
+let g:airline#extensions#tabline#formatter = 'default' " format top bar with [formatter]
 
+" ALE
+let g:ale_set_balloons = 1
 
 " markdown-preview.nvim
 let g:mkdp_auto_start = 1                   " autostart when entering markdown buffer
