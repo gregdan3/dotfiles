@@ -159,7 +159,7 @@ else                                            " local plugins
     Plug 'valloric/youcompleteme'               " autocompletion engine
     " NOTE: DO NOT ENABLE FOR TEX FILES! 500+ word buffers stress the CPU
     " TODO: disable for tex/plaintex buffers automatically?
-    " Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}
+    Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}
     " NOTE: FIRST TIME SETUP FOR markdown-preview.nvim: call mkdp#util#install()
     " TODO: Find a way to do this automatically?
 
