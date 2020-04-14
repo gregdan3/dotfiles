@@ -3,12 +3,12 @@ i3-scrot
 intel-undervolt
 js-beautify
 obinskit
-postgresql-1c
-studio-3t
+pandoc-bin
 stylelint
 tectonic
 terminus-font-ttf
-ttf-ms-fonts
 thinkfan
+ttf-ms-fonts
+ttf-unifont
 update-grub
 yay
