@@ -76,6 +76,10 @@ bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 3
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 3
 
+# Audio Controls
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
+
 # Apps on binds
 bindsym $mod+o exec "chromium --disable-notifications --disable-breakpad --disable-crash-reporter --disable-background-networking --fast-start --no-report-upload --no-referrers"
 
