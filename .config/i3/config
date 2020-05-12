@@ -22,6 +22,9 @@ hide_edge_borders both
 # ensure floating windows can't exceed screen size
 floating_maximum_size 1920 x 1080
 
+# i3-msg -t get_tree | jq ".nodes|.[]|.|.nodes|.[]|.nodes|.[]|select(.name==\"__i3_scratch\")|.floating_nodes|.[]|.nodes|.[]|.name"
+#
+#
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:Terminus (TTF) 12
@@ -89,9 +92,12 @@ bindsym $mod+o exec "chromium --disable-notifications --disable-breakpad --disab
 bindsym $mod+d exec dmenu_run -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_color15" -nb "$term_background"
 
 # screenshot tools
-bindsym $mod+Print exec i3-scrot
-bindsym $mod+Ctrl+Print --release exec i3-scrot -w
-bindsym $mod+Shift+Print --release exec i3-scrot -s
+# whole screen
+bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/'
+# currently focused window
+bindsym $mod+Ctrl+Print --release exec scrot -uq 100 -e 'mv $f ~/Media/'
+# selection box
+bindsym $mod+Shift+Print --release exec scrot -sq 100 -e 'mv $f ~/Media/'
 
 # intentionally disable focus on mouse
 focus_follows_mouse no
