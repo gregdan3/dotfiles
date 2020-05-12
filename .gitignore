@@ -1,6 +1,9 @@
 # ignoring subdirectories
 */*
 
+# ignoring a specific symlink
+Media
+
 # my repos
 git
 public_html
