@@ -133,7 +133,7 @@ augroup autoformatters
 augroup END
 
 
-let otherTypes = ['c', 'cpp', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex', 'rkt', 'racket']
+let otherTypes = ['c', 'cpp', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex']
 " keep track of alternative types for autoformat to run in
 
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -156,7 +156,7 @@ else                                            " local plugins
     " local use
     Plug 'dense-analysis/ale'                   " linter
 
-    Plug 'valloric/youcompleteme'               " autocompletion engine
+    Plug 'ycm-core/youcompleteme'               " autocompletion engine
     " NOTE: DO NOT ENABLE FOR TEX FILES! 500+ word buffers stress the CPU
     " TODO: disable for tex/plaintex buffers automatically?
     Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}
@@ -168,9 +168,8 @@ else                                            " local plugins
     Plug 'sirver/ultisnips', {'for': ['tex', 'plaintex']}     " faster snippets completion
 
     " formatters
-    Plug 'python/black', {'for': 'python'}
+    Plug 'psf/black', {'for': 'python', 'tag': '19.10b0'}
     Plug 'rust-lang/rust.vim', {'for': 'rust'}  " this comes with other cool things too
-    Plug 'wlangstroth/vim-racket', {'for': ['rkt', 'racket']}
     Plug 'Chiel92/vim-autoformat', {'for': otherTypes}
 
     " NOTE: you can :echo glob($VIMRUNTIME . '/ftplugin/*.vim') to see filetypes available
