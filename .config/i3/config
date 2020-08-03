@@ -72,7 +72,7 @@ bindsym $mod+Return exec $terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# intentionally blank out background since transparency is a little odd
+# change wallpaper to fully black image
 bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg
 
 # Screen brightness controls
@@ -82,13 +82,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 3
 # Audio Controls
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 # speakers
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 # headphones
-bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
-bindsym $mod+XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5%
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5%
+bindsym $mod+XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
 
 # Apps on binds
 bindsym $mod+o exec "chromium --disable-notifications --disable-breakpad --disable-crash-reporter --disable-background-networking --fast-start --no-report-upload --no-referrers"
@@ -106,7 +106,7 @@ bindsym $mod+Ctrl+Print --release exec scrot -uq 100 -e 'mv $f ~/Media/'
 # selection box
 bindsym $mod+Shift+Print --release exec scrot -sq 100 -e 'mv $f ~/Media/'
 
-# intentionally disable focus on mouse
+# disable focus on mouse
 focus_follows_mouse no
 
 # change focus
