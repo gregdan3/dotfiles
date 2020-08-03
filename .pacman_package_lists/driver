@@ -14,7 +14,7 @@ automake
 bandit
 base
 bash-completion
-bind-tools
+bind
 binutils
 bison
 blender
@@ -24,12 +24,16 @@ chromium
 clang
 cmake
 cmatrix
+consul
 cpupower
 cronie
+dash
 dhcpcd
 dialog
 discord
 dmenu
+docker
+docker-compose
 docx2txt
 dos2unix
 dosfstools
@@ -69,6 +73,7 @@ i3status
 inetutils
 intel-media-driver
 intel-ucode
+intel-undervolt
 ipython
 irssi
 iw
@@ -93,7 +98,9 @@ mesa-vdpau
 metasploit
 moc
 moreutils
+mpv
 mtools
+musescore
 neofetch
 netperf
 network-manager-applet
@@ -106,7 +113,6 @@ ntfs-3g
 obs-studio
 openconnect
 opencv
-openjdk10-src
 openshot
 openssh
 openssl-1.0
@@ -125,6 +131,7 @@ polkit
 postfix
 postgresql
 powerline-fonts
+powertop
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
@@ -187,11 +194,11 @@ ttf-roboto
 units
 usbutils
 util-linux
+vault
 vi
 vim
 vint
 vlc
-volumeicon
 vulkan-intel
 w3m
 wget
@@ -222,6 +229,7 @@ xorg-xset
 xreader
 xsel
 youtube-dl
+youtube-viewer
 zathura
 zathura-pdf-mupdf
 zip
