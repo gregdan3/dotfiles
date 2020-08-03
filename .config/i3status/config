@@ -51,9 +51,6 @@ volume master {
     # format = " 🔈 %volume "
     format = " 🔊 %volume "
     format_muted = " 🔇 %volume "
-    device = "Pulse"
-    mixer = "Master"
-    mixer_idx = 0
 }
 
 load {
