@@ -24,6 +24,7 @@ order += "disk /"
 order += "disk /home/"
 order += "ethernet _first_"
 order += "wireless _first_"
+order += "volume master"
 order += "battery all"
 order += "tztime local"
 
@@ -44,6 +45,15 @@ cpu_temperature all {
     # format = " %degrees°C "
     # format_above_threshold = " %degrees°C "
     # format_above_threshold = " 🤒  %degrees°C "
+}
+
+volume master {
+    # format = " 🔈 %volume "
+    format = " 🔊 %volume "
+    format_muted = " 🔇 %volume "
+    device = "Pulse"
+    mixer = "Master"
+    mixer_idx = 0
 }
 
 load {
