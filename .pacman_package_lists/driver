@@ -181,6 +181,7 @@ texlive-pstricks
 texlive-publishers
 texlive-science
 tidy
+tig
 tlp
 tmux
 tpacpi-bat
@@ -214,6 +215,7 @@ xdotool
 xf86-input-synaptics
 xf86-video-intel
 xorg-bdftopcf
+xorg-font-util
 xorg-mkfontscale
 xorg-server
 xorg-setxkbmap
