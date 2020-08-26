@@ -30,6 +30,7 @@ set sidescrolloff=5             " show n columns to sides when scrolling
 " set t_Co=256                  " override TERM derived color capability
 
 highlight CursorLineNr cterm=bold term=bold ctermfg=11  " ruler formatting
+highlight clear SignColumn      " for some reason, sign column wasn't using bgcolor
 
 " error response settings
 set noerrorbells
