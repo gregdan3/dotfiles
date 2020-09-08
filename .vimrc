@@ -267,9 +267,9 @@ let g:ale_set_balloons = 1
 " markdown-preview.nvim
 let g:mkdp_auto_start = 1                   " autostart when entering markdown buffer
 let g:mkdp_auto_open = 1                    " start buffer when editing markdown, even if closed
-let g:mkdp_browser = 'chromium'             " TODO: open in new window?
-let g:mkdp_path_to_chrome = ''
-let g:mkdp_open_to_the_world = 0            " can make preview visible on LAN
+let g:mkdp_auto_close = 0                   " do not close when switching buffers
+let g:mkdp_browser = 'firefox'              " TODO: open in new window?
+let g:mkdp_open_to_the_world = 0            " do not make preview visible on LAN
 
 
 " vimtex
