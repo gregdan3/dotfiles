@@ -144,6 +144,7 @@ if g:remoteSession                              " remote plugins
     " colorscheme gruvbox
     colorscheme darkblue
     call plug#begin()
+    " TODO: feature check async for ale, else syntastic
     Plug 'vim-syntastic/syntastic'              " linter w/o async
 
     " common to local and remote sessions
@@ -160,9 +161,7 @@ else                                            " local plugins
     Plug 'ycm-core/youcompleteme'               " autocompletion engine
     " NOTE: DO NOT ENABLE FOR TEX FILES! 500+ word buffers stress the CPU
     " TODO: disable for tex/plaintex buffers automatically?
-    Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown'}
-    " NOTE: FIRST TIME SETUP FOR markdown-preview.nvim: call mkdp#util#install()
-    " TODO: Find a way to do this automatically?
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
     " only for LaTeX
     Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}        " LaTeX previewer
@@ -170,6 +169,7 @@ else                                            " local plugins
 
     " formatters
     Plug 'psf/black', {'for': 'python', 'tag': '19.10b0'}
+    " TODO: fix need for tag in Arch?
     Plug 'rust-lang/rust.vim', {'for': 'rust'}  " this comes with other cool things too
     Plug 'Chiel92/vim-autoformat', {'for': otherTypes}
 
@@ -177,7 +177,6 @@ else                                            " local plugins
     " NOTE: you can :PlugStatus to see running plugins
 
     " not using currently
-    " Plug 'google/vim-codefmt', {'for': otherTypes}
     " Plug 'tpope/vim-eunuch'                   " unix terminal commands in vim
     " Plug 'jpalardy/vim-slime'                 " send buffer data to [session]
     " Plug 'Konfekt/FastFold'                   " apparently folding = slow in vim
