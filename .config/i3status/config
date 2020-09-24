@@ -8,10 +8,10 @@
 
 general {
     output_format = "i3bar"
-    colors = false
+    colors = true
     interval = 5
 
-    color_good = "#E8DFD6"
+    color_good = "#B2A191"
     color_bad = "#586E75"
     color_degraded = "#DC322F"
 }
@@ -22,6 +22,9 @@ order += "memory"
 # order += "load"
 order += "disk /"
 order += "disk /home/"
+order += "disk /data/"
+order += "disk /var/"
+order += "disk /mnt/"
 order += "ethernet _first_"
 order += "wireless _first_"
 order += "volume master"
@@ -30,7 +33,6 @@ order += "tztime local"
 
 cpu_usage {
     format = " 🖥 %usage "
-
     # format = " cpu %usage "
 }
 
@@ -48,6 +50,8 @@ cpu_temperature all {
 }
 
 volume master {
+    color_degraded = "#B2A191"
+    color_bad = "#B2A191"
     # format = " 🔈 %volume "
     format = " 🔊 %volume "
     format_muted = " 🔇 %volume "
@@ -55,36 +59,58 @@ volume master {
 
 load {
     max_threshold = 0.3
-
     format = " %1min %5min %15min "
 }
 
 disk "/" {
-    format = " / 🖴 %used / %total "
-
-    # format = " m.2 %used / %total "
-    # format = " ⛁ %used / %total "
-
+    # format = " / 🖴 %used / %total "
+    prefix_type = "decimal"
+    format = " / %used / %total "
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
 }
 
 disk "/home/" {
-    format = " ⌂ 🖴 %used / %total "
+    prefix_type = "decimal"
+    format = " ⌂ %used / %total "
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
+}
 
-    # format = " m.2 %used / %total "
-    # format = " ⛁ %used / %total "
+disk "/data/" {
+    prefix_type = "decimal"
+    format = " ⛁ %used / %total "
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
+}
+
+disk "/var/" {
+    prefix_type = "decimal"
+    format = " var %used / %total "
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
+}
+
+disk "/mnt/" {
+    prefix_type = "decimal"
+    format = " mnt %used / %total "
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
 }
 
 ethernet _first_ {
     format_down = ""
-
-    format_up = " %essid: %ip "
+    format_up = " 🖧 %ip: %speed "
 }
 
 wireless _first_ {
     format_down = ""
-
-    format_up = " %essid: %bitrate %ip "
-
+    format_up = " 📶 %essid: %bitrate %ip "
     # format_up = " 📶 %essid: %bitrate %ip "
 }
 
