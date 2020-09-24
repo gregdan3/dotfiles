@@ -134,7 +134,7 @@ augroup autoformatters
 augroup END
 
 
-let otherTypes = ['c', 'cpp', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex']
+let otherTypes = ['c', 'cpp', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex', 'sql', 'psql']
 " keep track of alternative types for autoformat to run in
 
 """"""""""""""""""""""""""""""""""""""""""""""""
