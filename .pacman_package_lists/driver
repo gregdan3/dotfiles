@@ -146,6 +146,7 @@ qbittorrent
 rabbitmq
 rabbitmqadmin
 racket
+read-edid
 realtime-privileges
 rmlint
 rtirq
@@ -160,7 +161,6 @@ screen
 scrot
 sed
 snes9x-gtk
-steam
 strace
 sudo
 sysfsutils
@@ -190,9 +190,11 @@ tree
 ttf-droid
 ttf-inconsolata
 ttf-ionicons
+ttf-jetbrains-mono
 ttf-opensans
 ttf-roboto
 units
+unrar
 usbutils
 util-linux
 vault
