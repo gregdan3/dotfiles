@@ -105,6 +105,10 @@ set lazyredraw                  " don't draw screen during command execution
 " remaps
 " let mapleader=''              " TODO: choose a leader
 
+nnoremap <silent> <CR> :noh<CR><CR>
+" clear search highlight by hitting enter
+" hitting n or performing another search will re-enable
+
 " Easier buffer navigation
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
