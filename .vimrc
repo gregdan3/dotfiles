@@ -128,6 +128,9 @@ nnoremap <C-L> <C-W><C-L>
 
 
 " autocommands
+let otherTypes = ['c', 'cpp', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex', 'sql', 'psql']
+" keep track of alternative types for autoformat to run in
+
 " remember last edited location when reopening file, if valid
 augroup remember_last_position
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -138,33 +141,20 @@ augroup autoformatters
 augroup END
 
 
-let otherTypes = ['c', 'cpp', 'java', 'ruby', 'html', 'css', 'js', 'javascript', 'haskell', 'vim', 'tex', 'plaintex', 'sql', 'psql']
-" keep track of alternative types for autoformat to run in
-
 """"""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SETTINGS EXCLUSIVELY BELOW THIS POINT "
 """"""""""""""""""""""""""""""""""""""""""""""""
-if g:remoteSession                              " remote plugins
-    " colorscheme gruvbox
-    colorscheme darkblue
-    call plug#begin()
-    " TODO: feature check async for ale, else syntastic
-    Plug 'vim-syntastic/syntastic'              " linter w/o async
+call plug#begin()
+    if has('channel') && has('job') && has('timers')
+        Plug 'dense-analysis/ale'               " linter
+    else
+        Plug 'vim-syntastic/syntastic'          " linter w/o async
+    endif
 
-    " common to local and remote sessions
-    Plug 'airblade/vim-gitgutter'               " gitlens for vim
-    Plug 'tpope/vim-fugitive'                   " git information and commands
-    Plug 'vim-airline/vim-airline'              " fancy status bar
-    Plug 'scrooloose/nerdtree'                  " file explorer inside vim
-    call plug#end()
-else                                            " local plugins
-    call plug#begin()
-    " local use
-    Plug 'dense-analysis/ale'                   " linter
+    if has('timers') && has('python3')
+        Plug 'ycm-core/youcompleteme'           " autocompletion engine
+    endif
 
-    Plug 'ycm-core/youcompleteme'               " autocompletion engine
-    " NOTE: DO NOT ENABLE FOR TEX FILES! 500+ word buffers stress the CPU
-    " TODO: disable for tex/plaintex buffers automatically?
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
     " only for LaTeX
@@ -172,8 +162,10 @@ else                                            " local plugins
     Plug 'sirver/ultisnips', {'for': ['tex', 'plaintex']}     " faster snippets completion
 
     " formatters
-    Plug 'psf/black', {'for': 'python', 'tag': '19.10b0'}
-    " TODO: fix need for tag in Arch?
+    if has('python3')
+        Plug 'psf/black', {'for': 'python', 'tag': '19.10b0'}
+        " TODO: use 'branch': 'stable' when #1348 is merged
+    endif
     Plug 'rust-lang/rust.vim', {'for': 'rust'}  " this comes with other cool things too
     Plug 'Chiel92/vim-autoformat', {'for': otherTypes}
 
@@ -181,18 +173,18 @@ else                                            " local plugins
     " NOTE: you can :PlugStatus to see running plugins
 
     " not using currently
-    " Plug 'tpope/vim-eunuch'                   " unix terminal commands in vim
-    " Plug 'jpalardy/vim-slime'                 " send buffer data to [session]
-    " Plug 'Konfekt/FastFold'                   " apparently folding = slow in vim
+    " Plug 'Konfekt/FastFold'                   " apparently folding is slow in vim
     " Plug 'tpope/vim-surround'                 " surround selection with paired symbols
 
-    " common to local and remote sessions
+    " lighter, convenient plugins
+    Plug 'jpalardy/vim-slime'                   " send buffer data to [session]
+    Plug 'tpope/vim-eunuch'                     " unix commands made for in-vim use
     Plug 'airblade/vim-gitgutter'               " gitlens for vim
     Plug 'tpope/vim-fugitive'                   " git information and commands
     Plug 'vim-airline/vim-airline'              " fancy status bar
     Plug 'scrooloose/nerdtree'                  " file explorer inside vim
-    call plug#end()
-endif
+call plug#end()
+
 
 " remaps for plugins
 nmap <C-n> :NERDTreeToggle<CR>                  " open NERDTree with Ctrl+n in normal mode
@@ -207,6 +199,9 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
+let g:slime_target = 'vimterminal'                  " session to send to
+let g:slime_paste_file = '$HOME/.vim/.slime_paste'  " cleaner selection for paste file
+let g:slime_python_ipython = 1                      " ipython drops inputs without this
 
 " autocommands for plugins
 augroup autoformatters_plugins
@@ -255,7 +250,6 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_symbols.branch = '𝌎'              " tetragram for 'branch'
 let g:airline_symbols.notexists = 'Ɇ'           " buffer not tracked by git
 let g:airline_symbols.dirty='*'                 " untracked changes; displays after branch name
-" I use what matches my zsh prompt
 
 let g:airline#extensions#tabline#enabled = 1           " display all open buffers on top bar
 " let g:airline#extensions#tabline#tab_nr_type = 1     " how to format tab number type
