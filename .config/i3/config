@@ -74,16 +74,18 @@ bindsym $mod+Shift+q kill
 
 # change wallpaper to fully black image
 bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg
+# pick a random wallpaper
+bindsym $mod+Shift+w exec feh --bg-scale --randomize ~/Media/Wallpapers/*
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 3
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 3
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 3 #&& notify-send "Backlight +3"
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 3 #&& notify-send "Backlight -3 "
 
 # Audio Controls
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle #&& notify-send "Toggled mic"
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #&& notify-send "Volume +5%"
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #&& notify-send "Volume -5%"
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle #&& notify-send "Toggled sound"
 
 # Apps on binds
 #bindsym $mod+o exec "chromium --disable-notifications --disable-breakpad --disable-crash-reporter --disable-background-networking --fast-start --no-report-upload --no-referrers"
@@ -96,11 +98,11 @@ bindsym $mod+d exec dmenu_run -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term
 
 # screenshot tools
 # whole screen
-bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/'
+bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' && notify-send "Took screenshot"
 # currently focused window
-bindsym $mod+Ctrl+Print --release exec scrot -uq 100 -e 'mv $f ~/Media/'
+bindsym $mod+Ctrl+Print --release exec scrot -uq 100 -e 'mv $f ~/Media/' && notify-send "Took screenshot of focused window"
 # selection box
-bindsym $mod+Shift+Print --release exec scrot -sq 100 -e 'mv $f ~/Media/'
+bindsym $mod+Shift+Print --release exec scrot -sq 100 -e 'mv $f ~/Media/' && notify-send "Took selection screenshot"
 
 # disable focus on mouse
 focus_follows_mouse no
