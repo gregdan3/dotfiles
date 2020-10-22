@@ -54,6 +54,7 @@ set mouse=a                     " enable mouse
 set ttymouse=sgr                " change how vim understands mouse inputs
 set splitbelow                  " Open :split buffers on bottom
 set splitright                  " Open :vsplit buffers on right
+set pastetoggle=<C-p>           " toggle paste when pressing Ctrl+P
 " set conceallevel=1            " fold by default to maximum level
 " set magic                     " grep regex instead of vim regex
 " set ttimeout                  " after input, wait for more characters
