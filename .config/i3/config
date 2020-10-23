@@ -63,6 +63,11 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
+# convenient shortcuts for notifications
+set $lownotif && notify-send --expire-time=1500 --urgency=low --app-name=
+set $normalnotif && notify-send --expire-time=8000 --urgency=normal --app-name=
+set $highnotif && notify-send --expire-time=60000 --urgency=critical --app-name=
+
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
@@ -73,19 +78,19 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+q kill
 
 # change wallpaper to fully black image
-bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg
+bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
 # pick a random wallpaper
-bindsym $mod+Shift+w exec feh --bg-scale --randomize ~/Media/Wallpapers/*
+bindsym $mod+Shift+w exec feh --bg-scale --randomize ~/Media/Wallpapers/* $normalnotif "Feh" "Changing wallpaper"
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 3 #&& notify-send "Backlight +3"
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 3 #&& notify-send "Backlight -3 "
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 3 $lownotif "Light" "Backlight +3"
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 3 $lownotif "Light" "Backlight -3"
 
 # Audio Controls
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle #&& notify-send "Toggled mic"
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #&& notify-send "Volume +5%"
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #&& notify-send "Volume -5%"
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle #&& notify-send "Toggled sound"
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle $normalnotif "PulseAudio" "Toggled mic"
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% $lownotif "PulseAudio" "Volume +5%"
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% $lownotif "PulseAudio" "Volume -5%"
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle $normalnotif "PulseAudio" "Toggled sound"
 
 # Apps on binds
 #bindsym $mod+o exec "chromium --disable-notifications --disable-breakpad --disable-crash-reporter --disable-background-networking --fast-start --no-report-upload --no-referrers"
@@ -98,11 +103,14 @@ bindsym $mod+d exec dmenu_run -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term
 
 # screenshot tools
 # whole screen
-bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' && notify-send "Took screenshot"
+bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took full screenshot"
 # currently focused window
-bindsym $mod+Ctrl+Print --release exec scrot -uq 100 -e 'mv $f ~/Media/' && notify-send "Took screenshot of focused window"
+bindsym $mod+Ctrl+Print exec scrot -uq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
 # selection box
-bindsym $mod+Shift+Print --release exec scrot -sq 100 -e 'mv $f ~/Media/' && notify-send "Took selection screenshot"
+bindsym $mod+Shift+Print --release exec sleep 0.05 && scrot -sq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
+# sleep is at direction of Arch wiki
+# selection border will appear in image if scrot is invoked via wm keybind, unless sleep
+# also, this won't work without --release. no idea why.
 
 # disable focus on mouse
 focus_follows_mouse no
@@ -238,9 +246,9 @@ exec --no-startup-id xautolock -time 10 -locker 'i3lock -e -c 222222'
 # ignore empty pw, dark grey background
 exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id nm-applet  # network manager tray icon
-exec --no-startup-id blueman-applet  # bluetooth service
+exec --no-startup-id blueman-applet  # bluetooth tray icon
 # exec --no-startup-id compton -b
-exec_always --no-startup-id feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
+exec --no-startup-id feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
