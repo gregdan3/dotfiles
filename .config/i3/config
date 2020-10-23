@@ -66,7 +66,11 @@ set_from_resource $term_color15    color15
 # convenient shortcuts for notifications
 set $lownotif && notify-send --expire-time=1500 --urgency=low --app-name=
 set $normalnotif && notify-send --expire-time=8000 --urgency=normal --app-name=
-set $highnotif && notify-send --expire-time=60000 --urgency=critical --app-name=
+set $criticalnotif && notify-send --expire-time=60000 --urgency=critical --app-name=
+
+# Notify for capslock changing state
+bindsym --release Caps_Lock exec : $normalnotif "Caps Lock" "$(xset q | grep 'Caps Lock' | awk '{print $4}')"
+# : is bash noop, I like my && solution too much
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
