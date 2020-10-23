@@ -11,6 +11,7 @@ astyle
 aurphan
 autoconf
 automake
+aws-cli
 bandit
 base
 bash-completion
@@ -37,6 +38,7 @@ docker-compose
 docx2txt
 dos2unix
 dosfstools
+dunst
 efibootmgr
 elasticsearch
 eslint
@@ -65,6 +67,7 @@ grep
 groff
 grub
 gzip
+hexedit
 hping
 htop
 i3-gaps
@@ -101,6 +104,7 @@ moreutils
 mpv
 mtools
 musescore
+nasm
 neofetch
 netperf
 network-manager-applet
@@ -125,6 +129,7 @@ pass
 patch
 pavucontrol
 perf
+picom
 pkgconf
 pkgfile
 polkit
@@ -132,14 +137,18 @@ postfix
 postgresql
 powerline-fonts
 powertop
+proselint
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
 puppet
 putty
+python-aiohttp
+python-aiohttp-cors
 python-black
 python-pip
 python-pipenv
+python-poetry
 python-pylint
 python-sympy
 qbittorrent
@@ -160,7 +169,7 @@ schedtool
 screen
 scrot
 sed
-snes9x-gtk
+speedtest-cli
 strace
 sudo
 sysfsutils
@@ -230,6 +239,7 @@ xorg-xmodmap
 xorg-xrandr
 xorg-xrdb
 xorg-xset
+xorg-xwininfo
 xreader
 xsel
 youtube-dl
@@ -237,3 +247,4 @@ youtube-viewer
 zathura
 zathura-pdf-mupdf
 zip
+zsh

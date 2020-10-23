@@ -4,6 +4,7 @@ kernel-modules-hook
 minecraft
 pandoc-bin
 plpgsql_check-git
+postman-bin
 ruby-sqlint
 tectonic
 terminus-font-ttf
