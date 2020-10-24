@@ -1,0 +1,15 @@
+[user]
+    email = gregory.danielson3@gmail.com
+	name = Gregory Danielson
+	signingkey = Gregory Danielson III
+[pull]
+	rebase = false
+[commit]
+	gpgsign = true
+
+[includeIf "gitdir:personal/"]
+    path = ~/.config/gitconfig/personal
+[includeIf "gitdir:professional/"]
+    path = ~/.config/gitconfig/professional
+[includeIf "gitdir:cs/"]
+    path = ~/.config/gitconfig/professional
