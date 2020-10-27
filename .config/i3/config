@@ -64,12 +64,14 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # convenient shortcuts for notifications
-set $lownotif && notify-send --expire-time=1500 --urgency=low --app-name=
-set $normalnotif && notify-send --expire-time=8000 --urgency=normal --app-name=
-set $criticalnotif && notify-send --expire-time=60000 --urgency=critical --app-name=
+set $lownotif && dunstify --timeout 1500 --urgency low --appname
+set $normalnotif && dunstify --timeout 8000 --urgency normal --appname
+set $criticalnotif && dunstify --timeout 60000 --urgency critical --appname
 
-# Notify for capslock changing state
+# Notify for lock keys changing state
 bindsym --release Caps_Lock exec : $normalnotif "Caps Lock" "$(xset q | grep 'Caps Lock' | awk '{print $4}')"
+bindsym --release Num_Lock exec : $normalnotif "Num Lock" "$(xset q | grep 'Num Lock' | awk '{print $8}')"
+bindsym --release Scroll_Lock exec : $normalnotif "Scroll Lock" "$(xset q | grep 'Scroll Lock' | awk '{print $12}')"
 # : is bash noop, I like my && solution too much
 
 # Use Mouse+$mod to drag floating windows
@@ -87,14 +89,18 @@ bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg $normalnot
 bindsym $mod+Shift+w exec feh --bg-scale --randomize ~/Media/Wallpapers/* $normalnotif "Feh" "Changing wallpaper"
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 3 $lownotif "Light" "Backlight +3"
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 3 $lownotif "Light" "Backlight -3"
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 $lownotif "Light" "$(light)%"
 
 # Audio Controls
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle $normalnotif "PulseAudio" "Toggled mic"
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% $lownotif "PulseAudio" "Volume +5%"
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% $lownotif "PulseAudio" "Volume -5%"
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle $normalnotif "PulseAudio" "Toggled sound"
+set $soundcheck "Sound $(amixer -c 0 -M -D pulse get Master | grep -oPm 1 '(?<=\[)off|on(?=\])')"
+set $volumecheck "Volume $(amixer -c 0 -M -D pulse get Master | grep -oPm 1 '(?<=\[)\d\d?\d?%(?=\])')"
+set $miccheck "Microphone $(amixer -c 0 -M -D pulse get Capture | grep -oPm 1 '(?<=\[)off|on(?=\])')"
+
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle $normalnotif "PulseAudio" $soundcheck
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% $lownotif "PulseAudio" $volumecheck
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% $lownotif "PulseAudio" $volumecheck
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle $normalnotif "PulseAudio" $miccheck
 
 # Apps on binds
 #bindsym $mod+o exec "chromium --disable-notifications --disable-breakpad --disable-crash-reporter --disable-background-networking --fast-start --no-report-upload --no-referrers"
