@@ -13,4 +13,4 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 xrdb -merge $HOME/.Xresources
-exec i3  # TODO: what if I try others?
+exec i3
