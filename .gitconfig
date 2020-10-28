@@ -6,10 +6,3 @@
 	rebase = false
 [commit]
 	gpgsign = true
-
-[includeIf "gitdir:personal/"]
-    path = ~/.config/gitconfig/personal
-[includeIf "gitdir:professional/"]
-    path = ~/.config/gitconfig/professional
-[includeIf "gitdir:cs/"]
-    path = ~/.config/gitconfig/professional
