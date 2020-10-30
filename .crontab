@@ -4,5 +4,6 @@ XAUTHORITY="/home/gregdan3/.Xauthority"
 XDG_RUNTIME_DIR="/run/user/1000"
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 0 12 * * * gopass sync
+0 12 * * * crontab -l > ~/.crontab
 0 */2 * * * dunstify --appname="pacman" "$(checkupdates --download | wc -l) updates available"
-*/5 * * * * curl -s "wttr.in/?format=3" > ~/.weather
+*/10 * * * * curl -s "wttr.in?format=%c%l:+%C+%t+%w+%h" | sed 's/,.*:/:/g' > ~/.weather
