@@ -1,11 +1,4 @@
 # i3status configuration file.
-# see "man i3status" for documentation.
-
-# It is important that this file is edited as UTF-8.
-# The following line should contain a sharp s:
-# ß
-# If the above line is not correctly displayed, fix your editor first!
-
 general {
     output_format = "i3bar"
     colors = true
@@ -16,112 +9,107 @@ general {
     color_degraded = "#DC322F"
 }
 
-order += "cpu_usage"
-order += "cpu_temperature all"
-order += "memory"
-# order += "load"
+order += "read_file ~/.weather"
+order += "ethernet _first_"
+order += "wireless _first_"
 order += "disk /"
 order += "disk /home/"
 order += "disk /data/"
+order += "disk /nas/"
 order += "disk /var/"
 order += "disk /mnt/"
-order += "ethernet _first_"
-order += "wireless _first_"
+order += "memory"
+order += "cpu_usage"
+order += "cpu_temperature all"
 order += "volume master"
 order += "battery all"
 order += "tztime local"
 
-cpu_usage {
-    format = " 🖥 %usage "
-    # format = " cpu %usage "
+
+read_file ~/.weather {
+    format = "%content"
+    path = "~/.weather"
 }
 
+ethernet _first_ {
+    format_down = ""
+    format_up = "🖧 %ip: %speed"
+}
+wireless _first_ {
+    format_down = ""
+    format_up = "📶 %essid: %bitrate %ip"
+}
+
+disk "/" {
+    prefix_type = "decimal"
+    format = "/ %avail"
+    # format = "/ %used / %total"
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
+}
+disk "/home/" {
+    prefix_type = "decimal"
+    format = "⌂ %avail"
+    # format = "⌂ %used / %total"
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
+}
+disk "/data/" {
+    prefix_type = "decimal"
+    format = "⛁ %avail"
+    # format = "⛁ %used / %total"
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
+}
+disk "/nas/" {
+    prefix_type = "decimal"
+    format = "🖴 %avail"
+    # format = "🖴 %used / %total"
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
+}
+disk "/var/" {
+    prefix_type = "decimal"
+    format = "var %avail"
+    # format = "var %used / %total"
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
+}
+disk "/mnt/" {
+    prefix_type = "decimal"
+    format = "mnt %avail"
+    # format = "mnt %used / %total"
+    format_not_mounted = ""
+    low_threshold = 5
+    threshold_type = "percentage_free"
+}
+
+memory {
+    threshold_degraded = "15%"
+    format = "🖫 %used / %total"
+    format_degraded = "🖫 %free %available (%used) / %total"
+}
+
+cpu_usage {
+    format = "🖥 %usage"
+}
 cpu_temperature all {
-    max_threshold = 70
-
+    max_threshold = 75
     # path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
-
-    format = " 🌡 %degrees°C "
-    format_above_threshold = " ♨ %degrees°C "
-
-    # format = " %degrees°C "
-    # format_above_threshold = " %degrees°C "
-    # format_above_threshold = " 🤒  %degrees°C "
+    format = "🌡 %degrees°C"
+    format_above_threshold = "♨ %degrees°C"
 }
 
 volume master {
     color_degraded = "#B2A191"
     color_bad = "#B2A191"
-    # format = " 🔈 %volume "
-    format = " 🔊 %volume "
-    format_muted = " 🔇 %volume "
-}
-
-load {
-    max_threshold = 0.3
-    format = " %1min %5min %15min "
-}
-
-disk "/" {
-    # format = " / 🖴 %used / %total "
-    prefix_type = "decimal"
-    format = " / %used / %total "
-    format_not_mounted = ""
-    low_threshold = 5
-    threshold_type = "percentage_free"
-}
-
-disk "/home/" {
-    prefix_type = "decimal"
-    format = " ⌂ %used / %total "
-    format_not_mounted = ""
-    low_threshold = 5
-    threshold_type = "percentage_free"
-}
-
-disk "/data/" {
-    prefix_type = "decimal"
-    format = " ⛁ %used / %total "
-    format_not_mounted = ""
-    low_threshold = 5
-    threshold_type = "percentage_free"
-}
-
-disk "/var/" {
-    prefix_type = "decimal"
-    format = " var %used / %total "
-    format_not_mounted = ""
-    low_threshold = 5
-    threshold_type = "percentage_free"
-}
-
-disk "/mnt/" {
-    prefix_type = "decimal"
-    format = " mnt %used / %total "
-    format_not_mounted = ""
-    low_threshold = 5
-    threshold_type = "percentage_free"
-}
-
-ethernet _first_ {
-    format_down = ""
-    format_up = " 🖧 %ip: %speed "
-}
-
-wireless _first_ {
-    format_down = ""
-    format_up = " 📶 %essid: %bitrate %ip "
-    # format_up = " 📶 %essid: %bitrate %ip "
-}
-
-memory {
-    threshold_degraded = "15%"
-
-    format = " 🖫 %used / %total "
-    format_degraded = " %free %available (%used) / %total "
-
-    # format = " %free %available (%used) / %total "
-    # format_degraded = " %free %available (%used) / %total "
+    format = "🔊 %volume"
+    format_muted = "🔇 %volume"
 }
 
 battery all {
@@ -130,23 +118,13 @@ battery all {
     threshold_type = percentage
     low_threshold = 10
     format_down = ""
-
-    format = " %status%percentage "
+    format = "%status%percentage"
     status_bat = "🔋"
     status_chr = "⚡"
     status_full = "☻"
     status_unk = "???"
-
-    # format = "%status %percentage"
-    # format = "%status %percentage %remaining %emptytime"
-    # status_chr = ""
-    # status_bat = "☉"
-    # status_unk = "☉"
 }
 
 tztime local {
-    format = " %m/%d %H:%M "
-
-    # format = "%Y-%m-%d %H:%M:%S"
-    # format = " %m/%d ⏲ %H:%M "
+    format = "📅%m/%d  🕑%H:%M"
 }
