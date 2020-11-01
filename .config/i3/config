@@ -21,7 +21,7 @@ hide_edge_borders both
 floating_maximum_size 1920 x 1080
 
 # Font for window titles. Used by bar if bar doesn't have its own font
-font xft:Terminus (TTF) 12
+font xft:Terminus (TTF), Unifont 12
 
 # Color palette used for the $terminal ( ~/.Xresources file )
 # NOTE: Since I use st, xresources will not always agree with my term colors!
@@ -229,9 +229,9 @@ bar {
     i3bar_command i3bar
     status_command i3status
     position top
-    separator_symbol "  "
+    separator_symbol "▕ "
     strip_workspace_numbers no  # if a workspace has a name, do not remove the number
-    font xft:Terminus (TTF) 9
+    font xft:Terminus (TTF), Unifont 12
     colors {
         background $term_background
         statusline $term_color15
