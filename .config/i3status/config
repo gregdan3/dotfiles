@@ -91,7 +91,8 @@ disk "/mnt/" {
 
 memory {
     threshold_degraded = "15%"
-    format = "🖫 %used / %total"
+    format = " %available"
+    # format = "🖫 %used / %total"
     format_degraded = "🖫 %free %available (%used) / %total"
 }
 
@@ -126,5 +127,5 @@ battery all {
 }
 
 tztime local {
-    format = "📅%m/%d  🕑%H:%M"
+    format = "📅%m/%d▕ 🕑%H:%M"
 }
