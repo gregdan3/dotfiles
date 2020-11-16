@@ -21,7 +21,7 @@ hide_edge_borders both
 floating_maximum_size 1920 x 1080
 
 # Font for window titles. Used by bar if bar doesn't have its own font
-font xft:Terminus (TTF), Unifont, Font Awesome 5 Free 12
+font xft:Terminus (TTF), Font Awesome 5 Free, Symbols Nerd font, Unifont 12
 
 # Color palette used for the $terminal ( ~/.Xresources file )
 # NOTE: Since I use st, xresources will not always agree with my term colors!
