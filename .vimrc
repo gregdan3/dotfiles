@@ -24,13 +24,12 @@ syntax enable                   " syntax highlighting for applicable buffers
 set noshowmode                  " hide -- MODE -- on bottom line
 set wrap                        " wrap long lines to next display line
 set linebreak                   " wrap between words, not within
+set showmatch                   " highlight matching paired symbol
 set display+=lastline           " always show last line of paragraph
-set scrolloff=3                 " show n lines above/below when scrolling
+set scrolloff=3                 " show n lines above/below cursor when scrolling
 set sidescrolloff=5             " show n columns to sides when scrolling
 set noerrorbells                " disable error bells
 set novisualbell                " especially disable visual error bell
-
-highlight CursorLineNr cterm=bold term=bold ctermfg=11  " ruler formatting
 highlight clear SignColumn      " for some reason, sign column wasn't using bgcolor
 
 " functional settings
@@ -44,16 +43,20 @@ set backspace=indent,eol,start  " allow backspace across [chars]
 set autoread                    " if file is changed outside vim, reload it
 set autochdir                   " ensure working directory = directory of vim
 set ttyfast                     " redraw faster
+set lazyredraw                  " don't draw screen during command execution
 set undofile                    " enable preserved histories across sessions
 set undodir=~/.vim/undodir      " store histories in specific dir instead of same as file
 set mouse=a                     " enable mouse
 set ttymouse=sgr                " change how vim understands mouse inputs
 set splitbelow                  " Open :split buffers on bottom
 set splitright                  " Open :vsplit buffers on right
-set pastetoggle=<F2>            " toggle paste when pressing Ctrl+P
+set pastetoggle=<F2>            " toggle paste when pressing F2
 set hidden	                    " buffers stay open+edited when not visible
-filetype plugin on              " load filetype plugins
-filetype indent on              " autoindent per filetype
+set ignorecase                  " no case = any case
+set smartcase                   " adding case = case sensitive
+set hlsearch                    " highlight results
+set incsearch                   " jump to nearest result as you search
+filetype plugin indent on       " autoindent+plugins per filetype
 
 " formatting settings
 set autoindent                  " newlines inherit indent level
@@ -67,26 +70,16 @@ set textwidth=80                " wrap to new buffer line based on column width.
 set formatoptions+=tc           " auto-formatting based on textwidth; respects comments
 set noendofline                 " disable automatically added newline
 
-" search settings
-set ignorecase                  " no case = any case
-set smartcase                   " adding case = case sensitive
-set hlsearch                    " highlight results
-set incsearch                   " jump to nearest result as you search
-
 " information settings
 set ruler                       " display position on statusbar
 set number                      " line numbers
 set relativenumber              " distances from cursor in line numbers
-set showmatch                   " highlight matching paired symbol
 set laststatus=2                " display statusline always
 set wildmenu                    " enable command completion after :
 set wildmode=longest:full,list  " autocomplete to longest common string
 set title                       " show vim status on title bar if applicable
 set showcmd                     " show currently typed command
 set history=1000                " preserve n changes
-
-" vim efficiency settings
-set lazyredraw                  " don't draw screen during command execution
 
 " command remaps
 command! W :write
@@ -101,12 +94,6 @@ nnoremap <silent> <CR> :noh<CR><CR>
 " clear search highlight by hitting enter
 " hitting n or performing another search will re-enable
 
-" Easier buffer navigation
-nnoremap <silent> <C-H> <C-W><C-H>
-nnoremap <silent> <C-J> <C-W><C-J>
-nnoremap <silent> <C-K> <C-W><C-K>
-nnoremap <silent> <C-L> <C-W><C-L>
-
 " janky tab navigation in completion menus
 " only remap if popup menu visible (includes hover...), else Tab
 inoremap <expr> <Tab> pumvisible() ? '<Down>' : '<Tab>'
@@ -117,8 +104,9 @@ augroup remember_last_position
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
-augroup spell_in_commits
+augroup file_settings
     autocmd FileType svn,*commit* setlocal spell
+    autocmd FileType c,cpp,h,hpp setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 
 " ALL PLUGIN SETTINGS
@@ -173,24 +161,47 @@ augroup END
 " ALE
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
+let g:ale_lint_delay = 750
+let g:ale_completion_delay = 100
 let g:ale_fix_on_save = 1
 let g:ale_set_balloons = 1
 let g:ale_echo_msg_warning_str = '⚠ '
 let g:ale_echo_msg_error_str = '❌'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
+                \   'c': ['cc', 'clangtidy', 'clangd'],
+                \   'cpp': ['cc', 'clangtidy', 'clangd'],
+                \   'css': ['prettier'],
+                \   'dockerfile': ['hadolint'],
+                \   'java': ['javac', 'eclipselsp'],
                 \   'javascript': ['eslint', 'tsserver'],
+                \   'json': ['jsonlint'],
+                \   'markdown': ['alex', 'proselint'],
                 \   'python': ['bandit', 'flake8', 'pylint', 'pyls'],
                 \   'rust': ['cargo', 'rls'],
+                \   'sh': ['shell', 'shellcheck', 'language_server'],
+                \   'sql': ['sqlint', 'sql-language-server'],
                 \   'vim': ['vint', 'vimls'],
+                \   'yaml': ['yamllint'],
                 \   }
 let g:ale_fixers =  {
                 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+                \   'c': ['clang-format'],
+                \   'cpp': ['clang-format'],
+                \   'css': ['prettier'],
+                \   'dockerfile': [],
+                \   'java': ['google_java_format'],
                 \   'javascript': ['eslint', 'prettier'],
+                \   'json': ['prettier'],
+                \   'markdown': ['prettier'],
                 \   'python': ['isort', 'black'],
                 \   'rust': ['rustfmt'],
-                \   'vim': [],
+                \   'sh': ['shfmt'],
+                \   'sql': ['pgformatter'],
+                \   'vim': ['remove_trailing_lines', 'trim_whitespace'],
+                \   'yaml': ['prettier'],
                 \   }
+let g:ale_python_pyls_config = {'pyls': {'plugins': {'pycodestyle': {'enabled': v:false}}}}
 
 " vim-slime
 let g:slime_target = 'vimterminal'                  " session to send to
@@ -200,7 +211,6 @@ let g:slime_python_ipython = 1                      " ipython drops inputs witho
 " NERDTree
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowLineNumbers=1
-let g:NERDTreeMinimalUI=1
 let g:NERDTreeNaturalSort=1
 
 " airline
@@ -218,15 +228,17 @@ let g:airline_symbols.linenr = '¶'              " linenum
 let g:airline_symbols.maxlinenr = ''            " column num
 let g:airline_symbols.paste = '∥'               " paste mode
 let g:airline_symbols.spell = '✓'               " spell mode
-let g:airline_symbols.dirty='*'                 " git buffer is dirty
+let g:airline_symbols.dirty='*'                 " dirty git buffer
+let g:airline_symbols.notexists = 'Ɇ'
 
 let g:airline#extensions#tabline#enabled = 1                " display open buffers+tabs on top bar
+let g:airline#extensions#tabline#buffer_nr_show = 1         " show buffer # on tabline
 let g:airline#extensions#tabline#nametruncate = 16          " max buffer name of 16 chars
 let g:airline#extensions#tabline#fnamecollapse = 2          " only show 2 trunc'd parent dirs
 let g:airline#extensions#branch#displayed_head_limit = 16   " limit branch names to first 16 chars
 
 " markdown-preview.nvim
-let g:mkdp_browser = 'firefox'              " TODO: open in new window?
+let g:mkdp_browser = 'firefox'
 
 " vimtex
 let g:tex_flavor = 'latex'
