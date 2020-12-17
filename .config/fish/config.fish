@@ -10,9 +10,6 @@ alias vi=vim
 alias vm=vim
 alias ivm=vim
 alias vmi=vim
-alias task='~/.task/task-git.sh'
-alias taskp='~/.task/task-git.sh --push'
-alias taskl='~/.task/task-git.sh --pull'
 
 bind \e\[P delete-char
 
