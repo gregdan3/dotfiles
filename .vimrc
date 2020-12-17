@@ -33,6 +33,7 @@ set novisualbell                " especially disable visual error bell
 highlight clear SignColumn      " for some reason, sign column wasn't using bgcolor
 
 " functional settings
+set nocompatible                " disable vi compatibility
 set foldmethod=indent           " fold based on indent level
 set nofoldenable                " no fold by default
 set conceallevel=3              " fold by default inside 3+ levels of [foldmethod]
@@ -117,6 +118,7 @@ call plug#begin()
         Plug 'dense-analysis/ale'       " linting, completion, formatting
     endif
 
+    Plug 'vimwiki/vimwiki'
     Plug 'jpalardy/vim-slime'           " send buffer data to [session]
     Plug 'tpope/vim-fugitive'           " git information and commands
     Plug 'airblade/vim-gitgutter'       " gitlens for vim
@@ -165,6 +167,7 @@ let g:ale_lint_delay = 750
 let g:ale_completion_delay = 100
 let g:ale_fix_on_save = 1
 let g:ale_set_balloons = 1
+let g:ale_echo_msg_info_str = '🛈 '
 let g:ale_echo_msg_warning_str = '⚠ '
 let g:ale_echo_msg_error_str = '❌'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -177,6 +180,7 @@ let g:ale_linters = {
                 \   'javascript': ['eslint', 'tsserver'],
                 \   'json': ['jsonlint'],
                 \   'markdown': ['alex', 'proselint'],
+                \   'vimwiki': ['alex', 'proselint'],
                 \   'python': ['bandit', 'flake8', 'pylint', 'pyls'],
                 \   'rust': ['cargo', 'rls'],
                 \   'sh': ['shell', 'shellcheck', 'language_server'],
@@ -202,6 +206,10 @@ let g:ale_fixers =  {
                 \   'yaml': ['prettier'],
                 \   }
 let g:ale_python_pyls_config = {'pyls': {'plugins': {'pycodestyle': {'enabled': v:false}}}}
+command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
+
+" vimwiki
+let g:vimwiki_list = [{'path': '~/.vimwiki', 'path_html': '~/public_html'}]
 
 " vim-slime
 let g:slime_target = 'vimterminal'                  " session to send to
