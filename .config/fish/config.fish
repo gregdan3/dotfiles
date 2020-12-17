@@ -15,3 +15,5 @@ bind \e\[P delete-char
 
 # alias for git directory belonging to my dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+thefuck --alias oof | source
