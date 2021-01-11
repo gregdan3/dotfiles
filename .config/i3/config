@@ -2,20 +2,9 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
-# Set terminal
+# Set some programs
 set $terminal st
 set $browser firefox
-
-# set default window layout <stacking|tabbed>, no setting means tiling
-# workspace_layout stacking
-
-# Border style <normal|pixel xx|none>
-default_border pixel 1
-default_floating_border pixel 1
-
-# Hide borders on screen edges none|vertical|horizontal|both|smart
-# smart doesn't seem to work?
-hide_edge_borders both
 
 # ensure floating windows can't exceed screen size
 floating_maximum_size 1920 x 1080
@@ -23,16 +12,11 @@ floating_maximum_size 1920 x 1080
 # Font for window titles. Used by bar if bar doesn't have its own font
 font xft:Terminus (TTF), Font Awesome 5 Free, Symbols Nerd font, Unifont 12
 
-# Color palette used for the $terminal ( ~/.Xresources file )
-# NOTE: Since I use st, xresources will not always agree with my term colors!
-#   0/8: black/d_grey
-#   1/9: red
-#  2/10: green
-#  3/11: yellow
-#  4/12: blue
-#  5/13: purple
-#  6/14: cyan
-#  7/15: l_grey/white
+# i3 color palette  ( ~/.Xresources file )
+# NOTE: Xresources will not always be the same as term colors
+# depends on $TERM and $SHELL
+#   0/8: black/d_grey,  1/9: red, 2/10: green, 3/11: yellow
+#  4/12: blue, 5/13: purple, 6/14: cyan, 7/15: l_grey/white
 # bg/fg: depends on light/dark theme, usually close to black/white respectively
 set_from_resource $term_background background
 set_from_resource $term_foreground foreground
@@ -53,55 +37,55 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-# convenient notification shortcuts
+# Autostart applications
+# --no-startup-id means i3 will not wait on the app or produce a workspace for it.
+exec --no-startup-id xautolock -time 10 -locker 'i3lock -e -c 222222' # ignore empty pw, set background
+exec --no-startup-id xset -b  # disable keyboard beep
+exec --no-startup-id nm-applet  # network manager tray icon
+exec --no-startup-id blueman-applet  # bluetooth tray icon
+exec --no-startup-id autotiling  # automating tiling layout
+exec --no-startup-id feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
+# exec --no-startup-id picom  # compositor
+
+# notification shortcuts
 set $lownotif && dunstify --timeout 1500 --urgency low --appname
 set $normalnotif && dunstify --timeout 8000 --urgency normal --appname
 set $criticalnotif && dunstify --timeout 60000 --urgency critical --appname
 
-# Notify for lock keys changing state
-# : is bash noop, I like my && solution too much
-bindsym --release Caps_Lock exec : $normalnotif "Caps Lock" "$(xset q | grep 'Caps Lock' | awk '{print $4}')"
-bindsym --release Num_Lock exec : $normalnotif "Num Lock" "$(xset q | grep 'Num Lock' | awk '{print $8}')"
-bindsym --release Scroll_Lock exec : $normalnotif "Scroll Lock" "$(xset q | grep 'Scroll Lock' | awk '{print $12}')"
-
-# start a terminal
-bindsym $mod+Return exec $terminal
-
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# change wallpaper to fully black image
-bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
-# pick a random wallpaper
-bindsym $mod+Shift+w exec feh --bg-scale --randomize ~/Media/Wallpapers/* $normalnotif "Feh" "Changing wallpaper"
-
-# Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 $lownotif "Light" "$(light)%"
-
-# Audio Controls
+# audio shortcuts
 set $soundcheck "Sound $(amixer -c 0 -M -D pulse get Master | grep -oPm 1 '(?<=\[)off|on(?=\])')"
 set $volumecheck "Volume $(amixer -c 0 -M -D pulse get Master | grep -oPm 1 '(?<=\[)\d\d?\d?%(?=\])')"
 set $miccheck "Microphone $(amixer -c 0 -M -D pulse get Capture | grep -oPm 1 '(?<=\[)off|on(?=\])')"
 
+# Notify for lock keys changing state; `:` is bash noop, lets me keep && in shortcut
+bindsym --release Caps_Lock exec : $normalnotif "Caps Lock" "$(xset q | grep 'Caps Lock' | awk '{print $4}')"
+bindsym --release Num_Lock exec : $normalnotif "Num Lock" "$(xset q | grep 'Num Lock' | awk '{print $8}')"
+bindsym --release Scroll_Lock exec : $normalnotif "Scroll Lock" "$(xset q | grep 'Scroll Lock' | awk '{print $12}')"
+
+# programs on binds
+bindsym $mod+Return exec $terminal
+bindsym $mod+o exec $browser
+bindsym $mod+Ctrl+l exec i3lock -e -c 222222
+
+# program actions on binds
+# sf = selected font, sb = selected background, nf = normal font, nb = normal background
+bindsym $mod+d exec dmenu_run -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_color15" -nb "$term_background"
+bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
+bindsym $mod+Shift+w exec feh --bg-scale --randomize ~/Media/Wallpapers/* $normalnotif "Feh" "Changing wallpaper"
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 $lownotif "Light" "$(light)%"
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle $normalnotif "PulseAudio" $soundcheck
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% $lownotif "PulseAudio" $volumecheck
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% $lownotif "PulseAudio" $volumecheck
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle $normalnotif "PulseAudio" $miccheck
-
-# browser
-bindsym $mod+o exec $browser
-
-# start program launcher
-# sf = selected font, sb = selected background, nf = normal font, nb = normal background
-bindsym $mod+d exec dmenu_run -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_color15" -nb "$term_background"
-
 bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took full screenshot"
 bindsym $mod+Ctrl+Print exec scrot -uq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
 bindsym $mod+Shift+Print --release exec sleep 0.05 && scrot -sq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
-# sleep is at direction of Arch wiki
-# selection border will appear in image if scrot is invoked via wm keybind, unless sleep
+# sleep is from Archwiki. Selection border will appear in image if scrot is invoked via wm keybind, unless sleep
 # also, this one won't work without --release. no idea why.
+
+# kill focused window
+bindsym $mod+Shift+q kill
 
 # change focus
 bindsym $mod+h focus left
@@ -129,10 +113,9 @@ bindsym $mod+q split toggle
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# change container layout
+bindsym $mod+w layout toggle all
+bindsym $mod+e layout toggle splith splitv
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -201,40 +184,27 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
-# Move to scratchpad
+# scratchpad
 bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show
 
-# reload the configuration file
+# reload config/i3
 bindsym $mod+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# enable switching to previous workspace by repeating last switch
+# repeating last workspace change will go to previous workspace
 workspace_auto_back_and_forth yes
 
-# Autostart applications
-# NOTE: --no-startup-id means i3 will not wait on the app or produce a workspace for it.
-exec --no-startup-id xautolock -time 10 -locker 'i3lock -e -c 222222'
-# ignore empty pw, dark grey background
-exec --no-startup-id xset -b  # disable keyboard beep
-exec --no-startup-id nm-applet  # network manager tray icon
-exec --no-startup-id blueman-applet  # bluetooth tray icon
-# exec --no-startup-id compton -b
-exec --no-startup-id feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
-
-
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
+# Start i3bar+i3status
 bar {
     i3bar_command i3bar
     status_command i3status
     position top
     separator_symbol "▕ "
-    strip_workspace_numbers no  # if a workspace has a name, do not remove the number
+    strip_workspace_numbers no  # never remove workspace numbers
     colors {
         background $term_background
         statusline $term_color15
@@ -253,7 +223,6 @@ bar {
 bindsym $mod+m bar mode toggle
 
 # Theme colors, primarily affects tab/menu bars
-# I don't care for the difference between focused and focused_inactive
 # class                   border             background         text            indicator          child_border
 client.focused            $term_background   $term_color12      $term_color7    $term_color1       $term_foreground
 client.focused_inactive   $term_background   $term_color12      $term_color7    $term_color1       $term_foreground
@@ -262,16 +231,23 @@ client.urgent             $term_foreground   $term_color1       $term_color7    
 client.placeholder        $term_foreground   $term_background   $term_color7    $term_background   $term_background
 client.background                            $term_background
 
+# Border style <normal|pixel xx|none>
+default_border pixel 1
+default_floating_border pixel 1
+
+# Hide borders on screen edges none|vertical|horizontal|both|smart
+hide_edge_borders smart
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders on
+
 # Set inner/outer gaps
 gaps inner 0  # 8
 gaps outer 0  # -2
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
-
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
 
 # Resize window (these operate on focused window)
 bindsym $mod+r mode "resize"
@@ -285,7 +261,6 @@ mode "resize" {
     bindsym Up resize shrink height 5 px or 5 ppt
     bindsym Right resize grow width 5 px or 5 ppt
 
-    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
@@ -306,6 +281,5 @@ mode "$mode_gaps" {
     bindsym Shift+bracketright  gaps outer all minus 5
     bindsym Shift+p             gaps outer all set 0
 
-    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
