@@ -1229,11 +1229,11 @@ user_pref("extensions.postDownloadThirdPartyPrompt", false);
 /* 2650: discourage downloading to desktop
  * 0=desktop, 1=downloads (default), 2=last used
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
-// user_pref("browser.download.folderList", 2);
+user_pref("browser.download.folderList", 1);
 /* 2651: enforce user interaction for security by always asking where to download
  * [SETUP-CHROME] On Android this blocks longtapping and saving images
  * [SETTING] General>Downloads>Always ask you where to save files ***/
-user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.download.useDownloadDir", true);
 /* 2652: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
 /* 2654: disable "open with" in download dialog [FF50+] [SETUP-HARDEN]
@@ -1363,13 +1363,13 @@ user_pref("privacy.clearOnShutdown.siteSettings", false); // Site Preferences
  * [NOTE] Regardless of what you set privacy.cpd.downloads to, as soon as the dialog
  * for "Clear Recent History" is opened, it is synced to the same as 'history' ***/
 user_pref("privacy.cpd.cache", true);
-user_pref("privacy.cpd.cookies", true);
+user_pref("privacy.cpd.cookies", false);
 // user_pref("privacy.cpd.downloads", true); // not used, see note above
 user_pref("privacy.cpd.formdata", true); // Form & Search History
 user_pref("privacy.cpd.history", true); // Browsing & Download History
 user_pref("privacy.cpd.offlineApps", true); // Offline Website Data
 user_pref("privacy.cpd.passwords", false); // this is not listed
-user_pref("privacy.cpd.sessions", true); // Active Logins
+user_pref("privacy.cpd.sessions", false); // Active Logins
 user_pref("privacy.cpd.siteSettings", false); // Site Preferences
 /* 2805: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
  * [NOTE] Not needed if Session Restore is not used (see 0102) or is already cleared with history (see 2803)
@@ -1666,30 +1666,36 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 // user_pref("full-screen-api.warning.delay", 0);
 // user_pref("full-screen-api.warning.timeout", 0);
 /* APPEARANCE ***/
-// user_pref("browser.download.autohideButton", false); // [FF57+]
+user_pref("browser.download.autohideButton", true); // [FF57+]
 // user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
 /* CONTENT BEHAVIOR ***/
 // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
 // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
 // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
 /* UX BEHAVIOR ***/
-// user_pref("browser.backspace_action", 2); // 0=previous page, 1=scroll up, 2=do nothing
+user_pref("browser.backspace_action", 0); // 0=previous page, 1=scroll up, 2=do nothing
 // user_pref("browser.tabs.closeWindowWithLastTab", false);
-// user_pref("browser.tabs.loadBookmarksInTabs", true); // open bookmarks in a new tab [FF57+]
+user_pref("browser.tabs.loadBookmarksInTabs", true); // open bookmarks in a new tab [FF57+]
 // user_pref("browser.urlbar.decodeURLsOnCopy", true); // see bugzilla 1320061 [FF53+]
 // user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [DEFAULT: false on Linux]
 // user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
 // user_pref("view_source.tab", false); // view "page/selection source" in a new window [FF68+, FF59 and under]
 /* UX FEATURES: disable and hide the icons and menus ***/
-// user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // What's New [FF69+]
-// user_pref("extensions.pocket.enabled", false); // Pocket Account [FF46+]
+user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // What's New [FF69+]
+user_pref("extensions.pocket.enabled", false); // Pocket Account [FF46+]
 // user_pref("identity.fxaccounts.enabled", false); // Firefox Accounts & Sync [FF60+] [RESTART]
 // user_pref("reader.parse-on-load.enabled", false); // Reader View
 /* OTHER ***/
-// user_pref("browser.bookmarks.max_backups", 2);
-// user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false); // disable CFR [FF67+]
+user_pref("browser.bookmarks.max_backups", 5);
+user_pref(
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
+  false
+); // disable CFR [FF67+]
 // [SETTING] General>Browsing>Recommend extensions as you browse
-// user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // disable CFR [FF67+]
+user_pref(
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
+  false
+); // disable CFR [FF67+]
 // [SETTING] General>Browsing>Recommend features as you browse
 // user_pref("network.manage-offline-status", false); // see bugzilla 620472
 // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
