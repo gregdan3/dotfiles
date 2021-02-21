@@ -496,10 +496,10 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
 user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
 /* 0850a: disable location bar suggestion types
  * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest ***/
-// user_pref("browser.urlbar.suggest.history", false);
-// user_pref("browser.urlbar.suggest.bookmark", false);
-// user_pref("browser.urlbar.suggest.openpage", false);
-// user_pref("browser.urlbar.suggest.topsites", false); // [FF78+]
+user_pref("browser.urlbar.suggest.history", false);
+user_pref("browser.urlbar.suggest.bookmark", true);
+user_pref("browser.urlbar.suggest.openpage", false);
+user_pref("browser.urlbar.suggest.topsites", false); // [FF78+]
 /* 0850b: disable tab-to-search [FF85+]
  * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
  * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest>Search engines ***/
@@ -638,9 +638,9 @@ user_pref("browser.shell.shortcutFavicons", false);
  * actual history (and bookmarks) already do. Your history is more detailed, so
  * control that instead; e.g. disable history, clear history on close, use PB mode
  * [NOTE] favicons.sqlite is sanitized on Firefox close, not in-session ***/
-// user_pref("browser.chrome.site_icons", false);
+user_pref("browser.chrome.site_icons", false);
 /* 1032: disable favicons in web notifications ***/
-// user_pref("alerts.showFavicons", false); // [DEFAULT: false]
+user_pref("alerts.showFavicons", false); // [DEFAULT: false]
 
 /*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
    Your cipher and other settings can be used in server side fingerprinting
