@@ -181,7 +181,7 @@ let g:ale_linters = {
                 \   'json': ['jsonlint'],
                 \   'markdown': ['alex', 'proselint'],
                 \   'vimwiki': ['alex', 'proselint'],
-                \   'python': ['bandit', 'flake8', 'pylint', 'pyls'],
+                \   'python': ['bandit', 'flake8', 'pylint', 'pyls', 'pyright'],
                 \   'rust': ['cargo', 'rls'],
                 \   'sh': ['shell', 'shellcheck', 'language_server'],
                 \   'sql': ['sqlint', 'sql-language-server'],
