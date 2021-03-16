@@ -119,6 +119,7 @@ call plug#begin()
     endif
 
     Plug 'vimwiki/vimwiki'
+    Plug 'mhinz/vim-startify'           " fancy start screen with recall
     Plug 'jpalardy/vim-slime'           " send buffer data to [session]
     Plug 'tpope/vim-fugitive'           " git information and commands
     Plug 'airblade/vim-gitgutter'       " gitlens for vim
@@ -155,11 +156,6 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 nmap <silent> <C-s> <Plug>MarkdownPreview           " toggle markdown preview
 
 " autocommands for plugins
-augroup open_nerdtree_if_no_args_session
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTreeToggle | endif
-augroup END
-
 " ALE
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
