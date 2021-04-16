@@ -155,6 +155,8 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+minus workspace prev
+bindsym $mod+plus workspace next
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -185,8 +187,8 @@ bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
 # scratchpad
-bindsym $mod+minus move scratchpad
-bindsym $mod+plus scratchpad show
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+plus scratchpad show
 
 # reload config/i3
 bindsym $mod+Shift+c reload
