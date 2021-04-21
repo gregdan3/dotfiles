@@ -107,7 +107,7 @@ augroup END
 
 augroup file_settings
     autocmd FileType svn,*commit* setlocal spell
-    autocmd FileType c,cpp,h,hpp setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    autocmd FileType c,cpp,h,hpp,js,javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 
 " ALL PLUGIN SETTINGS
