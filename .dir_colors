@@ -60,6 +60,9 @@ TERM screen.rxvt
 TERM screen.linux
 TERM st
 TERM st-256color
+TERM kitty
+TERM kitty-256color
+TERM xterm-kitty
 TERM terminator
 TERM vt100
 TERM xterm
