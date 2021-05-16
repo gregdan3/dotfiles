@@ -3,14 +3,14 @@
 set $mod Mod4
 
 # Set some programs
-set $terminal st
+set $terminal kitty --single-instance
 set $browser firefox
 
 # ensure floating windows can't exceed screen size
 floating_maximum_size 1920 x 1080
 
 # Font for window titles. Used by bar if bar doesn't have its own font
-font xft:Terminus (TTF), Font Awesome 5 Free, Symbols Nerd font, Unifont 12
+font xft:Terminus (TTF), Font Awesome 5 Free, Symbols Nerd font, Unifont 15
 
 # i3 color palette  ( ~/.Xresources file )
 # NOTE: Xresources will not always be the same as term colors
