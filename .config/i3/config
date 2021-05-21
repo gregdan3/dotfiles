@@ -10,7 +10,7 @@ set $browser firefox
 floating_maximum_size 1920 x 1080
 
 # Font for window titles. Used by bar if bar doesn't have its own font
-font xft:Terminus (TTF), Font Awesome 5 Free, Symbols Nerd font, Unifont 15
+font xft:Terminus (TTF), Font Awesome 5 Free, Symbols Nerd Font, Unifont 15
 
 # i3 color palette  ( ~/.Xresources file )
 # NOTE: Xresources will not always be the same as term colors
@@ -43,10 +43,10 @@ exec --no-startup-id xautolock -time 10 -locker 'i3lock -e -c 222222' # ignore e
 exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id nm-applet  # network manager tray icon
 exec --no-startup-id blueman-applet  # bluetooth tray icon
-exec --no-startup-id autotiling  # automating tiling layout
 exec --no-startup-id feh --bg-scale --randomize ~/Media/Wallpapers/*  # wallpaper
-exec --no-startup-id autorandr -c
-# exec --no-startup-id picom  # compositor
+exec --no-startup-id autorandr -c  # trigger display detection
+# exec --no-startup-id picom -b  # compositor
+exec_always --no-startup-id autotiling  # automating tiling layout, dies if restarting wm
 
 # notification shortcuts
 set $lownotif && dunstify --timeout 1500 --urgency low --appname
@@ -76,10 +76,10 @@ bindsym $mod+Shift+w exec feh --bg-scale --randomize ~/Media/Wallpapers/* $norma
 bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monitors"
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 $lownotif "Light" "$(light)%"
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle $normalnotif "PulseAudio" $soundcheck
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% $lownotif "PulseAudio" $volumecheck
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% $lownotif "PulseAudio" $volumecheck
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle $normalnotif "PulseAudio" $miccheck
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle $normalnotif "PulseAudio" $soundcheck
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +10% $lownotif "PulseAudio" $volumecheck
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -10% $lownotif "PulseAudio" $volumecheck
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 2 toggle $normalnotif "PulseAudio" $miccheck
 bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took full screenshot"
 bindsym $mod+Ctrl+Print exec scrot -uq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
 bindsym $mod+Shift+Print --release exec sleep 0.05 && scrot -sq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
