@@ -33,6 +33,7 @@ clang
 cmake
 cmatrix
 cowsay
+cpio
 cppcheck
 cpupower
 cronie
@@ -101,6 +102,7 @@ irssi
 iw
 jedi-language-server
 jq
+kitty
 libreoffice-fresh
 libtool
 light
@@ -117,6 +119,7 @@ make
 man-db
 man-pages
 mesa
+mesa-demos
 mesa-vdpau
 moc
 moreutils
@@ -130,6 +133,9 @@ network-manager-applet
 networkmanager
 nmap
 noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+noto-fonts-extra
 ntfs-3g
 obs-studio
 openconnect
@@ -138,12 +144,14 @@ openmp
 openssh
 openvpn
 os-prober
+otf-font-awesome
 p7zip
 pacman
 pacman-contrib
 patch
 pavucontrol
 perf
+perl-anyevent-i3
 picom
 pkgconf
 pkgfile
@@ -152,7 +160,6 @@ polkit
 powerline-fonts
 powertop
 prettier
-proselint
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
@@ -162,6 +169,7 @@ python-black
 python-language-server
 python-pipenv
 python-pipx
+python-pre-commit
 python-pylint
 python-sympy
 qbittorrent
@@ -186,6 +194,7 @@ speedtest-cli
 strace
 stylelint
 sudo
+sway
 sysfsutils
 syslinux
 tcpdump
@@ -216,10 +225,8 @@ torbrowser-launcher
 tpacpi-bat
 traceroute
 tree
-ttf-droid
-ttf-font-awesome
 ttf-inconsolata
-ttf-ionicons
+ttf-joypixels
 ttf-nerd-fonts-symbols-mono
 ttf-opensans
 ttf-roboto
@@ -236,8 +243,8 @@ vint
 vlc
 vulkan-intel
 w3m
+waybar
 wget
-when
 which
 whois
 wipe
@@ -249,9 +256,7 @@ wpa_supplicant
 xautolock
 xdotool
 xf86-input-synaptics
-xf86-video-intel
-xorg-bdftopcf
-xorg-font-util
+xonsh
 xorg-mkfontscale
 xorg-server
 xorg-setxkbmap
@@ -265,12 +270,12 @@ xorg-xmodmap
 xorg-xrandr
 xorg-xrdb
 xorg-xset
+xorg-xwayland
 xorg-xwininfo
 xreader
 xsel
 yamllint
 youtube-dl
-youtube-viewer
 zathura
 zathura-pdf-mupdf
 zip
