@@ -6,8 +6,6 @@
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
-export TERM='rxvt-unicode-256color';
-
 use_color=true
 
 # dircolors --print-database uses its own built-in database
