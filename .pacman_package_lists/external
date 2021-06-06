@@ -8,6 +8,7 @@ cqrlog-bin
 cty
 direwolf
 dockerfile-language-server-bin
+fisher
 fldigi
 flrig
 google-java-format
@@ -20,9 +21,10 @@ ioquake3-git
 jdtls
 kernel-modules-hook
 pandoc-bin
+paru-bin
 pgformatter-git
 proselint
-pyright
+ruby-sqlint
 shellcheck-bin
 spotify
 sql-language-server
@@ -37,6 +39,5 @@ update-grub
 vim-language-server
 wdisplays
 wsjtx
-yay-bin
 youtube-viewer
 zoom

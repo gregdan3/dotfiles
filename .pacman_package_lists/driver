@@ -6,6 +6,7 @@ alsa-firmware
 alsa-utils
 ansible
 ansible-lint
+apache
 arandr
 arch-audit
 arch-install-scripts
@@ -20,6 +21,7 @@ bandit
 base
 bash-completion
 bash-language-server
+bat
 beep
 bind
 binutils
@@ -56,6 +58,7 @@ etherwall
 evtest
 exfat-utils
 fakeroot
+fd
 feh
 figlet
 file
@@ -64,6 +67,7 @@ firefox
 fish
 flake8
 flex
+fzf
 gawk
 gcc
 gdb
@@ -73,7 +77,9 @@ git
 glances
 gnuradio
 gnuradio-companion
+go
 gopass
+gopls
 gprolog
 gptfdisk
 gqrx
@@ -81,6 +87,7 @@ grep
 groff
 grub
 gtop
+gvim
 gzip
 hamlib
 hardinfo
@@ -114,6 +121,7 @@ logrotate
 lolcat
 lostfiles
 lshw
+lsof
 m4
 make
 man-db
@@ -163,6 +171,7 @@ prettier
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
+pyright
 python-aiohttp
 python-aiohttp-cors
 python-black
@@ -171,10 +180,12 @@ python-pipenv
 python-pipx
 python-pre-commit
 python-pylint
+python-pywal
 python-sympy
 qbittorrent
 read-edid
 realtime-privileges
+revive
 rmlint
 rtirq
 rust
@@ -238,7 +249,6 @@ usbutils
 util-linux
 valgrind
 vault
-vim
 vint
 vlc
 vulkan-intel
@@ -276,6 +286,7 @@ xreader
 xsel
 yamllint
 youtube-dl
+z
 zathura
 zathura-pdf-mupdf
 zip
