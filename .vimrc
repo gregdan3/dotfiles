@@ -52,6 +52,7 @@ set ttymouse=sgr                " change how vim understands mouse inputs
 set splitbelow                  " Open :split buffers on bottom
 set splitright                  " Open :vsplit buffers on right
 set pastetoggle=<F2>            " toggle paste when pressing F2
+set clipboard^=unnamedplus      " use system clipboard always
 set hidden	                    " buffers stay open+edited when not visible
 set ignorecase                  " no case = any case
 set smartcase                   " adding case = case sensitive
@@ -83,8 +84,10 @@ set showcmd                     " show currently typed command
 set history=1000                " preserve n changes
 
 " command remaps
-command! W :write
-command! Q :quit
+command! W :w
+command! Q :q
+command! Wq :wq
+command! WQ :wq
 
 " key remaps
 nnoremap <SPACE> <Nop>          " disable all space bindings
