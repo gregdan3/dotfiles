@@ -10,6 +10,8 @@ endif
 let g:remoteSession = !($SSH_TTY ==? '')
 if g:remoteSession
     colorscheme slate
+else
+    colorscheme default         " vim doesn't like xterm-kitty $TERM, colors are wrong on load
 endif
 
 " set :term/:shell program
@@ -31,9 +33,9 @@ set sidescrolloff=5             " show n columns to sides when scrolling
 set noerrorbells                " disable error bells
 set novisualbell                " especially disable visual error bell
 highlight clear SignColumn      " for some reason, sign column wasn't using bgcolor
+set t_RV=                       " disable term version query, xterm bad
 
 " functional settings
-set nocompatible                " disable vi compatibility
 set foldmethod=indent           " fold based on indent level
 set nofoldenable                " no fold by default
 set conceallevel=3              " fold by default inside 3+ levels of [foldmethod]
@@ -48,8 +50,8 @@ set lazyredraw                  " don't draw screen during command execution
 set undofile                    " enable preserved histories across sessions
 set undodir=~/.vim/undodir      " store histories in specific dir instead of same as file
 set mouse=a                     " enable mouse
-set ttymouse=sgr                " change how vim understands mouse inputs
-set splitbelow                  " Open :split buffers on bottom
+set ttymouse=sgr                " change how vim understands mouse inputs in term
+set splitbelow                  " Open :split buffers on bottom, like i3
 set splitright                  " Open :vsplit buffers on right
 set pastetoggle=<F2>            " toggle paste when pressing F2
 set clipboard^=unnamedplus      " use system clipboard always
@@ -82,12 +84,6 @@ set wildmode=longest:full,list  " autocomplete to longest common string
 set title                       " show vim status on title bar if applicable
 set showcmd                     " show currently typed command
 set history=1000                " preserve n changes
-
-" command remaps
-command! W :w
-command! Q :q
-command! Wq :wq
-command! WQ :wq
 
 " key remaps
 nnoremap <SPACE> <Nop>          " disable all space bindings
@@ -179,7 +175,7 @@ let g:ale_linters = {
                 \   'javascript': ['eslint', 'tsserver'],
                 \   'json': ['jsonlint'],
                 \   'markdown': ['alex', 'proselint', 'writegood', 'textlint'],
-                \   'python': ['bandit', 'flake8', 'pylint', 'pyls', 'pyright'],
+                \   'python': ['bandit', 'flake8', 'pyls', 'pyright'],
                 \   'rust': ['cargo', 'rls'],
                 \   'sh': ['shell', 'shellcheck', 'language_server'],
                 \   'sql': ['sqlint', 'sql-language-server'],
@@ -205,6 +201,8 @@ let g:ale_fixers =  {
                 \   }
 let g:ale_python_pyls_config = {'pyls': {'plugins': {'pycodestyle': {'enabled': v:false}}}}
 command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
+highlight ALEWarning cterm=underline ctermbg=none ctermul=blue
+highlight ALEError cterm=underline ctermbg=none ctermul=red
 
 " vimwiki
 let g:vimwiki_list = [{'path': '~/.vimwiki', 'path_html': '~/public_html'}]
