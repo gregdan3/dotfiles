@@ -35,6 +35,8 @@ set novisualbell                " especially disable visual error bell
 highlight clear SignColumn      " for some reason, sign column wasn't using bgcolor
 set t_RV=                       " disable term version query, xterm bad
 set t_ut=                       " disable background color erase, vim bad
+let &t_Cs="\e[4:3m"             " tell vim how to print undercurl
+let &t_Ce="\e[4:0m"             " and end it
 
 " functional settings
 set foldmethod=indent           " fold based on indent level
