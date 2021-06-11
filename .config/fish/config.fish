@@ -12,3 +12,5 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 thefuck --alias oof | source
 
 set PATH $PATH /home/gregdan3/.local/bin
+
+starship init fish | source
