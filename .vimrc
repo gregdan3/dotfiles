@@ -133,7 +133,6 @@ call plug#begin()
     if !g:remoteSession
         Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
         Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}        " LaTeX previewer, \ll to start
-        Plug 'sirver/ultisnips', {'for': ['tex', 'plaintex']}     " faster snippets completion
     endif
 call plug#end()
 
@@ -253,8 +252,3 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_compiler_progname = 'tectonic'
 let g:tex_conceal='abdmg'
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = '<C-c>'      " TODO: could be comfier
-let g:UltiSnipsJumpForwardTrigger = '<C-b>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-z>'
