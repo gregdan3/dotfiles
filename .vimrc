@@ -38,12 +38,13 @@ set scrolloff=3                 " show n lines above/below cursor when scrolling
 set sidescrolloff=5             " show n columns to sides when scrolling
 set noerrorbells                " disable error bells
 set novisualbell                " especially disable visual error bell
-highlight clear SignColumn      " for some reason, sign column wasn't using bgcolor
+hi clear SignColumn             " for some reason, sign column wasn't using bgcolor
+hi DiffAdd     cterm=italic     ctermfg=Green    ctermbg=none
+hi DiffChange  cterm=none       ctermfg=Yellow   ctermbg=none
+hi DiffDelete  cterm=bold       ctermfg=Red      ctermbg=none
+hi DiffText    cterm=undercurl  ctermfg=Yellow   ctermbg=none
 
 " functional settings
-set foldmethod=indent           " fold based on indent level
-set nofoldenable                " no fold by default
-set conceallevel=3              " fold by default inside 3+ levels of [foldmethod]
 set encoding=utf8               " always write utf-8 encoded files
 set termencoding=utf8           " characters appear in utf-8
 scriptencoding=utf8             " just for this file, since it has multibyte chars
