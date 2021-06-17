@@ -21,6 +21,12 @@ else
     set shell=/bin/bash\ --login
 endif
 
+" bugfixes
+set t_RV=                       " disable term version query, xterm bad
+set t_ut=                       " disable background color erase, vim bad
+let &t_Cs="\e[4:3m"             " tell vim how to print undercurl
+let &t_Ce="\e[4:0m"             " and end it. Should be detected, but nope
+
 " visual settings
 syntax enable                   " syntax highlighting for applicable buffers
 set noshowmode                  " hide -- MODE -- on bottom line
@@ -33,10 +39,6 @@ set sidescrolloff=5             " show n columns to sides when scrolling
 set noerrorbells                " disable error bells
 set novisualbell                " especially disable visual error bell
 highlight clear SignColumn      " for some reason, sign column wasn't using bgcolor
-set t_RV=                       " disable term version query, xterm bad
-set t_ut=                       " disable background color erase, vim bad
-let &t_Cs="\e[4:3m"             " tell vim how to print undercurl
-let &t_Ce="\e[4:0m"             " and end it
 
 " functional settings
 set foldmethod=indent           " fold based on indent level
@@ -58,7 +60,7 @@ set splitbelow                  " Open :split buffers on bottom, like i3
 set splitright                  " Open :vsplit buffers on right
 set pastetoggle=<F2>            " toggle paste when pressing F2
 set clipboard^=unnamedplus      " use system clipboard always
-set hidden	                    " buffers stay open+edited when not visible
+set hidden	                " buffers stay open+edited when not visible
 set ignorecase                  " no case = any case
 set smartcase                   " adding case = case sensitive
 set hlsearch                    " highlight results
@@ -66,12 +68,6 @@ set incsearch                   " jump to nearest result as you search
 filetype plugin indent on       " autoindent+plugins per filetype
 
 " formatting settings
-set autoindent                  " newlines inherit indent level
-set smarttab                    " ... but only when sensible
-set expandtab                   " replace tab with space
-set tabstop=4                   " n-width tabs
-set softtabstop=4               " do not enforce tab width on existing tabs
-set shiftwidth=4                " when moving text with [<>], move by n
 set shiftround                  " round 'shift' to shiftwidth
 set textwidth=80                " wrap to new buffer line based on column width.
 set formatoptions+=tc           " auto-formatting based on textwidth; respects comments
@@ -108,22 +104,22 @@ augroup remember_last_position
 augroup END
 
 augroup file_settings
-    autocmd FileType svn,*commit* setlocal spell
-    autocmd FileType c,cpp,h,hpp,js,javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    autocmd FileType md,svn,*commit* setlocal spell
 augroup END
 
 " ALL PLUGIN SETTINGS
 " NOTE: you can :echo glob($VIMRUNTIME . '/ftplugin/*.vim') to see filetypes available
 " NOTE: you can :PlugStatus to see running plugins
 call plug#begin()
-    if has('timers')                    " async feature
-        Plug 'dense-analysis/ale'       " linting, completion, formatting
-    endif
-
-    Plug 'vimwiki/vimwiki'
+    Plug 'dense-analysis/ale'           " linting, completion, formatting
+    Plug 'vimwiki/vimwiki'              " markdown filetype + personal wiki
     Plug 'mhinz/vim-startify'           " fancy start screen with recall
     Plug 'jpalardy/vim-slime'           " send buffer data to [session]
+    Plug 'unblevable/quick-scope'       " highlight nearest unique character for f search
     Plug 'tpope/vim-fugitive'           " git information and commands
+    Plug 'tpope/vim-surround'           " surrounding character interactions on c
+    Plug 'tpope/vim-commentary'         " comment out lines with nice binds
+    Plug 'tpope/vim-sleuth'             " auto-adjust tab behavior based on open file
     Plug 'airblade/vim-gitgutter'       " gitlens for vim
     Plug 'vim-airline/vim-airline'      " fancy status bar
     Plug 'preservim/nerdtree'           " file explorer inside vim
@@ -154,9 +150,8 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
 
-nmap <silent> <C-s> <Plug>MarkdownPreview           " toggle markdown preview
+nmap <silent> <C-s> <Plug>MarkdownPreview       " toggle markdown preview
 
-" autocommands for plugins
 " ALE
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
@@ -201,7 +196,6 @@ let g:ale_fixers =  {
                 \   'vim': ['remove_trailing_lines', 'trim_whitespace'],
                 \   'yaml': ['prettier'],
                 \   }
-let g:ale_python_pyls_config = {'pyls': {'plugins': {'pycodestyle': {'enabled': v:false}}}}
 command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
 highlight ALEWarning cterm=underline ctermbg=none ctermul=blue
 highlight ALEError cterm=underline ctermbg=none ctermul=red
@@ -237,8 +231,8 @@ let g:airline_symbols.spell = '✓'               " spell mode
 let g:airline_symbols.dirty='*'                 " dirty git buffer
 let g:airline_symbols.notexists = 'Ɇ'
 
+let g:airline#extensions#ale#enabled = 1                    " ALE + vim-airline integration
 let g:airline#extensions#tabline#enabled = 1                " display open buffers+tabs on top bar
-let g:airline#extensions#tabline#buffer_nr_show = 1         " show buffer # on tabline
 let g:airline#extensions#tabline#nametruncate = 16          " max buffer name of 16 chars
 let g:airline#extensions#tabline#fnamecollapse = 2          " only show 2 trunc'd parent dirs
 let g:airline#extensions#branch#displayed_head_limit = 16   " limit branch names to first 16 chars
