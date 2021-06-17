@@ -590,7 +590,7 @@ user_pref(
  * [SETUP-PERF] If you think disk cache may help (heavy tab user, high-res video),
  * or you use a hardened Temporary Containers, then feel free to override this
  * [NOTE] We also clear cache on exiting Firefox (see 2803) ***/
-user_pref("browser.cache.disk.enable", false);
+user_pref("browser.cache.disk.enable", true);
 /* 1003: disable memory cache
  * capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kibibytes ***/
 // user_pref("browser.cache.memory.enable", false);
@@ -944,10 +944,10 @@ user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true); // [FF70
  * especially with readPixels(). Some of the other entropy is lessened with RFP (see 4501)
  * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
  * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
-user_pref("webgl.disabled", true);
-user_pref("webgl.enable-webgl2", false);
+user_pref("webgl.disabled", false);
+user_pref("webgl.enable-webgl2", true);
 /* 2012: limit WebGL ***/
-user_pref("webgl.min_capability_mode", true);
+user_pref("webgl.min_capability_mode", false);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
 /* 2022: disable screensharing ***/
 user_pref("media.getusermedia.screensharing.enabled", false);
@@ -1498,7 +1498,7 @@ user_pref(
  * [SETUP-WEB] RFP can cause the odd website to break in strange ways, and has a few side affects,
  * but is largely robust nowadays. Give it a try. Your choice. Also see 4504 (letterboxing).
  * [1] https://bugzilla.mozilla.org/418986 ***/
-user_pref("privacy.resistFingerprinting", true);
+user_pref("privacy.resistFingerprinting", false);
 /* 4502: set new window sizes to round to hundreds [FF55+] [SETUP-CHROME]
  * Width will round down to multiples of 200s and height to 100s, to fit your screen.
  * The override values are a starting point to round from if you want some control
@@ -1508,7 +1508,7 @@ user_pref("privacy.resistFingerprinting", true);
 /* 4503: disable mozAddonManager Web API [FF57+]
  * [NOTE] To allow extensions to work on AMO, you also need 2662
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
-user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF]
+user_pref("privacy.resistFingerprinting.block_mozAddonManager", false); // [HIDDEN PREF]
 /* 4504: enable RFP letterboxing [FF67+]
  * Dynamically resizes the inner window by applying margins in stepped ranges [2]
  * If you use the dimension pref, then it will only apply those resolutions. The format is
