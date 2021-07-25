@@ -35,7 +35,8 @@ ethernet _first_ {
 }
 wireless _first_ {
     format_down = ""
-    format_up = "%essid: %bitrate %ip"
+    format_up = "%essid: %bitrate"
+    # %quality %frequency %ip
 }
 
 disk "/" {
@@ -68,7 +69,9 @@ disk "/mnt/" {
 }
 
 memory {
-    format = " %available"
+    format = ""
+    format_degraded = "🐏 %available"
+    threshold_degraded = "40%"
 }
 
 cpu_usage {
