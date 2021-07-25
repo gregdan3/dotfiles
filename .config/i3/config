@@ -5,6 +5,7 @@ set $mod Mod4
 # Set some programs
 set $terminal kitty --single-instance
 set $browser firefox
+set $wallpapers ~/Media/Wallpapers
 
 # ensure floating windows can't exceed screen size
 floating_maximum_size 1920 x 1080
@@ -43,7 +44,7 @@ exec --no-startup-id xautolock -time 10 -locker 'i3lock -e -c 222222' # ignore e
 exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id nm-applet  # network manager tray icon
 exec --no-startup-id blueman-applet  # bluetooth tray icon
-exec --no-startup-id wal --backend haishoku -i ~/Media/Wallpapers/  # wallpaper
+exec --no-startup-id wal --backend colorz -i $wallpapers  # wallpaper
 exec --no-startup-id autorandr -c  # trigger display detection
 exec --no-startup-id picom -b  # compositor
 exec_always --no-startup-id autotiling  # automating tiling layout, dies if restarting wm
@@ -71,16 +72,14 @@ bindsym $mod+Ctrl+l exec i3lock -e -c 222222
 # program actions on binds
 # sf = selected font, sb = selected background, nf = normal font, nb = normal background
 bindsym $mod+d exec dmenu_run -g 8 -l 8 -i -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_color15" -nb "$term_background"
-bindsym $mod+Shift+b exec feh --bg-scale ~/Media/Wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
-bindsym $mod+Shift+w exec wal --backend haishoku -i ~/Media/Wallpapers/ $normalnotif "Wal" "Changing wallpaper with Haishoku colors"
-bindsym $mod+Shift+z exec wal --backend colorz -i ~/Media/Wallpapers/ $normalnotif "Wal" "Changing wallpaper with Colorz colors"
+bindsym $mod+Shift+b exec feh --bg-scale $wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
 bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monitors"
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 $lownotif "Light" "$(light)%"
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle $normalnotif "PulseAudio" $soundcheck
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +10% $lownotif "PulseAudio" $volumecheck
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -10% $lownotif "PulseAudio" $volumecheck
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 2 toggle $normalnotif "PulseAudio" $miccheck
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle $normalnotif "PulseAudio" $soundcheck
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% $lownotif "PulseAudio" $volumecheck
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% $lownotif "PulseAudio" $volumecheck
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle $normalnotif "PulseAudio" $miccheck
 bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took full screenshot"
 bindsym $mod+Ctrl+Print exec scrot -uq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
 bindsym $mod+Shift+Print --release exec sleep 0.05 && scrot -sq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
@@ -285,6 +284,19 @@ mode "$mode_gaps" {
     bindsym Shift+bracketleft   gaps outer all plus 5
     bindsym Shift+bracketright  gaps outer all minus 5
     bindsym Shift+p             gaps outer all set 0
+
+    bindsym Escape mode "default"
+}
+
+set $mode_wallpapers w = change wallpapers        h s c t d = different color selectors
+bindsym $mod+Shift+w mode "$mode_wallpapers"
+mode "$mode_wallpapers" {
+    bindsym w exec wal --backend wal -i $wallpapers $normalnotif "Wal" "Changing wallpaper"
+    bindsym h exec wal --backend haishoku -w $normalnotif "Wal" "Changing to Haishoku colors"
+    bindsym s exec wal --backend schemer2 -w $normalnotif "Wal" "Changing to schemer2 colors"
+    bindsym c exec wal --backend colorz -w $normalnotif "Wal" "Changing to Colorz colors"
+    bindsym t exec wal --backend colorthief -w $normalnotif "Wal" "Changing to Colorthief colors"
+    bindsym d exec wal --backend wal -w $normalnotif "Wal" "Changing to default (wal) colors"
 
     bindsym Escape mode "default"
 }
