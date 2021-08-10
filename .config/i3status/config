@@ -31,47 +31,48 @@ read_file ~/.config/weather {
 
 ethernet _first_ {
     format_down = ""
-    format_up = "🖧 %ip: %speed"
+    format_up = "🖧 %ip"
 }
 wireless _first_ {
     format_down = ""
-    format_up = "%essid: %bitrate"
-    # %quality %frequency %ip
+    format_up = "﬉ %essid: %bitrate"
+    format_noise = "﬉ %03essid: %bitrate (%quality %frequency)"
 }
 
 disk "/" {
     prefix_type = "decimal"
-    format = "/ %avail"
+    format = ""
+    format_below_threshold = "/ %avail"
     format_not_mounted = ""
-    low_threshold = 5
+    low_threshold = 10
     threshold_type = "percentage_free"
 }
 disk "/home/" {
     prefix_type = "decimal"
-    format = "⌂ %avail"
+    format = ""
+    format_below_threshold = "⌂ %avail"
     format_not_mounted = ""
-    low_threshold = 5
+    low_threshold = 10
     threshold_type = "percentage_free"
 }
 disk "/data/" {
     prefix_type = "decimal"
-    format = "⛁ %avail"
+    format = ""
+    format_below_threshold = "⛁ %avail"
     format_not_mounted = ""
-    low_threshold = 5
+    low_threshold = 10
     threshold_type = "percentage_free"
 }
 disk "/mnt/" {
     prefix_type = "decimal"
     format = "mnt %avail"
     format_not_mounted = ""
-    low_threshold = 5
-    threshold_type = "percentage_free"
 }
 
 memory {
     format = ""
-    format_degraded = "🐏 %available"
-    threshold_degraded = "40%"
+    format_degraded = " %available"
+    threshold_degraded = "30%"
 }
 
 cpu_usage {
@@ -85,23 +86,23 @@ cpu_temperature all {
 }
 
 volume master {
-    format = "🔊 %volume"
-    format_muted = "🔇 %volume"
+    format = " %volume"
+    format_muted = " %volume"
 }
 
 battery all {
-    last_full_capacity = true
+    last_full_capacity = false
     integer_battery_capacity = true
     threshold_type = percentage
     low_threshold = 10
+    format = "%status %percentage"
     format_down = ""
-    format = "%status%percentage"
-    status_bat = "🔋"
-    status_chr = "⚡"
-    status_full = "☻"
-    status_unk = "???"
+    status_bat = ""
+    status_chr = ""
+    status_full = ""
+    status_unk = ""
 }
 
 tztime local {
-    format = "%m/%d %H:%M"
+    format = " %Y/%m/%d▕   %H:%M"
 }
