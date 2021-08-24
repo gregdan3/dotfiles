@@ -67,6 +67,7 @@ file
 findutils
 firefox
 fish
+fisher
 flake8
 flex
 fzf
@@ -77,6 +78,7 @@ gettext
 gimp
 git
 glances
+gnu-netcat
 gnuradio
 gnuradio-companion
 go
@@ -98,6 +100,7 @@ hexedit
 highlight
 hping
 htop
+hunspell-en_us
 i3-gaps
 i3lock
 inetutils
@@ -109,8 +112,9 @@ iptraf-ng
 ipython
 irssi
 iw
-jedi-language-server
 jq
+kdenlive
+kernel-modules-hook
 keybase
 keybase-gui
 kitty
@@ -145,7 +149,9 @@ nmap
 noto-fonts
 noto-fonts-cjk
 noto-fonts-extra
+npm
 ntfs-3g
+nuspell
 obs-studio
 openconnect
 opencv
@@ -176,6 +182,7 @@ python-aiohttp
 python-aiohttp-cors
 python-black
 python-boto3
+python-internetarchive
 python-language-server
 python-pip
 python-pipenv
@@ -202,6 +209,7 @@ signal-desktop
 smartmontools
 speedtest-cli
 starship
+steam
 strace
 stylelint
 sudo
