@@ -40,6 +40,7 @@ set_from_resource $term_color15    color15
 
 # Autostart applications
 # --no-startup-id means i3 will not wait on the app or produce a workspace for it.
+exec --no-startup-id xfce4-panel  # bar with lots of work done for me instead of i3bar
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -e -c 222222' # ignore empty pw, set background
 exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id nm-applet  # network manager tray icon
@@ -77,8 +78,6 @@ bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monito
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 $lownotif "Light" "$(light)%"
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle $normalnotif "PulseAudio" $soundcheck
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% $lownotif "PulseAudio" $volumecheck
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% $lownotif "PulseAudio" $volumecheck
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle $normalnotif "PulseAudio" $miccheck
 bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took full screenshot"
 bindsym $mod+Ctrl+Print exec scrot -uq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
@@ -201,30 +200,6 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i
 
 # repeating last workspace change will go to previous workspace
 workspace_auto_back_and_forth yes
-
-# Start i3bar+i3status
-bar {
-    i3bar_command i3bar
-    status_command i3status
-    position top
-    separator_symbol "▕ "
-    strip_workspace_numbers no  # never remove workspace numbers
-    colors {
-        background $term_background
-        statusline $term_color15
-        separator  $term_foreground
-
-        # name_of_area     border             backgr.            text
-        focused_workspace  $term_foreground   $term_color12      $term_color7
-        active_workspace   $term_foreground   $term_color5       $term_color7
-        inactive_workspace $term_background   $term_background   $term_color15
-        binding_mode       $term_foreground   $term_color9       $term_color7
-        urgent_workspace   $term_foreground   $term_color1       $term_color7
-    }
-}
-
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
 
 # Theme colors, primarily affects tab/menu bars
 # class                   border             background         text            indicator          child_border
