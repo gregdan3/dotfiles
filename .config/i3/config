@@ -72,6 +72,7 @@ bindsym $mod+Ctrl+l exec i3lock -e -c 222222
 # program actions on binds
 # sf = selected font, sb = selected background, nf = normal font, nb = normal background
 bindsym $mod+d exec dmenu_run -g 8 -l 8 -i -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_color15" -nb "$term_background"
+bindsym $mod+Shift+d exec xfce4-appfinder
 bindsym $mod+Shift+b exec feh --bg-scale $wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
 bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monitors"
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
