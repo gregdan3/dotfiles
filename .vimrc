@@ -1,6 +1,7 @@
 if !isdirectory($HOME.'/.vim') | call mkdir($HOME.'/.vim', '', 0700) | endif
 if !isdirectory($HOME.'/.vim/undodir') | call mkdir($HOME.'/.vim/undodir', '', 0700) | endif
 
+let g:plugin_development = 0
 let g:hardtime_default_on = 1
 let g:remoteSession = !($SSH_TTY ==? '')
 if g:remoteSession | colorscheme slate | else | colorscheme default | endif
@@ -17,15 +18,19 @@ let &t_Ce="\e[4:0m"                 " and end it. Should be detected, but nope
 syntax enable                       " syntax highlighting for applicable buffers
 set noshowmode showmatch            " hide MODE on statusbar, highlight paired symbols
 set wrap linebreak display=lastline " wrap display line between words, no filler chars
-set scrolloff=5 sidescrolloff=5     " visual buffer around editing area
+set scrolloff=12 sidescrolloff=12   " visual buffer around editing area
 set noerrorbells novisualbell       " no bells
 hi clear SignColumn                 " for some reason, sign column wasn't using bgcolor
-" fix diff highlighting / TODO: nvim compat?
-hi DiffAdd     cterm=italic     ctermfg=Green    ctermbg=none
-hi DiffChange  cterm=none       ctermfg=Yellow   ctermbg=none
-hi DiffDelete  cterm=bold       ctermfg=Red      ctermbg=none
-hi DiffText    cterm=undercurl  ctermul=Yellow   ctermbg=none
-hi SpellBad    cterm=undercurl  ctermul=Red      ctermbg=none
+
+if !has('nvim')
+  hi DiffAdd     cterm=italic     ctermfg=Green    ctermbg=none
+  hi DiffChange  cterm=none       ctermfg=Yellow   ctermbg=none
+  hi DiffDelete  cterm=bold       ctermfg=Red      ctermbg=none
+  hi DiffText    cterm=undercurl  ctermul=Yellow   ctermbg=none
+  hi SpellBad    cterm=undercurl  ctermul=Red      ctermbg=none
+else
+  " TODO
+endif
 
 " functional settings
 set encoding=utf8 termencoding=utf8 " always write utf-8 encoded files
@@ -34,7 +39,7 @@ set backspace=indent,eol,start      " allow backspace across [chars]
 set autoread hidden                 " reload on change, allow unfocused edited buffers
 set ttyfast lazyredraw              " render faster, don't render during commands
 set undofile undodir=~/.vim/undodir history=5000  " maintain history
-if !g:hardtime_default_on | set mouse=a ttymouse=sgr | else | set mouse= ttymouse= | endif
+if !g:hardtime_default_on | set mouse=a | else | set mouse= | endif
 set splitbelow splitright           " split like i3
 set clipboard^=unnamedplus          " use system clipboard always
 set ignorecase smartcase hlsearch incsearch       " convenient search options
@@ -87,7 +92,6 @@ call plug#begin()
     Plug 'tpope/vim-sleuth'             " auto-adjust tab behavior based on open file
     Plug 'tpope/vim-surround'           " surrounding character interactions on c
     Plug 'tpope/vim-unimpaired'         " useful paired binds around []
-    Plug 'unblevable/quick-scope'       " highlight nearest unique character for f search
 
     " dependencies
     if !has('nvim')
@@ -96,7 +100,9 @@ call plug#begin()
     endif
 
     " filetype
-    Plug 'gregdan3/lilyvim', {'for': ['ly', 'lilypond']}
+    if g:plugin_development
+      Plug 'gregdan3/lilyvim', {'for': ['ly', 'lilypond']}
+    endif
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['md', 'markdown']}
     Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}
     Plug 'vimwiki/vimwiki'              " 'for' breaks loading, this is 'md'
@@ -149,8 +155,12 @@ let g:ale_fixers =  {
                 \   'yaml': ['prettier'],
                 \   }
 command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
-highlight ALEWarning cterm=underline ctermul=blue ctermbg=none
-highlight ALEError   cterm=underline ctermul=red  ctermbg=none
+if !has('nvim')
+  highlight ALEWarning cterm=underline ctermul=blue ctermbg=none
+  highlight ALEError   cterm=underline ctermul=red  ctermbg=none
+else
+  " TODO
+endif
 nnoremap <silent> <C-k> <Plug>(ale_previous_wrap)
 nnoremap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -170,7 +180,6 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.spell = '✓'
 let g:airline_symbols.dirty='*'
 let g:airline_symbols.notexists = 'Ɇ'
-let g:airline#extensions#ale#enabled = 1                    " ALE + vim-airline integration
 let g:airline#extensions#branch#displayed_head_limit = 16   " limit branch names to first 16 chars
 let g:airline#extensions#tabline#enabled = 1                " display open buffers+tabs on top bar
 let g:airline#extensions#tabline#fnamecollapse = 2          " only show 2 trunc'd parent dirs
@@ -213,9 +222,7 @@ function! RipgrepFzf(query, fullscreen)
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command, '--preview-window', preview_type]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
-
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
 function! s:list_cmd()
   let base = fnamemodify(expand('%'), ':h:.:S')
   return base ==# '.' ? 'fd --type file --follow' : printf('fd --type file --follow | proximity-sort %s', shellescape(expand('%')))
