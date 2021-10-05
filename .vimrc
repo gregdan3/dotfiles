@@ -22,14 +22,14 @@ set scrolloff=12 sidescrolloff=12   " visual buffer around editing area
 set noerrorbells novisualbell       " no bells
 hi clear SignColumn                 " for some reason, sign column wasn't using bgcolor
 
-if !has('nvim')
+if has('nvim')
+  " TODO
+else
   hi DiffAdd     cterm=italic     ctermfg=Green    ctermbg=none
   hi DiffChange  cterm=none       ctermfg=Yellow   ctermbg=none
   hi DiffDelete  cterm=bold       ctermfg=Red      ctermbg=none
   hi DiffText    cterm=undercurl  ctermul=Yellow   ctermbg=none
   hi SpellBad    cterm=undercurl  ctermul=Red      ctermbg=none
-else
-  " TODO
 endif
 
 " functional settings
@@ -60,8 +60,6 @@ tnoremap <c-b> <c-\><c-n>
 map <SPACE> <Leader>
 let mapleader=' '               " map leader to space
 map ; :
-map j gj
-map k gk
 
 " autocommands
 augroup recall_pos | au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif | augroup END
@@ -76,7 +74,6 @@ call plug#begin()
     Plug 'jpalardy/vim-slime'           " send buffer data to [session]
     Plug 'junegunn/fzf', {'do': {-> fzf#install()}}  " install fzf
     Plug 'junegunn/fzf.vim'             " fzf integration for vim
-    Plug 'shougo/deoplete.nvim'         " More supported completion pop-up
     Plug 'sirver/UltiSnips'             " snippet binds
     Plug 'tpope/vim-fugitive'           " git information and commands
     Plug 'vim-airline/vim-airline'      " fancy status bar
@@ -85,7 +82,7 @@ call plug#begin()
     Plug 'airblade/vim-gitgutter'       " gitlens for vim
     Plug 'airblade/vim-rooter'          " always change cwd to git root
     Plug 'ervandew/supertab'            " tab based completion selection
-    Plug 'takac/vim-hardtime'           " prevent
+    Plug 'takac/vim-hardtime'           " prevent bad habits, ideally
     Plug 'tpope/vim-commentary'         " comment out lines with gc + operator
     Plug 'tpope/vim-obsession'          " magic session management
     Plug 'tpope/vim-repeat'             " allow repeating plugin
@@ -93,9 +90,12 @@ call plug#begin()
     Plug 'tpope/vim-surround'           " surrounding character interactions on c
     Plug 'tpope/vim-unimpaired'         " useful paired binds around []
 
-    " dependencies
-    if !has('nvim')
-      Plug 'roxma/nvim-yarp'            " deoplete
+    " special case
+    if has('nvim')
+      Plug 'shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+    else
+      Plug 'shougo/deoplete.nvim'
+      Plug 'roxma/nvim-yarp'
       Plug 'roxma/vim-hug-neovim-rpc'
     endif
 
@@ -127,7 +127,6 @@ let g:ale_linters = {
                 \   'html': ['prettier', 'tidy'],
                 \   'java': ['javac', 'eclipselsp'],
                 \   'javascript': ['eslint', 'tsserver'],
-                \   'json': ['jsonlint'],
                 \   'markdown': ['alex', 'writegood', 'textlint'],
                 \   'python': ['bandit', 'flake8', 'pyls', 'pyright'],
                 \   'rust': ['cargo', 'rls'],
@@ -145,7 +144,6 @@ let g:ale_fixers =  {
                 \   'html': ['prettier'],
                 \   'java': ['google_java_format'],
                 \   'javascript': ['eslint', 'prettier'],
-                \   'json': ['prettier'],
                 \   'markdown': ['prettier'],
                 \   'python': ['isort', 'black'],
                 \   'rust': ['rustfmt'],
@@ -155,11 +153,11 @@ let g:ale_fixers =  {
                 \   'yaml': ['prettier'],
                 \   }
 command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
-if !has('nvim')
+if has('nvim')
+  " TODO
+else
   highlight ALEWarning cterm=underline ctermul=blue ctermbg=none
   highlight ALEError   cterm=underline ctermul=red  ctermbg=none
-else
-  " TODO
 endif
 nnoremap <silent> <C-k> <Plug>(ale_previous_wrap)
 nnoremap <silent> <C-j> <Plug>(ale_next_wrap)
