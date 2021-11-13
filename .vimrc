@@ -4,11 +4,10 @@ if !isdirectory($HOME.'/.vim/undodir') | call mkdir($HOME.'/.vim/undodir', '', 0
 let g:plugin_development = 0
 let g:hardtime_default_on = 1
 let g:remoteSession = !($SSH_TTY ==? '')
-if g:remoteSession | colorscheme slate | else | colorscheme default | endif
-if filereadable('/bin/fish') | set shell=/bin/fish\ --login | else | set shell=/bin/bash\ --login | endif
+if g:remoteSession | colorscheme slate | let g:airline_theme='tomorrow' | else | colorscheme default | let g:airline_theme='term' | endif
+if filereadable('/bin/fish') | set shell=/bin/fish | else | set shell=/bin/bash | endif
 
 " bugfixes
-" vint: -ProhibitSetNoCompatible
 set nocompatible                    " appease vimwiki
 set t_RV= t_ut=                     " disable term version query, bg color erase
 let &t_Cs="\e[4:3m"                 " tell vim how to print undercurl
@@ -22,15 +21,11 @@ set scrolloff=12 sidescrolloff=12   " visual buffer around editing area
 set noerrorbells novisualbell       " no bells
 hi clear SignColumn                 " for some reason, sign column wasn't using bgcolor
 
-if has('nvim')
-  " TODO
-else
-  hi DiffAdd     cterm=italic     ctermfg=Green    ctermbg=none
-  hi DiffChange  cterm=none       ctermfg=Yellow   ctermbg=none
-  hi DiffDelete  cterm=bold       ctermfg=Red      ctermbg=none
-  hi DiffText    cterm=undercurl  ctermul=Yellow   ctermbg=none
-  hi SpellBad    cterm=undercurl  ctermul=Red      ctermbg=none
-endif
+hi DiffAdd     cterm=italic     ctermfg=Green    ctermbg=none
+hi DiffChange  cterm=none       ctermfg=Yellow   ctermbg=none
+hi DiffDelete  cterm=bold       ctermfg=Red      ctermbg=none
+hi DiffText    cterm=undercurl  ctermul=Yellow   ctermbg=none
+hi SpellBad    cterm=undercurl  ctermul=Red      ctermbg=none
 
 " functional settings
 set encoding=utf8 termencoding=utf8 " always write utf-8 encoded files
@@ -39,7 +34,7 @@ set backspace=indent,eol,start      " allow backspace across [chars]
 set autoread hidden                 " reload on change, allow unfocused edited buffers
 set ttyfast lazyredraw              " render faster, don't render during commands
 set undofile undodir=~/.vim/undodir history=5000  " maintain history
-if !g:hardtime_default_on | set mouse=a | else | set mouse= | endif
+if !g:hardtime_default_on | set mouse=a ttymouse=sgr | else | set mouse= ttymouse= | endif
 set splitbelow splitright           " split like i3
 set clipboard^=unnamedplus          " use system clipboard always
 set ignorecase smartcase hlsearch incsearch       " convenient search options
@@ -74,9 +69,13 @@ call plug#begin()
     Plug 'jpalardy/vim-slime'           " send buffer data to [session]
     Plug 'junegunn/fzf', {'do': {-> fzf#install()}}  " install fzf
     Plug 'junegunn/fzf.vim'             " fzf integration for vim
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'shougo/deoplete.nvim'         " cool completion engine
     Plug 'sirver/UltiSnips'             " snippet binds
     Plug 'tpope/vim-fugitive'           " git information and commands
     Plug 'vim-airline/vim-airline'      " fancy status bar
+    Plug 'vim-airline/vim-airline-themes'
 
     " small features
     Plug 'airblade/vim-gitgutter'       " gitlens for vim
@@ -90,18 +89,10 @@ call plug#begin()
     Plug 'tpope/vim-surround'           " surrounding character interactions on c
     Plug 'tpope/vim-unimpaired'         " useful paired binds around []
 
-    " special case
-    if has('nvim')
-      Plug 'shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-    else
-      Plug 'shougo/deoplete.nvim'
-      Plug 'roxma/nvim-yarp'
-      Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-
     " filetype
     if g:plugin_development
       Plug 'gregdan3/lilyvim', {'for': ['ly', 'lilypond']}
+      Plug 'gregdan3/vim-li-pona'
     endif
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['md', 'markdown']}
     Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}
@@ -153,12 +144,8 @@ let g:ale_fixers =  {
                 \   'yaml': ['prettier'],
                 \   }
 command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
-if has('nvim')
-  " TODO
-else
-  highlight ALEWarning cterm=underline ctermul=blue ctermbg=none
-  highlight ALEError   cterm=underline ctermul=red  ctermbg=none
-endif
+highlight ALEWarning cterm=underline ctermul=blue ctermbg=none
+highlight ALEError   cterm=underline ctermul=red  ctermbg=none
 nnoremap <silent> <C-k> <Plug>(ale_previous_wrap)
 nnoremap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -237,7 +224,7 @@ nnoremap <silent> <leader>b :FzfBuffers<CR>
 nnoremap <silent> <leader>` :FzfMarks<CR>
 inoremap <silent> <F3> <ESC>:FzfSnippets<CR>
 
-nnoremap <silent> <C-g> :G commit<CR>
+nnoremap <silent> <C-g> :Git commit<CR>
 nnoremap <silent> <C-d> :Gvdiffsplit<CR>
 
 let g:hardtime_allow_different_key = 1
@@ -253,7 +240,6 @@ let g:UltiSnipsEditSplit='vertical'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsExpandTrigger='<NUL>'
-" https://github.com/SirVer/ultisnips/issues/376
 let g:ulti_expand_or_jump_res = 0
 function ExpandSnippetOrCarriageReturn()
   let snippet = UltiSnips#ExpandSnippetOrJump()
