@@ -11,7 +11,7 @@ set $wallpapers ~/Media/Wallpapers
 floating_maximum_size 1920 x 1080
 
 # Font for window titles. Used by bar if bar doesn't have its own font
-font xft:Terminus (TTF), Font Awesome 5 Free, Symbols Nerd Font, Unifont 15
+font xft:Terminus (TTF), Symbols Nerd Font, Unifont 15
 
 # i3 color palette  ( ~/.Xresources file )
 # NOTE: Xresources will not always be the same as term colors
@@ -44,7 +44,6 @@ exec --no-startup-id xautolock -time 10 -locker 'i3lock -e -c 222222' # ignore e
 exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id nm-applet  # network manager tray icon
 exec --no-startup-id blueman-applet  # bluetooth tray icon
-exec --no-startup-id wal --backend colorz -i $wallpapers  # wallpaper
 exec --no-startup-id autorandr -c  # trigger display detection
 exec --no-startup-id picom -b  # compositor
 exec_always --no-startup-id autotiling  # automating tiling layout, dies if restarting wm
@@ -73,6 +72,7 @@ bindsym $mod+Ctrl+l exec i3lock -e -c 222222
 # sf = selected font, sb = selected background, nf = normal font, nb = normal background
 bindsym $mod+d exec dmenu_run -g 8 -l 8 -i -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_color15" -nb "$term_background"
 bindsym $mod+Shift+d exec xfce4-appfinder
+bindsym $mod+Shift+w exec feh --bg-scale --randomize $wallpapers
 bindsym $mod+Shift+b exec feh --bg-scale $wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
 bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monitors"
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
@@ -82,8 +82,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% $
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% $lownotif "PulseAudio" $volumecheck
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle $normalnotif "PulseAudio" $miccheck
 bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took full screenshot"
-bindsym $mod+Ctrl+Print exec scrot -uq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
-bindsym $mod+Shift+Print --release exec sleep 0.05 && scrot -sq 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
+bindsym $mod+Ctrl+Print exec scrot -u -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
+bindsym $mod+Shift+Print --release exec sleep 0.05 && scrot -s -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
 # sleep is from Archwiki. Selection border will appear in image if scrot is invoked via wm keybind, unless sleep
 # also, this one won't work without --release. no idea why.
 
@@ -109,9 +109,6 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-# switch direction to open new window
-bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -158,8 +155,6 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-bindsym $mod+minus workspace prev
-bindsym $mod+plus workspace next
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -190,8 +185,8 @@ bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
 # scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+Shift+plus scratchpad show
+bindsym $mod+minus move scratchpad
+bindsym $mod+plus scratchpad show
 
 # reload config/i3
 bindsym $mod+Shift+c reload
@@ -199,9 +194,6 @@ bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# repeating last workspace change will go to previous workspace
-workspace_auto_back_and_forth yes
 
 # Start i3bar+i3status
 bar {
@@ -285,19 +277,6 @@ mode "$mode_gaps" {
     bindsym Shift+bracketleft   gaps outer all plus 5
     bindsym Shift+bracketright  gaps outer all minus 5
     bindsym Shift+p             gaps outer all set 0
-
-    bindsym Escape mode "default"
-}
-
-set $mode_wallpapers w = change wallpapers        h s c t d = different color selectors
-bindsym $mod+Shift+w mode "$mode_wallpapers"
-mode "$mode_wallpapers" {
-    bindsym w exec wal --backend wal -i $wallpapers $normalnotif "Wal" "Changing wallpaper"
-    bindsym h exec wal --backend haishoku -w $normalnotif "Wal" "Changing to Haishoku colors"
-    bindsym s exec wal --backend schemer2 -w $normalnotif "Wal" "Changing to schemer2 colors"
-    bindsym c exec wal --backend colorz -w $normalnotif "Wal" "Changing to Colorz colors"
-    bindsym t exec wal --backend colorthief -w $normalnotif "Wal" "Changing to Colorthief colors"
-    bindsym d exec wal --backend wal -w $normalnotif "Wal" "Changing to default (wal) colors"
 
     bindsym Escape mode "default"
 }
