@@ -1,3 +1,4 @@
+#include "./.Xcolors/user77"
 Xft.dpi:       96
 Xft.antialias: true
 Xft.hinting:   true
@@ -11,7 +12,7 @@ Xft.lcdfilter: lcddefault
 
 ! Font config
 # define mainfont Terminus (TTF)
-# define backfont FontAwesome
+# define backfont Unifont
 URxvt*font:         	xft:mainfont:size=12:style=Medium, \
 						xft:backfont:size=12
 URxvt*boldFont:			xft:mainfont:size=12:style=Bold, \
