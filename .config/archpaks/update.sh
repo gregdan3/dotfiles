@@ -4,7 +4,5 @@ echo "Running pacman -Qqne > ./driver"
               pacman -Qqne > ./driver
 echo "Running pacman -Qqme > ./external"
               pacman -Qqme > ./external
-echo "Running fisher list > ./fisher"
-              fisher list > ./fisher
 echo "Running pipx list | grep - | sed 's/.* - //g' > ./pdm"
               pipx list | grep - | sed 's/.* - //g' > ./pdm
