@@ -217,3 +217,4 @@ export PS2
 
 export EDITOR='vim'
 export BROWSER='firefox'
+export GLFW_IM_MODULE='ibus'
