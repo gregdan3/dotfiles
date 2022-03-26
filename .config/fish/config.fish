@@ -1,5 +1,3 @@
-bind \e\[P delete-char
-
 alias cp="cp -i"                # confirm before overwrite
 alias df='df -h'                # human-readable sizes
 alias du='du -h'                # ditto
@@ -8,9 +6,6 @@ alias rm='rm -iv'               # confirm before deletion
 
 # alias for git directory belonging to my dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
+set -gx GPG_TTY (tty)
 thefuck --alias oof | source
-
-set PATH $PATH /home/gregdan3/.local/bin
-
 starship init fish | source
