@@ -40,7 +40,7 @@ set_from_resource $term_color15    color15
 
 # Autostart applications
 # --no-startup-id means i3 will not wait on the app or produce a workspace for it.
-exec --no-startup-id xautolock -time 10 -locker 'i3lock -e -c 222222' # ignore empty pw, set background
+exec --no-startup-id xautolock -time 10 -locker 'i3lock -f -e -c 222222' # ignore empty pw, set background
 exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id nm-applet  # network manager tray icon
 exec --no-startup-id blueman-applet  # bluetooth tray icon
@@ -55,9 +55,10 @@ set $normalnotif && dunstify --timeout 8000 --urgency normal --appname
 set $criticalnotif && dunstify --timeout 60000 --urgency critical --appname
 
 # audio shortcuts
-set $soundcheck "Sound $(amixer -c 0 -M -D pulse get Master | grep -oPm 1 '(?<=\[)off|on(?=\])')"
-set $volumecheck "Volume $(amixer -c 0 -M -D pulse get Master | grep -oPm 1 '(?<=\[)\d\d?\d?%(?=\])')"
-set $miccheck "Microphone $(amixer -c 0 -M -D pulse get Capture | grep -oPm 1 '(?<=\[)off|on(?=\])')"
+set $soundcheck "Sound $(pactl get-sink-mute 0 | sed 's/Mute: yes/muted/g' | sed 's/Mute: no/unmuted/g')"
+set $volumecheck "Volume $(pactl get-sink-volume 0 | grep -Po '\d*%' | head -1)"
+set $miccheck "Mic $(pactl get-source-mute 0 | sed 's/Mute: yes/muted/g' | sed 's/Mute: no/unmuted/g')"
+set $micvolcheck "Mic Volume $(pactl get-source-volume 0 | grep -Po '\d*%' | head -1)"
 
 # Notify for lock keys changing state; `:` is bash noop, lets me keep && in shortcut
 bindsym --release Caps_Lock exec : $normalnotif "Caps Lock" "$(xset q | grep 'Caps Lock' | awk '{print $4}')"
@@ -71,8 +72,7 @@ bindsym $mod+Ctrl+l exec i3lock -e -c 222222
 
 # program actions on binds
 # sf = selected font, sb = selected background, nf = normal font, nb = normal background
-bindsym $mod+d exec dmenu_run -i -l 8 -p "o pana:" -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_foreground" -nb "$term_background"
-bindsym $mod+Shift+d exec xfce4-appfinder
+bindsym $mod+d exec dmenu_run -i -l 8 -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_foreground" -nb "$term_background"
 bindsym $mod+Shift+w exec feh --bg-scale --randomize $wallpapers
 bindsym $mod+Shift+b exec feh --bg-scale $wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
 bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monitors"
@@ -81,7 +81,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 $lownotif "Light" 
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle $normalnotif "PulseAudio" $soundcheck
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% $lownotif "PulseAudio" $volumecheck
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% $lownotif "PulseAudio" $volumecheck
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle $normalnotif "PulseAudio" $miccheck
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 0 toggle $normalnotif "PulseAudio" $miccheck
 bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took full screenshot"
 bindsym $mod+Ctrl+Print exec scrot -u -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
 bindsym $mod+Shift+Print --release exec sleep 0.05 && scrot -s -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
@@ -115,7 +115,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 
 # change container layout
-bindsym $mod+w layout toggle all
+bindsym $mod+t layout toggle stacking tabbed
 bindsym $mod+e layout toggle splith splitv
 
 # toggle tiling / floating

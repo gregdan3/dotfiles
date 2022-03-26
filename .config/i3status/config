@@ -36,7 +36,6 @@ ethernet _first_ {
 wireless _first_ {
     format_down = ""
     format_up = "﬉ %essid: %bitrate"
-    format_noise = "﬉ %03essid: %bitrate (%quality %frequency)"
 }
 
 disk "/" {
@@ -104,5 +103,5 @@ battery all {
 }
 
 tztime local {
-    format = " %Y/%m/%d▕   %H:%M"
+    format = " %Y-%m-%d▕  %H:%M"
 }
