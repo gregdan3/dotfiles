@@ -1,8 +1,6 @@
 if !isdirectory($HOME.'/.vim') | call mkdir($HOME.'/.vim', '', 0700) | endif
 if !isdirectory($HOME.'/.vim/undodir') | call mkdir($HOME.'/.vim/undodir', '', 0700) | endif
 
-let g:plugin_development = 0
-let g:hardtime_default_on = 1
 let g:remoteSession = !($SSH_TTY ==? '')
 if g:remoteSession | colorscheme slate | let g:airline_theme='tomorrow' | else | colorscheme default | let g:airline_theme='term' | endif
 if filereadable('/bin/fish') | set shell=/bin/fish | else | set shell=/bin/bash | endif
@@ -34,7 +32,7 @@ set backspace=indent,eol,start      " allow backspace across [chars]
 set autoread hidden                 " reload on change, allow unfocused edited buffers
 set ttyfast lazyredraw              " render faster, don't render during commands
 set undofile undodir=~/.vim/undodir history=5000  " maintain history
-if !g:hardtime_default_on | set mouse=a ttymouse=sgr | else | set mouse= ttymouse= | endif
+set mouse=a ttymouse=sgr            " enable mouse
 set splitbelow splitright           " split like i3
 set clipboard^=unnamedplus          " use system clipboard always
 set ignorecase smartcase hlsearch incsearch       " convenient search options
@@ -45,7 +43,7 @@ filetype plugin indent on           " autoindent+plugins per filetype
 
 " information
 set ruler number relativenumber     " sidebar line numbers, statusbar column number
-set wildmenu wildmode=longest:full,list     " command completion menu behavior
+set wildmenu wildmode=longest,full     " command completion menu behavior
 set showcmd                         " show currently typed command
 
 " keybinds/remaps/rebinds
@@ -81,7 +79,6 @@ call plug#begin()
     Plug 'airblade/vim-gitgutter'       " gitlens for vim
     Plug 'airblade/vim-rooter'          " always change cwd to git root
     Plug 'ervandew/supertab'            " tab based completion selection
-    Plug 'takac/vim-hardtime'           " prevent bad habits, ideally
     Plug 'tpope/vim-commentary'         " comment out lines with gc + operator
     Plug 'tpope/vim-obsession'          " magic session management
     Plug 'tpope/vim-repeat'             " allow repeating plugin
@@ -90,14 +87,8 @@ call plug#begin()
     Plug 'tpope/vim-unimpaired'         " useful paired binds around []
 
     " filetype
-    if g:plugin_development
-      Plug 'gregdan3/lilyvim', {'for': ['ly', 'lilypond']}
-      Plug 'gregdan3/vim-li-pona'
-    endif
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['md', 'markdown']}
     Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}
-    Plug 'vimwiki/vimwiki'              " 'for' breaks loading, this is 'md'
-    Plug 'michal-h21/vimwiki-sync'
 call plug#end()
 
 let g:ale_completion_enabled = 1
@@ -118,7 +109,8 @@ let g:ale_linters = {
                 \   'html': ['prettier', 'tidy'],
                 \   'java': ['javac', 'eclipselsp'],
                 \   'javascript': ['eslint', 'tsserver'],
-                \   'markdown': ['alex', 'writegood', 'textlint'],
+                \   'lua': ['luacheck'],
+                \   'markdown': ['alex', 'writegood', 'textlint', 'markdownlint'],
                 \   'python': ['bandit', 'flake8', 'pyls', 'pyright'],
                 \   'rust': ['cargo', 'rls'],
                 \   'sh': ['shell', 'shellcheck', 'language_server'],
@@ -135,7 +127,8 @@ let g:ale_fixers =  {
                 \   'html': ['prettier'],
                 \   'java': ['google_java_format'],
                 \   'javascript': ['eslint', 'prettier'],
-                \   'markdown': ['prettier'],
+                \   'lua': ['lua-format'],
+                \   'markdown': [],
                 \   'python': ['isort', 'black'],
                 \   'rust': ['rustfmt'],
                 \   'sh': ['shfmt'],
@@ -222,13 +215,10 @@ nnoremap <silent> <leader>o :FzfFiles<CR>
 nnoremap <silent> <leader>O :FzfFiles!<CR>
 nnoremap <silent> <leader>b :FzfBuffers<CR>
 nnoremap <silent> <leader>` :FzfMarks<CR>
-inoremap <silent> <F3> <ESC>:FzfSnippets<CR>
+inoremap <silent> <leader><F3> :FzfSnippets<CR>
 
 nnoremap <silent> <C-g> :Git commit<CR>
 nnoremap <silent> <C-d> :Gvdiffsplit<CR>
-
-let g:hardtime_allow_different_key = 1
-let g:list_of_disabled_keys = ['<UP>', '<DOWN>', '<LEFT>', '<RIGHT>', '<PAGEUP>', '<PAGEDOWN>']
 
 let g:slime_target = 'vimterminal'                  " session to send to
 let g:slime_paste_file = '$HOME/.vim/.slime_paste'  " cleaner selection for paste file
@@ -255,4 +245,3 @@ let g:vimtex_enable = 'true'
 let g:vimtex_compiler_progname = 'tectonic'
 let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = 'zathura'
-let g:vimwiki_list = [{'path': '~/.vimwiki', 'path_html': '~/public_html'}]
