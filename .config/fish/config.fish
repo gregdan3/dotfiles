@@ -5,6 +5,7 @@ alias free='free -m'            # show sizes in MB
 alias rm='rm -iv'               # confirm before deletion
 
 # alias for git directory belonging to my dotfiles
+set PATH $PATH /home/gregdan3/.local/bin
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 set -gx GPG_TTY (tty)
 thefuck --alias oof | source
