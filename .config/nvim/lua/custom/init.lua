@@ -58,6 +58,5 @@ vim.keymap.set({'n'}, '<Leader>,', ':set invlist<CR>', {silent = true})
 vim.cmd [[
 " augroup recall_pos | au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif | augroup END
 " augroup filetype_settings | autocmd FileType md,markdown,svn,*commit* setlocal spell | augroup END
-" augroup formatter | au BufWrite * call lua(require('vim').lsp.buf.formatting()) | augroup END
 ]]
 
