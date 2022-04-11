@@ -2,6 +2,7 @@ set -U --export BROWSER firefox
 set -U --export EDITOR vim
 set -U --export GLFW_IM_MODULE ibus
 set -U --export PATH $PATH $HOME/.local/bin
+set -U --export fish_greeting ""
 
 alias -s cp="cp -i"                # confirm before overwrite
 alias -s df='df -h'                # human-readable sizes
