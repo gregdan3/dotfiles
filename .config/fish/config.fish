@@ -1,7 +1,8 @@
-set -U --export PATH $PATH /home/gregdan3/.local/bin
-set -U --export GPG_TTY (tty)
-set -U --export GLFW_IM_MODULE ibus
+set -U --export BROWSER firefox
 set -U --export EDITOR vim
+set -U --export GLFW_IM_MODULE ibus
+set -U --export GPG_TTY (tty)
+set -U --export PATH $PATH /home/gregdan3/.local/bin
 
 alias cp="cp -i"                # confirm before overwrite
 alias df='df -h'                # human-readable sizes
