@@ -6,7 +6,6 @@ end
 set -U --export BROWSER firefox
 set -U --export EDITOR vim
 set -U --export GLFW_IM_MODULE ibus
-set -U --export PATH $PATH $HOME/.local/bin
 set -U --export fish_greeting ""
 
 abbr -a boxdraw     'curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt'
