@@ -79,7 +79,7 @@ cpu_usage {
 }
 cpu_temperature all {
     max_threshold = 75
-    # path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
+    path = "/sys/class/thermal/thermal_zone10/temp"
     format = "🌡 %degrees°C"
     format_above_threshold = "♨ %degrees°C"
 }
@@ -90,7 +90,7 @@ volume master {
 }
 
 battery all {
-    last_full_capacity = false
+    last_full_capacity = true
     integer_battery_capacity = true
     threshold_type = percentage
     low_threshold = 10
