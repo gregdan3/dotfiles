@@ -45,9 +45,11 @@ exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id nm-applet  # network manager tray icon
 exec --no-startup-id blueman-applet  # bluetooth tray icon
 exec --no-startup-id autorandr -c  # trigger display detection
-exec --no-startup-id picom -b  # compositor
+# exec --no-startup-id picom -b  # compositor
 exec --no-startup-id conky  # background notes
 exec_always --no-startup-id autotiling  # automating tiling layout, dies if restarting wm
+exec --no-startup-id ibus-daemon -drx  # input method changing
+exec --no-startup-id xinput set-prop VEN_04F3:00\ 04F3:311C\ Touchpad 370 1  # tap to click
 
 # notification shortcuts
 set $lownotif && dunstify --timeout 1500 --urgency low --appname
@@ -96,20 +98,20 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -123,6 +125,7 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
 
 # toggle sticky, must be floating already
 bindsym $mod+Shift+s sticky toggle
@@ -230,8 +233,8 @@ client.placeholder        $term_foreground   $term_background   $term_color7    
 client.background                            $term_background
 
 # Border style <normal|pixel xx|none>
-default_border pixel 0
-default_floating_border pixel 0
+default_border pixel 1
+default_floating_border pixel 1
 
 # Hide borders on screen edges none|vertical|horizontal|both|smart
 hide_edge_borders smart
@@ -254,10 +257,10 @@ mode "resize" {
     bindsym j resize grow height 5 px or 5 ppt
     bindsym k resize shrink height 5 px or 5 ppt
     bindsym l resize grow width 5 px or 5 ppt
-    bindsym Left resize shrink width 5 px or 5 ppt
-    bindsym Down resize grow height 5 px or 5 ppt
-    bindsym Up resize shrink height 5 px or 5 ppt
-    bindsym Right resize grow width 5 px or 5 ppt
+    # bindsym Left resize shrink width 5 px or 5 ppt
+    # bindsym Down resize grow height 5 px or 5 ppt
+    # bindsym Up resize shrink height 5 px or 5 ppt
+    # bindsym Right resize grow width 5 px or 5 ppt
 
     bindsym Escape mode "default"
 }
