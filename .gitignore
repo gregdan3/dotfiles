@@ -1,2 +1,3 @@
 # ignore all, user must -f to add
 *
+.irssi/config
