@@ -6,6 +6,10 @@ end
 set -U --export BROWSER firefox
 set -U --export EDITOR vim
 set -U --export GLFW_IM_MODULE ibus
+set -U --export XDG_CACHE_HOME $HOME/.cache
+set -U --export XDG_CONFIG_HOME $HOME/.config
+set -U --export XDG_DATA_HOME $HOME/.local/share
+set -U --export XDG_STATE_HOME $HOME/.local/state
 set -U --export fish_greeting ""
 
 abbr -a boxdraw 'curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt'
