@@ -49,7 +49,7 @@ exec --no-startup-id autorandr -c  # trigger display detection
 exec --no-startup-id conky  # background notes
 exec_always --no-startup-id autotiling  # automating tiling layout, dies if restarting wm
 exec --no-startup-id ibus-daemon -drx  # input method changing
-exec --no-startup-id xinput set-prop VEN_04F3:00\ 04F3:311C\ Touchpad 370 1  # tap to click
+exec --no-startup-id xinput set-prop VEN_04F3:00\ 04F3:311C\ Touchpad libinput\ Tapping\ Enabled 1  # tap to click
 
 # notification shortcuts
 set $lownotif && dunstify --timeout 1500 --urgency low --appname
@@ -75,8 +75,8 @@ bindsym $mod+Ctrl+l exec i3lock -e -c 222222
 # program actions on binds
 # sf = selected font, sb = selected background, nf = normal font, nb = normal background
 bindsym $mod+d exec dmenu_run -i -l 8 -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_foreground" -nb "$term_background"
-bindsym $mod+Shift+w exec feh --bg-scale --randomize $wallpapers
-bindsym $mod+Shift+b exec feh --bg-scale $wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
+bindsym $mod+Shift+w exec feh --bg-scale --randomize --no-fehbg $wallpapers
+bindsym $mod+Shift+b exec feh --bg-scale --no-fehbg $wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
 bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monitors"
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 $lownotif "Light" "$(light)%"
@@ -118,7 +118,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout
 bindsym $mod+t layout toggle stacking tabbed
-bindsym $mod+e layout toggle splith splitv
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
