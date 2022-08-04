@@ -33,20 +33,16 @@ vim.opt.encoding = "utf8"
 vim.opt.history = 10000
 vim.opt.mouse = "a"
 vim.opt.shell = "/bin/fish"
--- vim.opt.undodir = "${HOME}/.local/share/nvim/undodir"
 vim.opt.wildmode = "longest,full"
 vim.cmd([[filetype plugin indent on]])
 
 -- buffers
 vim.opt.autoread = true
 vim.opt.hidden = true
-vim.opt.splitbelow = true
-vim.opt.splitright = true
 
 -- mappings
 vim.keymap.set({ "n", "v" }, ";", ":", { remap = true })
 vim.keymap.set({ "n" }, "<CR>", ":noh<CR><CR>", { silent = true })
-vim.keymap.set({ "n" }, "<Leader>,", ":set invlist<CR>", { silent = true })
 vim.keymap.set({ "n", "i" }, "<Up>", "<NOP>", { silent = true })
 vim.keymap.set({ "n", "i" }, "<Down>", "<NOP>", { silent = true })
 vim.keymap.set({ "n", "i" }, "<Left>", "<NOP>", { silent = true })
@@ -56,80 +52,56 @@ vim.keymap.set({ "n", "i" }, "<Right>", "<NOP>", { silent = true })
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
-
--- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
--- local _, actions = pcall(require, "telescope.actions")
--- lvim.builtin.telescope.defaults.mappings = {
---   -- for input mode
---   i = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---     ["<C-n>"] = actions.cycle_history_next,
---     ["<C-p>"] = actions.cycle_history_prev,
---   },
---   -- for normal mode
---   n = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---   },
--- }
-
--- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
--- }
-
-lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "dashboard"
+lvim.builtin.alpha.active = false
+lvim.builtin.gitsigns.opts.current_line_blame = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
+
+lvim.builtin.which_key.mappings.P = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings[";"] = nil -- needed if alpha is disabled
+-- lvim.builtin.which_key.mappings.g.d -- TODO: diff against staged?
+
+-- lvim.builtin.which_key.mappings.g.w = {
+-- 	"<cmd>lua lvim.builtin.gitsigns.opts.word_diff = not lvim.builtin.gitsigns.opts.word_diff<CR>",
+-- 	"Toggle word diff",
+-- } -- TODO: value is not listened, only checked at startup.
 
 lvim.builtin.treesitter.ensure_installed = {
 	"bash",
 	"c",
+	"c_sharp",
+	"comment",
+	"cpp",
 	"css",
+	"dockerfile",
 	"fish",
+	"go",
+	"html",
 	"java",
 	"javascript",
 	"json",
 	"lua",
 	"markdown",
+	"markdown_inline",
 	"python",
+	"regex",
 	"rust",
-	"tsx",
+	"sql",
+	"toml",
 	"typescript",
 	"yaml",
 }
-
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
-
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{ command = "black", filetypes = { "python" } },
 	{ command = "isort", filetypes = { "python" } },
+	{ command = "markdownlint", filetypes = { "markdown" } },
+	{ command = "prettier", filetypes = { "typescript", "typescriptreact", "html", "css" } },
 	{ command = "rustfmt", filetypes = { "rust" } },
-	{ command = "shfmt", filetypes = { "bash" } },
+	{ command = "shfmt", filetypes = { "sh", "bash" } },
 	{ command = "stylua", filetypes = { "lua" } },
-	{
-		command = "prettier",
-		extra_args = { "--print-with=100" },
-		filetypes = { "typescript", "typescriptreact", "html", "css", "md", "markdown" },
-	},
 })
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
@@ -144,67 +116,11 @@ linters.setup({
 -- Additional Plugins
 lvim.plugins = {
 	{
-		"folke/trouble.nvim",
-		cmd = "TroubleToggle",
-	},
-	{
-		"echasnovski/mini.nvim",
-		-- after = "nvim-web-devicons",
-		config = function()
-			require("mini.indentscope").setup()
-			require("mini.sessions").setup()
-			-- require("mini.surround").setup()
-			require("mini.trailspace").setup()
-		end,
-	},
-	{
-		"iamcco/markdown-preview.nvim",
-		run = "cd app && yarn install",
-		cmd = "MarkdownPreview",
-	},
-	{
 		"ggandor/lightspeed.nvim",
 		event = "BufEnter",
 		config = function()
 			require("lightspeed")
 		end,
-	},
-	-- {
-	--     "wfxr/minimap.vim",
-	--     run = "cargo install --locked code-minimap",
-	--     -- cmd = { "Minimap", "MinimapClose", "MinimapToggle", "MinimapRefresh", "MinimapUpdateHighlight" },
-	--     config = function()
-	--         vim.cmd("let g:minimap_width = 10")
-	--         vim.cmd("let g:minimap_auto_start = 1")
-	--         vim.cmd("let g:minimap_auto_start_win_enter = 1")
-	--     end,
-	-- },
-	{
-		"ahmedkhalf/lsp-rooter.nvim",
-		event = "BufRead",
-		config = function()
-			require("lsp-rooter").setup()
-		end,
-	},
-	{ "hrsh7th/cmp-cmdline", after = "cmp-path" },
-	{
-		"tpope/vim-fugitive",
-		cmd = {
-			"G",
-			"Git",
-			"Gdiffsplit",
-			"Gread",
-			"Gwrite",
-			"Ggrep",
-			"GMove",
-			"GDelete",
-			"GBrowse",
-			"GRemove",
-			"GRename",
-			"Glgrep",
-			"Gedit",
-		},
-		ft = { "fugitive" },
 	},
 }
 
@@ -212,4 +128,3 @@ vim.api.nvim_create_autocmd(
 	"BufReadPost",
 	{ pattern = "*", command = [[if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]] }
 )
-vim.api.nvim_create_autocmd("FileType", { pattern = "md,markdown,svn,*commmit*", command = [[setlocal spell]] })
