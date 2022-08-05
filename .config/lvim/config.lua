@@ -97,8 +97,11 @@ local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{ command = "black", filetypes = { "python" } },
 	{ command = "isort", filetypes = { "python" } },
-	{ command = "markdownlint", filetypes = { "markdown" } },
-	{ command = "prettier", filetypes = { "typescript", "typescriptreact", "html", "css" } },
+	{
+		command = "prettier",
+		extra_args = { "--print-width", "80" },
+		filetypes = { "typescript", "typescriptreact", "html", "css", "markdown", "yaml" },
+	},
 	{ command = "rustfmt", filetypes = { "rust" } },
 	{ command = "shfmt", filetypes = { "sh", "bash" } },
 	{ command = "stylua", filetypes = { "lua" } },
