@@ -1,24 +1,11 @@
 # i3 config file (v4)
-# Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
-
-# Set some programs
 set $terminal kitty --single-instance
 set $browser firefox
 set $wallpapers ~/Media/Wallpapers
-
-# ensure floating windows can't exceed screen size
-floating_maximum_size 1920 x 1080
-
-# Font for window titles. Used by bar if bar doesn't have its own font
 font xft:Terminus (TTF), Symbols Nerd Font, Unifont 15
 
 # i3 color palette  ( ~/.Xresources file )
-# NOTE: Xresources will not always be the same as term colors
-# depends on $TERM and $SHELL
-#   0/8: black/d_grey,  1/9: red, 2/10: green, 3/11: yellow
-#  4/12: blue, 5/13: purple, 6/14: cyan, 7/15: l_grey/white
-# bg/fg: depends on light/dark theme, usually close to black/white respectively
 set_from_resource $term_background background
 set_from_resource $term_foreground foreground
 set_from_resource $term_color0     color0
@@ -39,17 +26,16 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Autostart applications
-# --no-startup-id means i3 will not wait on the app or produce a workspace for it.
+exec --no-startup-id feh --bg-scale --randomize --no-fehbg $wallpapers
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -f -e -c 222222' # ignore empty pw, set background
-exec --no-startup-id xset -b  # disable keyboard beep
 exec --no-startup-id nm-applet  # network manager tray icon
 exec --no-startup-id blueman-applet  # bluetooth tray icon
 exec --no-startup-id autorandr -c  # trigger display detection
 # exec --no-startup-id picom -b  # compositor
-# exec --no-startup-id conky  # background notes
-exec_always --no-startup-id autotiling  # automating tiling layout, dies if restarting wm
+exec --no-startup-id conky  # background notes
 exec --no-startup-id ibus-daemon -drx  # input method changing
 exec --no-startup-id xinput set-prop VEN_04F3:00\ 04F3:311C\ Touchpad libinput\ Tapping\ Enabled 1  # tap to click
+exec_always --no-startup-id autotiling  # automating tiling layout, dies if restarting wm
 
 # notification shortcuts
 set $lownotif && dunstify --timeout 1500 --urgency low --appname
@@ -73,9 +59,8 @@ bindsym $mod+o exec $browser
 bindsym $mod+Ctrl+l exec i3lock -e -c 222222
 
 # program actions on binds
-# sf = selected font, sb = selected background, nf = normal font, nb = normal background
-bindsym $mod+d exec dmenu_run -i -l 8 -fn "Terminus (TTF)" -sf "$term_color7" -sb "$term_color13" -nf "$term_foreground" -nb "$term_background"
-bindsym $mod+Shift+w exec feh --bg-scale --randomize --no-fehbg $wallpapers
+bindsym $mod+d exec rofi -show
+bindsym $mod+Shift+w exec feh --bg-scale --randomize --no-fehbg $wallpapers $normalnotif "Feh" 
 bindsym $mod+Shift+b exec feh --bg-scale --no-fehbg $wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
 bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monitors"
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
@@ -86,54 +71,32 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% $
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 0 toggle $normalnotif "PulseAudio" $miccheck
 bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took full screenshot"
 bindsym $mod+Ctrl+Print exec scrot -u -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
-bindsym $mod+Shift+Print --release exec sleep 0.05 && scrot -s -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
+bindsym $mod+Shift+Print --release exec scrot -s -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
 # sleep is from Archwiki. Selection border will appear in image if scrot is invoked via wm keybind, unless sleep
 # also, this one won't work without --release. no idea why.
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-# bindsym $mod+Left focus left
-# bindsym $mod+Down focus down
-# bindsym $mod+Up focus up
-# bindsym $mod+Right focus right
-
-# move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-# bindsym $mod+Shift+Left move left
-# bindsym $mod+Shift+Down move down
-# bindsym $mod+Shift+Up move up
-# bindsym $mod+Shift+Right move right
 
-# toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout
 bindsym $mod+t layout toggle stacking tabbed
 bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-bindsym $mod+a focus parent
-
-# toggle sticky, must be floating already
 bindsym $mod+Shift+s sticky toggle
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
-
-# disable focus on mouse
+floating_maximum_size 1920 x 1080
 focus_follows_mouse no
 
 # Workspace names
@@ -148,7 +111,6 @@ set $ws8 8
 set $ws9 9
 set $ws10 10
 
-# switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -159,8 +121,6 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-
-# Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
 bindsym $mod+Ctrl+2 move container to workspace $ws2
 bindsym $mod+Ctrl+3 move container to workspace $ws3
@@ -171,8 +131,6 @@ bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
 bindsym $mod+Ctrl+9 move container to workspace $ws9
 bindsym $mod+Ctrl+0 move container to workspace $ws10
-
-# Move to workspace and bring focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
@@ -183,8 +141,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
-
-# move whole workspace between outputs
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
@@ -192,14 +148,10 @@ bindsym $mod+Ctrl+less move workspace to output left
 bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show
 
-# reload config/i3
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Are you sure you want to exit i3?' -b 'Confirm' 'i3-msg exit'"
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# Start i3bar+i3status
 bar {
     i3bar_command i3bar
     status_command i3status
@@ -220,7 +172,6 @@ bar {
     }
 }
 
-# hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
 # Theme colors, primarily affects tab/menu bars
@@ -234,21 +185,8 @@ client.background                            $term_background
 
 # Border style <normal|pixel xx|none>
 default_border pixel 1
-default_floating_border pixel 1
-
-# Hide borders on screen edges none|vertical|horizontal|both|smart
+default_floating_border none
 hide_edge_borders smart
-
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
-
-# Set inner/outer gaps
-gaps inner 0  # 8
-gaps outer 0  # -2
-
-# Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
 
 # Resize window (these operate on focused window)
 bindsym $mod+r mode "resize"
@@ -257,30 +195,6 @@ mode "resize" {
     bindsym j resize grow height 5 px or 5 ppt
     bindsym k resize shrink height 5 px or 5 ppt
     bindsym l resize grow width 5 px or 5 ppt
-    # bindsym Left resize shrink width 5 px or 5 ppt
-    # bindsym Down resize grow height 5 px or 5 ppt
-    # bindsym Up resize shrink height 5 px or 5 ppt
-    # bindsym Right resize grow width 5 px or 5 ppt
-
-    bindsym Escape mode "default"
-}
-
-set $mode_gaps inner gaps = (shift) +/-/0        outer gaps = (shift) ]/[/p
-bindsym $mod+g mode "$mode_gaps"
-mode "$mode_gaps" {
-    bindsym plus  gaps inner current plus 5
-    bindsym minus gaps inner current minus 5
-    bindsym 0     gaps inner current set 0
-    bindsym Shift+plus  gaps inner all plus 5
-    bindsym Shift+minus gaps inner all minus 5
-    bindsym Shift+0     gaps inner all set 0
-
-    bindsym bracketright        gaps outer current plus 5
-    bindsym bracketleft         gaps outer current minus 5
-    bindsym p                   gaps outer current set 0
-    bindsym Shift+bracketleft   gaps outer all plus 5
-    bindsym Shift+bracketright  gaps outer all minus 5
-    bindsym Shift+p             gaps outer all set 0
 
     bindsym Escape mode "default"
 }
