@@ -3,7 +3,7 @@ set $mod Mod4
 set $terminal kitty --single-instance
 set $browser firefox
 set $wallpapers ~/Media/Wallpapers
-font xft:Terminus (TTF), Symbols Nerd Font, Unifont 15
+font pango:Terminus (TTF), Symbols Nerd Font 15
 
 # i3 color palette  ( ~/.Xresources file )
 set_from_resource $term_background background
@@ -32,7 +32,7 @@ exec --no-startup-id nm-applet  # network manager tray icon
 exec --no-startup-id blueman-applet  # bluetooth tray icon
 exec --no-startup-id autorandr -c  # trigger display detection
 # exec --no-startup-id picom -b  # compositor
-exec --no-startup-id conky  # background notes
+# exec --no-startup-id conky  # background notes
 exec --no-startup-id ibus-daemon -drx  # input method changing
 exec --no-startup-id xinput set-prop VEN_04F3:00\ 04F3:311C\ Touchpad libinput\ Tapping\ Enabled 1  # tap to click
 exec_always --no-startup-id autotiling  # automating tiling layout, dies if restarting wm
@@ -57,9 +57,9 @@ bindsym --release Scroll_Lock exec : $normalnotif "Scroll Lock" "$(xset q | grep
 bindsym $mod+Return exec $terminal
 bindsym $mod+o exec $browser
 bindsym $mod+Ctrl+l exec i3lock -e -c 222222
+bindsym $mod+d exec rofi -show
 
 # program actions on binds
-bindsym $mod+d exec rofi -show
 bindsym $mod+Shift+w exec feh --bg-scale --randomize --no-fehbg $wallpapers $normalnotif "Feh" 
 bindsym $mod+Shift+b exec feh --bg-scale --no-fehbg $wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
 bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monitors"
@@ -69,11 +69,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle $normaln
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% $lownotif "PulseAudio" $volumecheck
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% $lownotif "PulseAudio" $volumecheck
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 0 toggle $normalnotif "PulseAudio" $miccheck
-bindsym $mod+Print exec scrot -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took full screenshot"
-bindsym $mod+Ctrl+Print exec scrot -u -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of focused window"
-bindsym $mod+Shift+Print --release exec scrot -s -q 100 -e 'mv $f ~/Media/' $normalnotif "Screenshot" "Took screenshot of selection"
-# sleep is from Archwiki. Selection border will appear in image if scrot is invoked via wm keybind, unless sleep
-# also, this one won't work without --release. no idea why.
+bindsym $mod+Print exec maim -u "$HOME/Media/$(date --iso-8601=seconds).png" $normalnotif "Screenshot" "Took full screenshot"
+bindsym $mod+Ctrl+Print exec maim -u "$HOME/Media/$(date --iso-8601=seconds).png" -i "$(xdotool getactivewindow)" $normalnotif "Screenshot" "Took screenshot of focused window"
+bindsym $mod+Shift+Print exec maim -u --select "$HOME/Media/$(date --iso-8601=seconds).png" $normalnotif "Screenshot" "Took screenshot of selection"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -154,7 +152,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Are you sure you want to exi
 
 bar {
     i3bar_command i3bar
-    status_command i3status
+    status_command i3status-rs
     position top
     separator_symbol "▕ "
     strip_workspace_numbers no  # never remove workspace numbers
