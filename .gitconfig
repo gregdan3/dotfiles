@@ -4,8 +4,8 @@
 	signingkey = Gregory Danielson III
 [pull]
 	rebase = false
-[commit]
-	gpgsign = true
+; [commit]
+; 	gpgsign = true
 [init]
 	defaultBranch = main
 [core]
