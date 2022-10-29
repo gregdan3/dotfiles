@@ -1,0 +1,9 @@
+include solarized-dark-256.theme
+
+data.location=~/.local/share/task
+hooks.location=~/.config/task/hooks
+
+taskd.certificate=\/home\/gregdan3\/.config\/task\/private.certificate.pem
+taskd.key=\/home\/gregdan3\/.config\/task\/private.key.pem
+taskd.ca=\/home\/gregdan3\/.config\/task\/ca.cert.pem
+taskd.trust=strict

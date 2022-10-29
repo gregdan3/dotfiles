@@ -51,6 +51,8 @@ vim.keymap.set({ "n", "i" }, "<Left>", "<NOP>", { silent = true })
 vim.keymap.set({ "n", "i" }, "<Right>", "<NOP>", { silent = true })
 vim.keymap.set({ "i" }, "jj", "<ESC>", { silent = true })
 
+vim.g["vimtex_view_method"] = "zathura"
+
 -- lvim
 lvim.log.level = "warn"
 lvim.format_on_save = true
@@ -77,6 +79,13 @@ lvim.builtin.which_key.mappings.g.d = { "<cmd>Gitsigns diffthis<cr>", "Git Diff"
 lvim.builtin.which_key.mappings.T.m = { "<cmd>TSModuleInfo<CR>", "Module info" }
 lvim.builtin.which_key.mappings.T.u = { "<cmd>TSUpdate<CR>", "Update" }
 lvim.builtin.which_key.mappings.T.U = { "<cmd>TSUpdateSync<CR>", "Update+sync" }
+
+lvim.builtin.which_key.vmappings["s"] = {
+	name = "Sort",
+	a = { "<cmd>'<, '>%sort<cr>", "ASC" },
+	d = { "<cmd>'<, '>%sort!<cr>", "DESC" },
+	n = { "<cmd>'<, '>%sort n<cr>", "DESC INT" },
+}
 
 -- lvim.builtin.which_key.mappings.g.w = {
 -- 	"<cmd>lua lvim.builtin.gitsigns.opts.word_diff = not lvim.builtin.gitsigns.opts.word_diff<CR>",
@@ -127,10 +136,17 @@ linters.setup({
 	{ command = "shellcheck", filetypes = { "sh", "bash" } },
 	{ command = "checkmake", filetypes = { "Makefile" } },
 	{ command = "hadolint", filetypes = { "docker" } },
+	{ command = "rubocop", filetypes = { "ruby" } },
 })
 
 -- Additional Plugins
 lvim.plugins = {
+	{
+		"lervag/vimtex",
+		event = "BufEnter",
+		filetype = "tex",
+		config = function() end,
+	},
 	{
 		"ggandor/lightspeed.nvim",
 		event = "BufEnter",

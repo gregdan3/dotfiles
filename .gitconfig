@@ -9,7 +9,11 @@
 [init]
 	defaultBranch = main
 [core]
-	editor = vim
+	editor = lvim
 	excludesFile = ~/.config/git/gitignore
 [push]
 	autoSetupRemote = true
+[mergetool.lvimdiff]
+    cmd = lvim -f -d -c '$wincmd w | wincmd J' "$LOCAL" "$BASE" "$REMOTE" "$MERGED"
+[merge]
+    tool = lvimdiff

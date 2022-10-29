@@ -183,7 +183,8 @@ client.background                            $term_background
 
 # Border style <normal|pixel xx|none>
 default_border pixel 1
-default_floating_border none
+default_floating_border pixel 1
+for_window [all] border pixel 1
 hide_edge_borders smart
 
 # Resize window (these operate on focused window)

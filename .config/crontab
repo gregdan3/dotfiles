@@ -4,3 +4,6 @@ XAUTHORITY="/home/gregdan3/.Xauthority"
 XDG_RUNTIME_DIR="/run/user/1000"
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 */30 * * * * curl -s "wttr.in/?format=\%c+\%l:+\%C+\%t+\%w+\%h" | sed "s/,.*:/:/g" | sed "s/  / /g" > ~/.config/weather
+0 * * * * dunstify -a "4hr" "Check focus"
+0 12 * * * gopass sync
+0 12 * * * bash -c "task sync && dunstify -a 'task' 'Syncing tasks'"

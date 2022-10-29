@@ -13,7 +13,6 @@ set -U --export XDG_STATE_HOME $HOME/.local/state
 set -U --export fish_greeting ""
 
 abbr -a boxdraw 'curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt'
-abbr -a c 'xsel --clipboard'
 abbr -a config '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 abbr -a cp 'cp -i'
 abbr -a d doppler
@@ -102,6 +101,8 @@ abbr -a pu 'pdm update'
 abbr -a publicipv4 'dig +short myip.opendns.com @resolver1.opendns.com'
 abbr -a publicipv6 'dig TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 abbr -a rm 'rm -iv'
+abbr -a sl 'ls'
+abbr -a ssh 'kitty +kitten ssh'
 abbr -a term 'kitty --single-instance & disown'
 abbr -a v lvim
 abbr -a vi lvim
