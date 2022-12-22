@@ -143,8 +143,8 @@ bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
 # scratchpad
-bindsym $mod+minus move scratchpad
-bindsym $mod+plus scratchpad show
+# bindsym $mod+minus move scratchpad
+# bindsym $mod+plus scratchpad show
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
