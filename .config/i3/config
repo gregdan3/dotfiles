@@ -32,7 +32,7 @@ exec --no-startup-id nm-applet  # network manager tray icon
 exec --no-startup-id blueman-applet  # bluetooth tray icon
 exec --no-startup-id autorandr -c  # trigger display detection
 # exec --no-startup-id picom -b  # compositor
-# exec --no-startup-id conky  # background notes
+exec --no-startup-id conky  # background notes
 exec --no-startup-id ibus-daemon -drx  # input method changing
 exec --no-startup-id xinput set-prop VEN_04F3:00\ 04F3:311C\ Touchpad libinput\ Tapping\ Enabled 1  # tap to click
 exec_always --no-startup-id autotiling  # automating tiling layout, dies if restarting wm
