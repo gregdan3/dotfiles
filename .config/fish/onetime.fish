@@ -40,6 +40,7 @@ abbr -a dss 'doppler secrets'
 abbr -a dtl 'docker stack ls'
 abbr -a dtp 'docker stack ps'
 abbr -a du 'du -h'
+abbr -a fbt 'doppler run -- pdm run fbt'
 abbr -a g git
 abbr -a ga 'git add'
 abbr -a gb 'git branch'
@@ -58,6 +59,7 @@ abbr -a gcount 'git shortlog -sn'
 abbr -a gcp 'git cherry-pick'
 abbr -a gd 'git diff'
 abbr -a gdc 'git diff --cached'
+abbr -a gdi 'git diff --ignore-blank-lines'
 abbr -a gds 'git diff --staged'
 abbr -a gf 'git fetch'
 abbr -a gl 'git pull'
@@ -109,5 +111,4 @@ abbr -a vi lvim
 abbr -a vim lvim
 abbr -a weather 'curl -s "wttr.in/?format=%c+%l:+%C+%t+%w+%h" | sed "s/,.*:/:/g" | sed "s/  / /g" > ~/.config/weather'
 abbr -a x 'xsel --clipboard'
-abbr -a y yarn
 abbr -a yb 'yarn build'
