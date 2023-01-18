@@ -29,7 +29,7 @@ abbr -a drdc 'doppler run -- docker compose'
 abbr -a drpi 'doppler run -- pdm install'
 abbr -a drpr 'doppler run -- pdm run'
 abbr -a drprp 'doppler run -- pdm run python'
-abbr -a drprv 'doppler run -- pdm run lvim'
+abbr -a drprv 'doppler run -- pdm run nvim'
 abbr -a drps 'doppler run -- pdm sync'
 abbr -a drpu 'doppler run -- pdm update'
 abbr -a dry 'doppler run -- yarn'
@@ -97,7 +97,7 @@ abbr -a pa 'pdm add'
 abbr -a pc 'pdm sync'
 abbr -a pi 'pdm install'
 abbr -a pr 'pdm run'
-abbr -a prl 'pdm run lvim'
+abbr -a prl 'pdm run nvim'
 abbr -a prp 'pdm run python'
 abbr -a pu 'pdm update'
 abbr -a publicipv4 'dig +short myip.opendns.com @resolver1.opendns.com'
@@ -106,9 +106,9 @@ abbr -a rm 'rm -iv'
 abbr -a sl 'ls'
 abbr -a ssh 'kitty +kitten ssh'
 abbr -a term 'kitty --single-instance & disown'
-abbr -a v lvim
-abbr -a vi lvim
-abbr -a vim lvim
+abbr -a v nvim
+abbr -a vi nvim
+abbr -a vim nvim
 abbr -a weather 'curl -s "wttr.in/?format=%c+%l:+%C+%t+%w+%h" | sed "s/,.*:/:/g" | sed "s/  / /g" > ~/.config/weather'
 abbr -a x 'xsel --clipboard'
 abbr -a yb 'yarn build'
