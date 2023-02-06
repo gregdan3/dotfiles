@@ -109,21 +109,6 @@ return {
 			})
 		end,
 	},
-
-	-- {
-	--   "jayp0521/mason-null-ls.nvim",
-	--   event = "BufReadPre",
-	--   dependencies = { "williamboman/mason.nvim", "jose-elias-alvarez/null-ls.nvim" },
-	--   config = {
-	--     function()
-	--       require("mason-null-ls").setup({
-	--         automatic_setup = true,
-	--         automatic_installation = true,
-	--       })
-	--       require("mason-null-ls").setup_handlers({})
-	--     end,
-	--   },
-	-- },
 	{
 		"akinsho/toggleterm.nvim",
 		event = "VeryLazy",
@@ -136,4 +121,12 @@ return {
 	{ "romgrk/nvim-treesitter-context", event = "VeryLazy", opts = { enable = true } }, -- show current function
 	{ "mfussenegger/nvim-dap" },
 	{ "rcarriga/nvim-dap-ui" },
+	{
+		"lervag/vimtex",
+		ft = { "tex", "latex" },
+		config = function()
+			vim.cmd([[let g:vimtex_view_method = 'zathura'
+                let maplocalleader='\']])
+		end,
+	},
 }
