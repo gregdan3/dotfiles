@@ -60,7 +60,7 @@ bindsym $mod+Ctrl+l exec i3lock -e -c 222222
 bindsym $mod+d exec rofi -show
 
 # program actions on binds
-bindsym $mod+Shift+w exec feh --bg-scale --randomize --no-fehbg $wallpapers $normalnotif "Feh" 
+bindsym $mod+Shift+w exec feh --bg-scale --randomize --no-fehbg $wallpapers $normalnotif "Feh"
 bindsym $mod+Shift+b exec feh --bg-scale --no-fehbg $wallpapers/blank.jpg $normalnotif "Feh" "Blanking wallpaper"
 bindsym $mod+Shift+m exec autorandr -c $normalnotif "Autorandr" "Checking monitors"
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 $lownotif "Light" "$(light)%"
@@ -141,6 +141,8 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
+
+workspace_auto_back_and_forth yes
 
 # scratchpad
 # bindsym $mod+minus move scratchpad
