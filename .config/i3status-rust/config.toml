@@ -1,0 +1,115 @@
+icons_format = "  {icon} "
+
+[theme]
+# theme = "gruvbox-dark"
+theme = "srcery"
+[icons]
+icons = "material-nf"
+
+# [[block]]
+# block = "custom"
+# command = "cat ~/.config/weather"
+# interval = 60
+
+[[block]]
+format = "$icon $weather  $temp  $humidity  {$wind}mph"
+block = "weather"
+interval = 1800
+autolocate = true
+autolocate_interval = 1800
+[block.service]
+name = "metno"
+units = "imperial"
+
+[[block]]
+block = "docker"
+format = "$icon$running "
+interval = 120
+
+# [[block]]
+# block = "pacman"
+# interval = 7200
+# # signal = 1
+# format = "$icon$pacman.eng(w:1) "
+# format_up_to_date = ""
+
+# [[block]]
+# block = "notify"
+# driver = "dunst"
+# format = "$icon"
+
+[[block]]
+block = "disk_space"
+path = "/"
+format = "$icon "
+format_alt = "$icon$available / $total"
+warning = 20.0
+alert = 10.0
+
+[[block]]
+block = "disk_space"
+path = "/home"
+format = ""
+format_alt = " $available / $total"
+warning = 20.0
+alert = 10.0
+
+# [[block]]
+# block = "focused_window"
+# format = "$title"
+
+[[block]]
+block = "net"
+format = "$icon"
+format_alt = "$icon$ip $ssid ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K) "
+missing_format = ""
+
+[[block]]
+block = "memory"
+format = "$icon"
+format_alt = " $icon$mem_used / $mem_total ($mem_used_percents)"
+warning_mem = 50.0
+critical_mem = 90.0
+interval = 30
+# display_type = "memory"
+# # icons = true
+# interval = 10
+
+# [[block]]
+# block = "nvidia_gpu"
+
+[[block]]
+block = "cpu"
+format = "$icon"
+format_alt = "$icon$utilization $frequency $boost"
+
+[[block]]
+block = "temperature"
+format = "$icon"
+format_alt = "$icon $average avg, $max max "
+
+# [[block]]
+# block = "xrandr"
+# format = "$icon$display $res_icon $resolution"
+
+[[block]]
+block = "backlight"
+format = "$icon"
+
+[[block]]
+block = "sound"
+format = "$icon"
+
+[[block]]
+block = "battery"
+format = "$icon"
+# format_alt = "$icon$percentage"
+missing_format = ""
+interval = 60
+
+[[block]]
+block = "time"
+interval = 60
+[block.format]
+full = "$icon$timestamp.datetime(f:'%a %m/%d %R', l:en_US)"
+short = "$icon$timestamp.datetime(f:'%a')"
