@@ -4,7 +4,7 @@ for a in (abbr -l)
 end
 
 set -U --export BROWSER firefox
-set -U --export EDITOR vim
+set -U --export EDITOR nvim
 set -U --export GLFW_IM_MODULE ibus
 set -U --export XDG_CACHE_HOME $HOME/.cache
 set -U --export XDG_CONFIG_HOME $HOME/.config
@@ -69,6 +69,8 @@ abbr -a glsf 'git ls-files | grep'
 abbr -a gm 'git merge'
 abbr -a gp 'git push'
 abbr -a gp! 'git push --set-upstream origin'
+abbr -a gpc 'gopass show -c'
+abbr -a gpgc 'gopass generate -c'
 abbr -a gr 'git reset'
 abbr -a grh 'git reset HEAD'
 abbr -a grha 'git reset --hard'
