@@ -12,12 +12,27 @@ require("lazy").setup({
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 		-- import/override with your plugins
 		{ import = "plugins" },
+
 		-- import any extras modules here
 		-- { import = "lazyvim.plugins.extras.lang.typescript" },
 		-- { import = "lazyvim.plugins.extras.lang.json" },
+		-- 	{
+		-- 		import = "lazyvim.plugins.extras.ui.mini-animate",
+		-- 		opts = function()
+		-- 			local animate = require("mini.animate")
+		-- 			return {
+		-- 				resize = { timing = animate.gen_timing.linear({ duration = 50, unit = "total" }) },
+		-- 				scroll = { timing = animate.gen_timing.linear({ duration = 75, unit = "total" }) },
+		-- 			}
+		-- 		end,
+		-- 		config = function(_, opts)
+		-- 			require("mini.animate").setup(opts)
+		-- 		end,
+		-- 	},
 	},
 	defaults = {
 		lazy = true, -- every plugin is lazy-loaded by default
+		version = false,
 	},
 	install = { colorscheme = { "tokyonight" } },
 	checker = { enabled = true }, -- automatically check for plugin updates
@@ -26,8 +41,8 @@ require("lazy").setup({
 			-- disable some rtp plugins
 			disabled_plugins = {
 				"gzip",
-				"matchit",
-				"matchparen",
+				-- "matchit",
+				-- "matchparen",
 				"netrwPlugin",
 				"tarPlugin",
 				"tohtml",

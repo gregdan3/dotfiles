@@ -1,91 +1,28 @@
-local logic = require("mason-core.functional.logic")
 return {
-	{ import = "lazyvim.plugins.extras.ui.mini-starter" },
-	-- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-	-- { "folke/which-key.nvim", opts = { mappings = {} } },
+	{ import = "lazyvim.plugins.extras.coding.yanky" },
+	{
+		"telescope.nvim",
+		dependencies = {
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+			config = function()
+				require("telescope").load_extension("fzf")
+			end,
+		},
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		auto_install = true,
 		opts = {
-			ensure_installed = {
-				"astro",
-				"bash",
-				"go",
-				"help",
-				"html",
-				"javascript",
-				"json",
-				"lua",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"query",
-				"regex",
-				"rust",
-				"svelte",
-				"tsx",
-				"typescript",
-				"vim",
-				"yaml",
-			},
+			ensure_installed = "all",
+			disable = function(lang, buf)
+				local max_filesize = 100 * 1024 -- 100 KB
+				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+				if ok and stats and stats.size > max_filesize then
+					return true
+				end
+			end,
 		},
-	},
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		event = "BufReadPre",
-		dependencies = { "mason.nvim" },
-		opts = function()
-			local nls = require("null-ls")
-			return {
-				sources = {
-					nls.builtins.formatting.prettier.with({ extra_filetypes = { "svelte", "astro", "mdx", "svx" } }),
-					nls.builtins.hover.printenv,
-					nls.builtins.hover.dictionary,
-					-- nls.builtins.formatting.fixjson,
-					--
-					-- nls.builtins.diagnostics.alex,
-					-- nls.builtins.diagnostics.writegood,
-					-- nls.builtins.diagnostics.spell,
-
-					nls.builtins.formatting.trim_newlines,
-					nls.builtins.formatting.trim_whitespace,
-				},
-			}
-		end,
-	},
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"jose-elias-alvarez/null-ls.nvim",
-		},
-		config = function()
-			require("mason-null-ls").setup({
-				automatic_setup = true,
-				ensure_installed = {
-					"actionlint",
-					"ansiblelint",
-					"staticcheck",
-					"beautysh",
-					"black",
-					"gofmt",
-					"goimports",
-					"golangci_lint",
-					"gopls",
-					"isort",
-					"prettier",
-					"rubocop",
-					"rustfmt",
-					"shellharden",
-					"sql_formatter",
-					"stylua",
-					"taplo",
-					"yamlfmt",
-				},
-			})
-		end,
 	},
 	{
 		"L3MON4D3/LuaSnip",
@@ -113,8 +50,11 @@ return {
 			opts.mapping = vim.tbl_extend("force", opts.mapping, {
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
+						-- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
 						cmp.select_next_item()
-					elseif luasnip.expand_or_locally_jumpable() then
+					-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+					-- this way you will only jump inside the snippet region
+					elseif luasnip.expand_or_jumpable() then
 						luasnip.expand_or_jump()
 					elseif has_words_before() then
 						cmp.complete()
@@ -134,25 +74,5 @@ return {
 			})
 		end,
 	},
-	{
-		"akinsho/toggleterm.nvim",
-		event = "VeryLazy",
-		opts = {
-			open_mapping = "<c-t>",
-			direction = "float",
-		},
-	},
-	{ "RRethy/vim-illuminate" }, -- highlight same symbol elsewhere
-	{ "romgrk/nvim-treesitter-context", event = "VeryLazy", opts = { enable = true } }, -- show current function
-	{ "mfussenegger/nvim-dap" },
-	{ "rcarriga/nvim-dap-ui" },
-	{ "madox2/vim-ai", event = "VeryLazy" },
-	{
-		"lervag/vimtex",
-		ft = { "tex", "latex" },
-		config = function()
-			vim.cmd([[let g:vimtex_view_method = 'zathura'
-                let maplocalleader='\']])
-		end,
-	},
+	--  { "madox2/vim-ai", event = "VeryLazy" },
 }
