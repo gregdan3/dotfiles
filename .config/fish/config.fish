@@ -1,5 +1,5 @@
 set --export GPG_TTY (tty)
-set --export PATH $PATH $HOME/.local/bin
+set --export PATH $PATH $HOME/.local/bin $HOME/.cargo/bin
 
 set -U --export BROWSER firefox
 set -U --export EDITOR nvim
@@ -10,10 +10,7 @@ set -U --export XDG_DATA_HOME $HOME/.local/share
 set -U --export XDG_STATE_HOME $HOME/.local/state
 set -U --export fish_greeting ""
 
-abbr -a boxdraw 'curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt'
-abbr -a config '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 abbr -a cp 'cp -i'
-abbr -a d doppler
 abbr -a dcl 'docker container ls'
 abbr -a de 'docker exec -it'
 abbr -a df 'df -h'
@@ -39,8 +36,8 @@ abbr -a dtl 'docker stack ls'
 abbr -a dtp 'docker stack ps'
 abbr -a du 'du -h'
 abbr -a fbt 'doppler run -- pdm run fbt'
-abbr -a g git
 abbr -a ga 'git add'
+abbr -a gaf 'git add -f'
 abbr -a gb 'git branch'
 abbr -a gba 'git branch -a'
 abbr -a gbb 'git branch -b'
@@ -82,6 +79,7 @@ abbr -a gstp 'git stash pop'
 abbr -a gsts 'git stash show --text'
 abbr -a gwc 'git whatchanged -p --abbrev-commit --pretty=medium'
 abbr -a m make
+abbr -a mj 'make -j'
 abbr -a mb 'make build'
 abbr -a mbf 'make build-force'
 abbr -a mc 'make clean'
@@ -92,26 +90,39 @@ abbr -a mk 'make kill'
 abbr -a ms 'make stop'
 abbr -a mt 'make test'
 abbr -a mu 'make up'
-abbr -a p pdm
 abbr -a pa 'pdm add'
 abbr -a pc 'pdm sync'
 abbr -a pi 'pdm install'
 abbr -a pr 'pdm run'
-abbr -a prl 'pdm run nvim'
+abbr -a prl 'pdm run $EDITOR'
 abbr -a prp 'pdm run python'
 abbr -a pu 'pdm update'
-abbr -a publicipv4 'dig +short myip.opendns.com @resolver1.opendns.com'
-abbr -a publicipv6 'dig TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 abbr -a rm 'rm -iv'
-abbr -a sl 'ls'
 abbr -a ssh 'kitty +kitten ssh'
 abbr -a term 'kitty --single-instance & disown'
-abbr -a v nvim
-abbr -a vi nvim
-abbr -a vim nvim
-abbr -a weather 'curl -s "wttr.in/?format=%c+%l:+%C+%t+%w+%h" | sed "s/,.*:/:/g" | sed "s/  / /g" > ~/.config/weather'
+abbr -a v '$EDITOR'
+abbr -a vi '$EDITOR'
+abbr -a vim '$EDITOR'
 abbr -a x 'xsel --clipboard'
 abbr -a yb 'yarn build'
+
+abbr -a d ddgr
+
+abbr -a cat bat
+abbr -a ls exa
+abbr -a l exa
+abbr -a sl exa
+
+abbr -a boxdraw 'curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt'
+abbr -a publicipv4 'dig +short myip.opendns.com @resolver1.opendns.com'
+abbr -a publicipv6 'dig TXT +short o-o.myaddr.l.google.com @ns1.google.com'
+abbr -a weather 'curl -s "wttr.in/?format=%c+%l:+%C+%t+%w+%h" | sed "s/,.*:/:/g" | sed "s/  / /g"' # > ~/.config/weather'
+
 abbr -a pacclean 'pacman -Qtdq | paru -Rcns -'
+abbr -a config '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+abbr -a nvimconf '$EDITOR ~/.config/nvim/lua/*/*.lua'
+abbr -a fishconf '$EDITOR ~/.config/fish/config.fish'
 
 starship init fish | source
+
+thefuck --alias | source
