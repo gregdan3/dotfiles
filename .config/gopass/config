@@ -1,0 +1,13 @@
+[core]
+	showsafecontent = false
+	notifications = true
+	nopager = false
+	cliptimeout = 60
+	autoclip = true
+	parsing = true
+	exportkeys = true
+	autoimport = true
+[age]
+	usekeychain = false
+[mounts]
+	path = /home/gregdan3/.password-store
