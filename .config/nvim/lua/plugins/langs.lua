@@ -1,41 +1,27 @@
 return {
+	{ import = "lazyvim.plugins.extras.lang.docker" },
+	{ import = "lazyvim.plugins.extras.lang.go" },
+	{ import = "lazyvim.plugins.extras.lang.json" },
+	{ import = "lazyvim.plugins.extras.lang.python" },
+	{ import = "lazyvim.plugins.extras.lang.rust" },
+	{ import = "lazyvim.plugins.extras.lang.tailwind" },
+	{ import = "lazyvim.plugins.extras.lang.terraform" },
+	{ import = "lazyvim.plugins.extras.lang.typescript" },
+	-- { import = "lazyvim.plugins.extras.lang.tex" },
+	{ import = "lazyvim.plugins.extras.lang.yaml" },
+
 	-- {
-	-- 	"vimwiki/vimwiki",
-	-- 	event = "BufEnter",
-	-- 	ft = { "md" },
-	-- 	init = function()
-	-- 		vim.g.vimwiki_list = {
-	-- 			{
-	-- 				path = "~/notes/",
-	-- 				syntax = "markdown",
-	-- 				ext = ".md",
-	-- 			},
-	-- 		}
-	-- 		vim.g.vimwiki_ext2syntax = {
-	-- 			[".md"] = "markdown",
-	-- 		}
-	-- 	end,
-	-- },
-	{
-		"edgedb/edgedb-vim",
-		event = "BufEnter",
-		ft = { "esdl", "edgeql" },
-	},
-	-- {
-	-- 	"lervag/vimtex",
-	-- 	event = "BufEnter",
-	-- 	ft = { "tex", "latex" },
+	-- 	"iamcco/markdown-preview.nvim",
+	-- 	-- event = "BufEnter",
+	-- 	ft = { "md", "markdown" },
+	-- 	cmd = { "MarkdownPreview" },
 	-- 	config = function()
-	-- 		vim.cmd([[let g:vimtex_view_method = 'zathura'
-	--                let maplocalleader='\']])
+	-- 		vim.fn["mkdp#util#install"]()
 	-- 	end,
 	-- },
-	{
-		"iamcco/markdown-preview.nvim",
-		event = "BufEnter",
-		ft = { "md", "markdown" },
-		config = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-	},
+	-- {
+	-- 	"edgedb/edgedb-vim",
+	-- 	event = "BufEnter",
+	-- 	ft = { "esdl", "edgeql" },
+	-- },
 }

@@ -1,27 +1,15 @@
 return {
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "mason.nvim" },
 		opts = function()
 			local nls = require("null-ls")
 			return {
 				sources = {
-					nls.builtins.formatting.beautysh,
-					nls.builtins.formatting.black,
-					nls.builtins.formatting.isort,
 					nls.builtins.formatting.prettier.with({
 						extra_filetypes = { "svelte", "astro", "mdx", "svx", "edgeql", "esdl" },
 					}),
-					nls.builtins.formatting.rubocop,
-					nls.builtins.formatting.rustfmt,
-					nls.builtins.formatting.shellharden,
-					nls.builtins.formatting.sql_formatter,
-					nls.builtins.formatting.stylua,
-					nls.builtins.formatting.taplo,
-					nls.builtins.formatting.yamlfmt,
-					nls.builtins.hover.dictionary,
-					nls.builtins.hover.printenv,
 					nls.builtins.formatting.trim_newlines,
 					nls.builtins.formatting.trim_whitespace,
 				},
@@ -33,10 +21,11 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"williamboman/mason.nvim",
-			"jose-elias-alvarez/null-ls.nvim",
+			"nvimtools/none-ls.nvim",
 		},
 		config = function()
 			require("mason-null-ls").setup({
+				automatic_installation = true,
 				automatic_setup = true,
 				ensure_installed = {
 					"actionlint",
@@ -58,7 +47,16 @@ return {
 					"taplo",
 					"yamlfmt",
 				},
+				handlers = {},
 			})
 		end,
+	},
+
+	{
+		"simrat39/symbols-outline.nvim",
+		cmd = "SymbolsOutline",
+		keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+		opts = { position = "left" },
+		-- config = true,
 	},
 }
