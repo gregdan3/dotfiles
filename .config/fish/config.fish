@@ -110,7 +110,8 @@ abbr -a d ddgr
 
 abbr -a cat bat
 abbr -a ls exa
-abbr -a l exa
+abbr -a ll 'exa -la'
+abbr -a l 'exa -la'
 abbr -a sl exa
 
 abbr -a boxdraw 'curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt'
@@ -122,7 +123,16 @@ abbr -a pacclean 'pacman -Qtdq | paru -Rcns -'
 abbr -a config '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 abbr -a nvimconf '$EDITOR ~/.config/nvim/lua/*/*.lua'
 abbr -a fishconf '$EDITOR ~/.config/fish/config.fish'
+abbr -a termconf '$EDITOR ~/.config/kitty/kitty.conf'
+
+abbr -a dprod 'doppler setup -c prd --no-interactive'
+
+abbr -a now '$EDITOR ~/.config/conky/content.md'
 
 starship init fish | source
+# thefuck --alias | source
+rtx activate | source
 
-thefuck --alias | source
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+set --export --prepend PATH "/home/gregdan3/.rd/bin"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
