@@ -3,3 +3,5 @@
 .vscode
 Session.vim
 Thumbs.db
+.rtx.toml
+.python-version
