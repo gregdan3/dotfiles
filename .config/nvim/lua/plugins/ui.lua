@@ -1,7 +1,4 @@
 return {
-	{ import = "lazyvim.plugins.extras.ui.edgy" },
-	{ import = "lazyvim.plugins.extras.ui.mini-starter" },
-
 	{
 		"folke/edgy.nvim",
 		opts = { animate = { enabled = false } },
