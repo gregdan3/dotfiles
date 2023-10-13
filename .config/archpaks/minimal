@@ -6,7 +6,6 @@ docker
 docker-compose
 efibootmgr
 eza
-fail2ban
 fish
 fisher
 git
