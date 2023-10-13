@@ -1,21 +1,21 @@
 return {
-	{
-		"nvimtools/none-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "mason.nvim" },
-		opts = function()
-			local nls = require("null-ls")
-			return {
-				sources = {
-					nls.builtins.formatting.prettier.with({
-						extra_filetypes = { "svelte", "astro", "mdx", "svx", "edgeql", "esdl" },
-					}),
-					nls.builtins.formatting.trim_newlines,
-					nls.builtins.formatting.trim_whitespace,
-				},
-			}
-		end,
-	},
+	-- {
+	-- 	"nvimtools/none-ls.nvim",
+	-- 	event = { "BufReadPre", "BufNewFile" },
+	-- 	dependencies = { "mason.nvim" },
+	-- 	opts = function()
+	-- 		local nls = require("null-ls")
+	-- 		return {
+	-- 			sources = {
+	-- 				nls.builtins.formatting.prettier.with({
+	-- 					extra_filetypes = { "svelte", "astro", "mdx", "svx", "edgeql", "esdl" },
+	-- 				}),
+	-- 				nls.builtins.formatting.trim_newlines,
+	-- 				nls.builtins.formatting.trim_whitespace,
+	-- 			},
+	-- 		}
+	-- 	end,
+	-- },
 	{
 		"jay-babu/mason-null-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
@@ -30,33 +30,26 @@ return {
 				ensure_installed = {
 					"actionlint",
 					"ansiblelint",
-					"staticcheck",
 					"beautysh",
-					"python-black",
 					"gofmt",
 					"goimports",
 					"golangci_lint",
 					"gopls",
 					"isort",
 					"prettier",
+					"python-black",
 					"rubocop",
 					"rustfmt",
 					"shellharden",
 					"sql_formatter",
+					"staticcheck",
 					"stylua",
 					"taplo",
 					"yamlfmt",
+					"proselint",
 				},
 				handlers = {},
 			})
 		end,
-	},
-
-	{
-		"simrat39/symbols-outline.nvim",
-		cmd = "SymbolsOutline",
-		keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-		opts = { position = "left" },
-		-- config = true,
 	},
 }

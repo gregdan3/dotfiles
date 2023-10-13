@@ -1,0 +1,25 @@
+{
+  "hashes": {
+    "/home/gregdan3/.local/share/nvim/lazy/LazyVim/NEWS.md": "2035"
+  },
+  "extras": [
+    "coding.yanky",
+    "dap.core",
+    "dap.nlua",
+    "editor.symbols-outline",
+    "lang.docker",
+    "lang.json",
+    "lang.python",
+    "lang.rust",
+    "lang.tailwind",
+    "lang.terraform",
+    "lang.typescript",
+    "lang.yaml",
+    "lsp.none-ls",
+    "test.core",
+    "ui.edgy",
+    "ui.mini-starter",
+    "util.dot",
+    "util.project"
+  ]
+}
