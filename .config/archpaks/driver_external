@@ -7,10 +7,10 @@ comby-bin
 discord_arch_electron
 doppler-cli-bin
 i3-autodisplay
-libnvidia-container-tools-bin
 marp-cli-bin
 mkchromecast-git
 mprocs
+multimc-bin
 nvidia-container-toolkit
 pacman-cleanup-hook
 pacman-log-orphans-hook
@@ -20,8 +20,6 @@ paru-bin
 pom-perl
 rancher-desktop
 systemd-boot-pacman-hook
-ttf-fixedsys-excelsior-linux
-units
 wfview
 wii-u-gc-adapter
 xinput-gui

@@ -8,7 +8,6 @@ efibootmgr
 eza
 fish
 fisher
-git
 htop
 inetutils
 intel-ucode
@@ -25,6 +24,5 @@ rustup
 screen
 starship
 tailscale
-thefuck
 unzip
 wget

@@ -1,6 +1,6 @@
 #!/bin/fish
 
-echo "Running pacman -Qqne > ./driver"
-              pacman -Qqne > ./driver
-echo "Running pacman -Qqme > ./driver_external"
-              pacman -Qqme > ./driver_external
+echo "Running pacman -Qqnett > ./driver"
+              pacman -Qqnett > ./driver
+echo "Running pacman -Qqmett > ./driver_external"
+              pacman -Qqmett > ./driver_external
