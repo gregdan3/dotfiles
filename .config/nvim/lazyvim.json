@@ -1,25 +1,27 @@
 {
-  "hashes": {
-    "/home/gregdan3/.local/share/nvim/lazy/LazyVim/NEWS.md": "2035"
-  },
   "extras": [
-    "coding.yanky",
-    "dap.core",
-    "dap.nlua",
-    "editor.symbols-outline",
-    "lang.docker",
-    "lang.json",
-    "lang.python",
-    "lang.rust",
-    "lang.tailwind",
-    "lang.terraform",
-    "lang.typescript",
-    "lang.yaml",
-    "lsp.none-ls",
-    "test.core",
-    "ui.edgy",
-    "ui.mini-starter",
-    "util.dot",
-    "util.project"
-  ]
+    "lazyvim.plugins.extras.coding.yanky",
+    "lazyvim.plugins.extras.dap.core",
+    "lazyvim.plugins.extras.dap.nlua",
+    "lazyvim.plugins.extras.editor.aerial",
+    "lazyvim.plugins.extras.editor.leap",
+    "lazyvim.plugins.extras.lang.docker",
+    "lazyvim.plugins.extras.lang.json",
+    "lazyvim.plugins.extras.lang.python",
+    "lazyvim.plugins.extras.lang.rust",
+    "lazyvim.plugins.extras.lang.tailwind",
+    "lazyvim.plugins.extras.lang.terraform",
+    "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.lang.yaml",
+    "lazyvim.plugins.extras.lsp.none-ls",
+    "lazyvim.plugins.extras.test.core",
+    "lazyvim.plugins.extras.ui.edgy",
+    "lazyvim.plugins.extras.ui.mini-starter",
+    "lazyvim.plugins.extras.util.dot",
+    "lazyvim.plugins.extras.util.project"
+  ],
+  "news": {
+    "NEWS.md": "2123"
+  },
+  "version": 2
 }

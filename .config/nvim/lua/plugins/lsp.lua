@@ -1,21 +1,4 @@
 return {
-	-- {
-	-- 	"nvimtools/none-ls.nvim",
-	-- 	event = { "BufReadPre", "BufNewFile" },
-	-- 	dependencies = { "mason.nvim" },
-	-- 	opts = function()
-	-- 		local nls = require("null-ls")
-	-- 		return {
-	-- 			sources = {
-	-- 				nls.builtins.formatting.prettier.with({
-	-- 					extra_filetypes = { "svelte", "astro", "mdx", "svx", "edgeql", "esdl" },
-	-- 				}),
-	-- 				nls.builtins.formatting.trim_newlines,
-	-- 				nls.builtins.formatting.trim_whitespace,
-	-- 			},
-	-- 		}
-	-- 	end,
-	-- },
 	{
 		"jay-babu/mason-null-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
@@ -31,12 +14,13 @@ return {
 					"actionlint",
 					"ansiblelint",
 					"beautysh",
-					"gofmt",
-					"goimports",
-					"golangci_lint",
-					"gopls",
+					-- "gofmt",
+					-- "goimports",
+					-- "golangci_lint",
+					-- "gopls",
 					"isort",
 					"prettier",
+					"proselint",
 					"python-black",
 					"rubocop",
 					"rustfmt",
@@ -45,8 +29,6 @@ return {
 					"staticcheck",
 					"stylua",
 					"taplo",
-					"yamlfmt",
-					"proselint",
 				},
 				handlers = {},
 			})

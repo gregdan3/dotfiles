@@ -37,7 +37,6 @@ autolocate = true
 autolocate_interval = 7200
 [block.service]
 name = "metno"
-units = "imperial"
 
 [[block]]
 block = "docker"
@@ -84,7 +83,7 @@ block = "custom"
 format = "󰖂 $text"
 cycle = [
   "",
-  "echo $(tailscale switch --list | sed -nr 's/\\*//p') $(tailscale status --json | jq -r '.MagicDNSSuffix')",
+  "echo $(tailscale switch --list | awk '{ print $2 }' | sed -nr 's/\\*//p')  $(tailscale status --json | jq -r '.MagicDNSSuffix')",
 ]
 
 [[block]]

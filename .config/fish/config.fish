@@ -78,6 +78,7 @@ abbr -a gstd 'git stash drop'
 abbr -a gstp 'git stash pop'
 abbr -a gsts 'git stash show --text'
 abbr -a gwc 'git whatchanged -p --abbrev-commit --pretty=medium'
+abbr -a o make
 abbr -a m make
 abbr -a mj 'make -j'
 abbr -a mb 'make build'
@@ -136,3 +137,4 @@ rtx activate | source
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 set --export --prepend PATH "/home/gregdan3/.rd/bin"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+# The following snippet is meant to be used like this in your fish config:
