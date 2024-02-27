@@ -1,7 +1,7 @@
 return {
-	-- {
-	-- 	"edgedb/edgedb-vim",
-	-- 	event = "BufEnter",
-	-- 	ft = { "esdl", "edgeql" },
-	-- },
+	{
+		"edgedb/edgedb-vim",
+		event = "BufEnter",
+		ft = { "esdl", "edgeql" },
+	},
 }
