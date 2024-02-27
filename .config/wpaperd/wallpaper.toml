@@ -1,0 +1,6 @@
+[default]
+path = "/home/gregdan3/Media/Wallpapers/"
+duration = "90m"
+sorting = "ascending"
+
+apply-shadow = false

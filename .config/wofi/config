@@ -1,0 +1,15 @@
+mode=drun
+width=320
+height=620
+xoffset=0
+yoffset=0
+prompt=search
+allow_images=true
+allow_markup=true
+term=kitty --single-instance
+hide_scroll=true
+matching=fuzzy
+insensitive=true
+orientation=vertical
+image_size=20
+filter_rate=5
