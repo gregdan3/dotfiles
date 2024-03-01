@@ -30,8 +30,8 @@ abbr -a drpu 'doppler run -- pdm update'
 abbr -a dry 'doppler run -- yarn'
 abbr -a dryb 'doppler run -- yarn build'
 abbr -a ds 'doppler setup'
+abbr -a dss 'doppler setup --no-read-env --no-interactive'
 abbr -a dsl 'docker service ls'
-abbr -a dss 'doppler secrets'
 abbr -a dtl 'docker stack ls'
 abbr -a dtp 'docker stack ps'
 abbr -a du 'du -h'
@@ -132,9 +132,4 @@ abbr -a now '$EDITOR ~/.config/conky/content.md'
 
 starship init fish | source
 # thefuck --alias | source
-rtx activate | source
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-set --export --prepend PATH "/home/gregdan3/.rd/bin"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-# The following snippet is meant to be used like this in your fish config:
+mise activate fish | source
