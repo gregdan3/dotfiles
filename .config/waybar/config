@@ -6,11 +6,10 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["clock#date", "clock#time", "custom/dummy"],
-    "modules-right": ["network", "cpu", "memory", "temperature", "disk#root", "backlight", "pulseaudio#output", "pulseaudio#source", "battery", "tray"],
+    "modules-center": ["clock#time"],
+    "modules-right": ["network", "cpu", "memory", "temperature", "disk#root", "backlight", "pulseaudio#output", "pulseaudio#source", "battery", "clock#date", "tray"],
 
     // Modules configuration
-    "custom/dummy": { "format": "<tt>              </tt>" },
     "hyprland/workspaces": {
         "disable-scroll": true,
         "active-only": false,
