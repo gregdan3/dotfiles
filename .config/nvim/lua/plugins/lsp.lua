@@ -17,13 +17,11 @@ return {
 					"ruff-lsp",
 					"python-black",
 					"isort",
-					"debugpy",
 
 					"eslint-lsp",
 					"typescript-language-server",
 					"svelte-language-server",
 					"prettier",
-					"js-debug-adapter",
 
 					"css-lsp",
 					"tailwindcss-language-server",
