@@ -12,40 +12,46 @@
 /* Colors (gruvbox) */
 @define-color black	#282828;
 @define-color red	#cc241d;
-@define-color green	#98971a;
 @define-color yellow	#d79921;
+@define-color green	#98971a;
+@define-color aqua	#689d6a;
 @define-color blue	#458588;
 @define-color purple	#b16286;
-@define-color aqua	#689d6a;
-@define-color gray	#a89984;
-@define-color brgray	#928374;
+@define-color gray	#928374;
+
+/* bright */
+@define-color white	#ebdbb2;
 @define-color brred	#fb4934;
-@define-color brgreen	#b8bb26;
 @define-color bryellow	#fabd2f;
+@define-color brgreen	#b8bb26;
+@define-color braqua	#8ec07c;
 @define-color brblue	#83a598;
 @define-color brpurple	#d3869b;
-@define-color braqua	#8ec07c;
-@define-color white	#ebdbb2;
+@define-color brgray	#a89984;
+
 @define-color bg2	#504945;
 
 @define-color warning 	@bryellow;
-@define-color critical	@red;
+@define-color critical	@brred;
 @define-color unfocused	@bg2;
 @define-color focused	@white;
 @define-color inactive	@purple;
-@define-color sound	@brpurple;
-@define-color source	@brgray;
-@define-color network	@purple;
-@define-color memory	@braqua;
-@define-color backlight	@brgray;
-@define-color cpu	@green;
-@define-color disk	@brblue;
-@define-color temp	@brgreen;
-@define-color layout	@bryellow;
-@define-color battery	@aqua;
-@define-color date	@black;
-@define-color time	@white;
+
+@define-color workspaces	@white;
 @define-color taskbar	@white;
+
+@define-color time	@white;
+@define-color backlight	@gray;
+@define-color date	@black;
+@define-color language	@yellow;
+@define-color network	@purple;
+@define-color cpu	@green;
+@define-color temp	@green;
+@define-color battery	@aqua;
+@define-color memory	@blue;
+@define-color disk	@blue;
+@define-color sound	@purple;
+@define-color source	@purple;
 
 /* Reset all styles */
 * {
@@ -182,7 +188,7 @@
 }
 
 #language {
-  background: @layout;
+  background: @language;
   color: @white;
 }
 
