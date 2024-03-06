@@ -53,22 +53,21 @@
       "separate-outputs": true,
     },
     "wlr/taskbar": {
-        "format": "{icon} {name}",
-        "tooltip-format": "{title}",
+        "format": " {icon} ",
+        "tooltip-format": "{name}: {title}",
         "on-click": "activate",
-        "rewrite": {
-            "org.telegram.desktop": " Telegram",
-            " Telegram Desktop": " Telegram",
-            " Firefox Web Browser": " Firefox",
-        },
-        "app_ids-mapping": {
-            "org.telegram.desktop": "Telegram"
-        }
     },
     "tray": {
         // "icon-size": 21,
         "show-passive-items": true,
         "spacing": 10,
+    },
+    "custom/weather": {
+      "format": "{}", // TODO: cut to only first character, which should be an icon
+      "format-alt": "{}",
+      "exec": "curl -s 'wttr.in/?format=%c+%l:+%C+%t+%w+%h' | sed 's/,.*:/:/g' | sed 's/  / /g'",
+      "interval": 1800,
+
     },
     "clock#date": {
         "interval": 600,
