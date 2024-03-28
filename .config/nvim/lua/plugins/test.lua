@@ -1,3 +1,3 @@
 return {
-	{ "nvim-neotest/neotest-plenary" },
+	-- { "nvim-neotest/neotest-plenary" },
 }

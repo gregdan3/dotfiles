@@ -15,7 +15,7 @@ return {
 
 					"pyright",
 					"ruff-lsp",
-					"python-black",
+					"black",
 					"isort",
 
 					"eslint-lsp",
