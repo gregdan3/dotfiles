@@ -19,19 +19,17 @@ abbr -a dil 'docker image ls'
 abbr -a dl 'docker logs'
 abbr -a dp 'docker ps'
 abbr -a dpa 'docker ps --all'
+abbr -a dprod 'doppler setup -c prd --no-read-env --no-interactive'
 abbr -a dr 'doppler run --'
-abbr -a drdc 'doppler run -- docker compose'
 abbr -a drpi 'doppler run -- pdm install'
 abbr -a drpr 'doppler run -- pdm run'
-abbr -a drprp 'doppler run -- pdm run python'
-abbr -a drprv 'doppler run -- pdm run nvim'
 abbr -a drps 'doppler run -- pdm sync'
 abbr -a drpu 'doppler run -- pdm update'
 abbr -a dry 'doppler run -- yarn'
 abbr -a dryb 'doppler run -- yarn build'
 abbr -a ds 'doppler setup'
-abbr -a dss 'doppler setup --no-read-env --no-interactive'
 abbr -a dsl 'docker service ls'
+abbr -a dss 'doppler setup --no-read-env --no-interactive'
 abbr -a du 'du -h'
 abbr -a fbt 'doppler run -- pdm run fbt'
 abbr -a ga 'git add'
@@ -89,9 +87,8 @@ abbr -a rm 'rm -iv'
 abbr -a ssh 'kitty +kitten ssh'
 abbr -a term 'kitty --single-instance & disown'
 
-
 abbr -a x 'xsel --clipboard'
-abbr -a yb 'yarn build'
+abbr -a w wl-copy
 
 abbr -a v '$EDITOR'
 abbr -a vi '$EDITOR'
@@ -99,13 +96,11 @@ abbr -a vim '$EDITOR'
 abbr -a vmi '$EDITOR'
 abbr -a nivm '$EDITOR'
 
-abbr -a d ddgr
-
 abbr -a cat bat
-abbr -a ls exa
-abbr -a ll 'exa -la'
-abbr -a l 'exa -la'
-abbr -a sl exa
+abbr -a ls eza
+abbr -a sl eza
+abbr -a exa eza
+abbr -a ll 'eza -la --header --git --git-repos --smart-group --icons=auto'
 
 abbr -a boxdraw 'curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt'
 abbr -a publicipv4 'dig +short myip.opendns.com @resolver1.opendns.com'
@@ -113,6 +108,8 @@ abbr -a publicipv6 'dig TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 abbr -a weather 'curl -s "wttr.in/?format=%c+%l:+%C+%t+%w+%h" | sed "s/,.*:/:/g" | sed "s/  / /g"' # > ~/.config/weather'
 
 abbr -a pacclean 'pacman -Qtdq | paru -Rcns -'
+abbr -a packages 'pacman -Qqnett'
+abbr -a extpackages 'pacman -Qqmett'
 abbr -a config '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 abbr -a nvimconf '$EDITOR ~/.config/nvim/lua/*/*.lua'
 abbr -a fishconf '$EDITOR ~/.config/fish/config.fish'
@@ -120,10 +117,5 @@ abbr -a termconf '$EDITOR ~/.config/kitty/kitty.conf'
 abbr -a i3conf '$EDITOR ~/.config/i3/config ~/.config/i3status/config ~/.config/i3status-rust/config.toml'
 abbr -a hyprconf '$EDITOR ~/.config/hypr/hyprland.conf ~/.config/waybar/config ~/.config/waybar/style.css'
 
-abbr -a dprod 'doppler setup -c prd --no-read-env --no-interactive'
-
-abbr -a now '$EDITOR ~/.config/conky/content.md'
-
 starship init fish | source
-# thefuck --alias | source
 mise activate fish | source
