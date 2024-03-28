@@ -4,4 +4,5 @@
 Session.vim
 Thumbs.db
 .rtx.toml
+.mise.toml
 .python-version
