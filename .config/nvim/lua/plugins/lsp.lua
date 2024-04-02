@@ -13,7 +13,7 @@ return {
 				ensure_installed = {
 					"editorconfig-checker",
 
-					"pyright",
+					"basedpyright",
 					"ruff-lsp",
 					"black",
 					"isort",
@@ -31,7 +31,7 @@ return {
 					"hadolint",
 					"trivy",
 
-					-- "sql-formatter",
+					"sql-formatter",
 					-- "sqlls",
 
 					-- "bash-language-server",
