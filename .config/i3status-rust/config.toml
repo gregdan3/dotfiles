@@ -9,13 +9,18 @@ separator = " "
 [icons]
 icons = "material-nf"
 
+# [[block]]
+# block = "pomodoro"
+# format = "$icon{$message|}"
+# message = "Break time! (Click to start the break!)"
+# break_message = "Back to work!"
+# notify_cmd = "notify-send --app-name=pomodoro '{msg}'"
 
-[[block]]
-block = "pomodoro"
-format = "$icon{$message|}"
-message = "Break time! (Click to start the break!)"
-break_message = "Back to work!"
-notify_cmd = "notify-send --app-name=pomodoro '{msg}'"
+# [[block]]
+# block = "custom"
+# format = "Clipboard: $text"
+# command = "xsel --clipboard | wc -w"
+# interval = 10
 
 # [[block]]
 # block = "focused_window"
@@ -31,7 +36,8 @@ notify_cmd = "notify-send --app-name=pomodoro '{msg}'"
 
 [[block]]
 block = "weather"
-format = "$icon$weather  $temp  $humidity  {$wind}mph"
+format = "$icon$weather  $temp"
+format_alt = "$icon$weather  $temp  $humidity  {$wind}mph"
 interval = 1800
 autolocate = true
 autolocate_interval = 7200
@@ -73,9 +79,9 @@ alert = 10.0
 
 [[block]]
 block = "custom"
-# name = "ipv4"
+# name = "ip address ipv4 ipv6"
 format = "󰩟 $text"
-cycle = ["", "dig +short myip.opendns.com @resolver1.opendns.com"]
+cycle = ["", "dig +short myip.opendns.com @resolver1.opendns.com", "dig TXT +short o-o.myaddr.l.google.com @ns1.google.com"]
 
 [[block]]
 block = "custom"
@@ -83,7 +89,7 @@ block = "custom"
 format = "󰖂 $text"
 cycle = [
   "",
-  "echo $(tailscale switch --list | awk '{ print $2 }' | sed -nr 's/\\*//p')  $(tailscale status --json | jq -r '.MagicDNSSuffix')",
+  "echo $(tailscale switch --list | awk '{ print $3 }' | sed -nr 's/\\*//p')  $(tailscale status --json | jq -r '.MagicDNSSuffix')",
 ]
 
 [[block]]
