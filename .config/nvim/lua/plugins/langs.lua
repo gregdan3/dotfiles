@@ -12,7 +12,6 @@ return {
 		opts = {
 			workspaces = {
 				{ name = "personal", path = "~/vaults/personal/" },
-				{ name = "cfrl", path = "~/vaults/cfrl/" },
 			},
 			notes_subdir = "scraps",
 			daily_notes = {

@@ -3,7 +3,39 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		auto_install = true,
 		opts = {
-			ensure_installed = "all",
+			ensure_installed = {
+				-- langs
+				"python",
+				"rust",
+				"lua",
+				"sql",
+				"dockerfile",
+				--
+				"bash",
+				"fish",
+				--
+				"javascript",
+				"typescript",
+				"svelte",
+				"html",
+				"css",
+				---
+				"toml",
+				"yaml",
+				"json",
+				-- inline
+				"regex",
+				-- writing
+				"markdown",
+				"markdown_inline",
+				"mermaid",
+				-- git
+				"gitcommit",
+				"gitignore",
+				"gitattributes",
+				"git_rebase",
+				"git_config",
+			},
 			disable = function(lang, buf)
 				local max_filesize = 100 * 1024 -- 100 KB
 				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))

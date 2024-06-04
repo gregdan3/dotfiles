@@ -47,7 +47,7 @@ return {
 					"yaml-language-server",
 					"yamllint",
 					"actionlint",
-					"taplo-lsp",
+					-- "taplo-lsp",
 					-- "jsonls",
 
 					-- "terraform-ls",
