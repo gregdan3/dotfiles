@@ -86,6 +86,7 @@ abbr -a pu 'pdm update'
 abbr -a rm 'rm -iv'
 abbr -a ssh 'kitty +kitten ssh'
 abbr -a term 'kitty --single-instance & disown'
+abbr -a note 'nvim ~/vaults/personal/README.md'
 
 abbr -a x 'xsel --clipboard'
 abbr -a w wl-copy
