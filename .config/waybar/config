@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["wlr/taskbar"],
-    "modules-right": ["network", "cpu", "temperature", "memory", "disk#root", "pulseaudio#output", "pulseaudio#source", "battery", "clock#date", "clock#time", "tray"],
+    "modules-right": ["network", "cpu", "temperature", "memory", "disk#root", "pulseaudio#output", "pulseaudio#source", "battery", "clock#date", "clock#time", "custom/beattime", "tray"],
 
     // Modules configuration
     "hyprland/workspaces": {
@@ -79,6 +79,11 @@
         "format": "{:%H:%M}",
         "tooltip": false,
     },
+    "custom/beattime": {
+        "interval": 5,
+        "exec": "echo \"$(( ( ( ( $(date +%s) + 3600 ) % 86400 ) * 10 ) / 864 ))\"",
+        "format": " @{} ",
+      },
     "cpu": {
         "interval": 10,
         "format": "",
