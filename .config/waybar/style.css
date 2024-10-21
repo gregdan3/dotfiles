@@ -52,6 +52,8 @@
 @define-color disk	@blue;
 @define-color sound	@purple;
 @define-color source	@purple;
+@define-color beattime	@blue;
+@define-color utctime	@bg2;
 
 /* Reset all styles */
 * {
@@ -67,11 +69,10 @@
 
 /* The whole bar */
 #waybar {
-  background: rgba(40, 40, 40, 0.9); /* #282828e0 */
+  background: rgba(40, 40, 40, 0.5); /* #282828e0 */
   color: @white;
   font-family: TerminessNerdFont;
   font-size: 12pt;
-  font-weight: bold;
 }
 
 /* Each module */
@@ -119,7 +120,6 @@
 /* Workspaces stuff */
 #workspaces button, 
 #taskbar button {
-  /* font-weight: bold; */
   padding-left: 4pt;
   padding-right: 4pt;
   color: @white;
@@ -146,12 +146,6 @@
   background: @warning;
 }
 
-/* Style when cursor is on the button */
-#workspaces button:hover {
-  background: @black;
-  color: @white;
-}
-
 #window {
   margin-right: 35pt;
   margin-left: 35pt;
@@ -160,7 +154,11 @@
 #pulseaudio {
   background: @sound;
   color: @white;
-  font-weight: normal;
+}
+
+#pulseaudio.source {
+  background: @source;
+  color: @white;
 }
 
 #network {
@@ -219,4 +217,14 @@
 #clock.time {
   background: @time;
   color: @black;
+}
+
+#custom-beattime {
+  background: @beattime;
+  color: @white;
+}
+
+#custom-utc {
+  background: @utc;
+  color: @white;
 }
