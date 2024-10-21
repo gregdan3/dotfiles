@@ -5,5 +5,6 @@
 vim.opt.wrap = true
 vim.opt.linebreak = true
 -- vim.opt.foldcolumn = "1" -- ufo and gitsigns need
+vim.opt.textwidth = 80
 
 vim.g.lazyvim_python_lsp = "basedpyright"

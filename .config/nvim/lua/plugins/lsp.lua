@@ -14,17 +14,19 @@ return {
 					"editorconfig-checker",
 
 					"basedpyright",
+					"docformatter",
 					"ruff-lsp",
 					"black",
 					"isort",
 
 					"eslint-lsp",
 					"typescript-language-server",
+					-- "tsserver",
 					"svelte-language-server",
-					"prettier",
+					-- "prettier",
 
 					"css-lsp",
-					"tailwindcss-language-server",
+					-- "tailwindcss-language-server",
 
 					"docker-compose-language-service",
 					"dockerfile-language-server",
