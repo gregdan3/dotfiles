@@ -120,3 +120,4 @@ abbr -a hyprconf '$EDITOR ~/.config/hypr/hyprland.conf ~/.config/waybar/config ~
 
 starship init fish | source
 mise activate fish | source
+thefuck --alias f | source
