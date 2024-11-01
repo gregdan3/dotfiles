@@ -86,7 +86,6 @@ abbr -a pu 'pdm update'
 abbr -a rm 'rm -iv'
 abbr -a ssh 'kitty +kitten ssh'
 abbr -a term 'kitty --single-instance & disown'
-abbr -a note 'nvim ~/vaults/personal/README.md'
 
 abbr -a x 'xsel --clipboard'
 abbr -a w wl-copy
@@ -95,7 +94,11 @@ abbr -a v '$EDITOR'
 abbr -a vi '$EDITOR'
 abbr -a vim '$EDITOR'
 abbr -a vmi '$EDITOR'
+abbr -a ivm '$EDITOR'
 abbr -a nivm '$EDITOR'
+abbr -a vnim '$EDITOR'
+abbr -a vnim '$EDITOR'
+abbr -a vinm '$EDITOR'
 
 abbr -a cat bat
 abbr -a ls eza
@@ -112,6 +115,7 @@ abbr -a pacclean 'pacman -Qtdq | paru -Rcns -'
 abbr -a packages 'pacman -Qqnett'
 abbr -a extpackages 'pacman -Qqmett'
 abbr -a config '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+abbr -a lazyconfig '/usr/bin/lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 abbr -a nvimconf '$EDITOR ~/.config/nvim/lua/*/*.lua'
 abbr -a fishconf '$EDITOR ~/.config/fish/config.fish'
 abbr -a termconf '$EDITOR ~/.config/kitty/kitty.conf'
