@@ -1,9 +1,7 @@
 [core]
-	showsafecontent = false
 	notifications = true
 	nopager = false
 	cliptimeout = 60
-	autoclip = true
 	parsing = true
 	exportkeys = true
 	autoimport = true
@@ -11,3 +9,7 @@
 	usekeychain = false
 [mounts]
 	path = /home/gregdan3/.password-store
+[show]
+	safecontent = false
+[generate]
+	autoclip = true
