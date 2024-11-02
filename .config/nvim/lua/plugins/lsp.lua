@@ -23,7 +23,7 @@ return {
 					"typescript-language-server",
 					-- "tsserver",
 					"svelte-language-server",
-					-- "prettier",
+					"prettier",
 
 					"css-lsp",
 					-- "tailwindcss-language-server",
