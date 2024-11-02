@@ -122,6 +122,9 @@ abbr -a termconf '$EDITOR ~/.config/kitty/kitty.conf'
 abbr -a i3conf '$EDITOR ~/.config/i3/config ~/.config/i3status/config ~/.config/i3status-rust/config.toml'
 abbr -a hyprconf '$EDITOR ~/.config/hypr/hyprland.conf ~/.config/waybar/config ~/.config/waybar/style.css'
 
+abbr -a pdf xreader
+abbr -a doc libreoffice
+
 starship init fish | source
 mise activate fish | source
 thefuck --alias f | source
