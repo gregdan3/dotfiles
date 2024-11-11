@@ -1,8 +1,8 @@
 return {
-	{
-		"folke/edgy.nvim",
-		opts = { animate = { enabled = false } },
-	},
+	-- {
+	-- 	"folke/edgy.nvim",
+	-- 	opts = { animate = { enabled = false } },
+	-- },
 
 	-- config for filesystem viewer
 	{
