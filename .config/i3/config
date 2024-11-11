@@ -29,7 +29,7 @@ set_from_resource $term_color15    color15
 # Autostart applications
 exec --no-startup-id feh --bg-scale --randomize --no-fehbg $wallpapers
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -f -e -c 222222' # ignore empty pw, set background
-exec --no-startup-id nm-applet  # network manager tray icon
+exec --no-startup-id iwgtk -i  # iw viewer
 exec --no-startup-id blueman-applet  # bluetooth tray icon
 exec --no-startup-id autorandr -c  # trigger display detection
 # exec --no-startup-id picom -b  # compositor
