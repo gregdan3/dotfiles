@@ -1,7 +1,7 @@
 set --export GPG_TTY (tty)
 set --export PATH $PATH $HOME/.local/bin $HOME/.cargo/bin
 
-set -U --export BROWSER firefox
+# set -U --export BROWSER firefox
 set -U --export EDITOR nvim
 set -U --export GLFW_IM_MODULE ibus
 set -U --export XDG_CACHE_HOME $HOME/.cache
