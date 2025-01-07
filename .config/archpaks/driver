@@ -25,6 +25,7 @@ docker-compose
 dunst
 dust
 efibootmgr
+entr
 ethtool
 eza
 fcitx-configtool
@@ -42,9 +43,9 @@ i3-wm
 i3lock
 i3status
 i3status-rust
+inetutils
 intel-media-driver
 intel-ucode
-inetutils
 ipython
 irssi
 jq
@@ -53,13 +54,11 @@ kitty
 krita
 lazygit
 libreoffice-fresh
-libva-mesa-driver
 linux
 linux-firmware
 lshw
 maim
 man-db
-mesa-vdpau
 moreutils
 neofetch
 neovim
@@ -73,6 +72,7 @@ ntfs-3g
 obs-studio
 onefetch
 openbsd-netcat
+orca
 p7zip
 parallel
 pavucontrol
@@ -114,9 +114,10 @@ ttf-nerd-fonts-symbols
 ttf-terminus-nerd
 tumbler
 unzip
-vulkan-intel
 vim
 vlc
+vulkan-intel
+vulkan-mesa-layers
 vulkan-radeon
 waybar
 wget
