@@ -8,3 +8,4 @@ vim.opt.linebreak = true
 vim.opt.textwidth = 80
 
 vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.snacks_animate = false
