@@ -31,7 +31,7 @@ exec --no-startup-id feh --bg-scale --randomize --no-fehbg $wallpapers
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -f -e -c 222222' # ignore empty pw, set background
 exec --no-startup-id iwgtk -i  # iw viewer
 exec --no-startup-id blueman-applet  # bluetooth tray icon
-exec --no-startup-id autorandr -c  # trigger display detection
+exec --no-startup-id autorandr horizontal  # trigger display detection
 # exec --no-startup-id picom -b  # compositor
 # exec --no-startup-id conky  # background notes
 exec --no-startup-id ibus-daemon -drx  # input method changing
@@ -62,7 +62,7 @@ bindsym $mod+d exec rofi -show
 # program actions on binds
 bindsym $mod+Shift+w exec feh --bg-scale --randomize --no-fehbg $wallpapers && $normalnotif "Feh"
 bindsym $mod+Shift+b exec feh --bg-scale --no-fehbg $wallpapers/blank.jpg && $normalnotif "Feh" "Blanking wallpaper"
-bindsym $mod+Shift+m exec autorandr -c && $normalnotif "Autorandr" "Checking monitors"
+bindsym $mod+Shift+m exec autorandr horizontal && $normalnotif "Autorandr" "Checking monitors"
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && $lownotif "Light" "$(light)%"
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && $lownotif "Light" "$(light)%"
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && $normalnotif "PulseAudio" $soundcheck
