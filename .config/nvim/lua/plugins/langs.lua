@@ -1,7 +1,32 @@
 return {
-	{
-		"edgedb/edgedb-vim",
-		event = "BufEnter",
-		ft = { "esdl", "edgeql" },
-	},
+	-- {
+	-- 	"edgedb/edgedb-vim",
+	-- 	event = "BufEnter",
+	-- 	ft = { "esdl", "edgeql" },
+	-- },
+	-- {
+	-- 	"epwalsh/obsidian.nvim",
+	-- 	version = "*",
+	-- 	lazy = true,
+	-- 	-- ft = "markdown",
+	-- 	event = {
+	-- 		"BufReadPre " .. vim.fn.expand("~") .. "vaults/personal/*.md",
+	-- 		"BufNewFile " .. vim.fn.expand("~") .. "vaults/personal/*.md",
+	-- 	},
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	opts = {
+	-- 		workspaces = {
+	-- 			{
+	-- 				name = "personal",
+	-- 				path = "~/vaults/personal",
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	completion = {
+	-- 		nvim_cmp = true,
+	-- 		min_chars = 2,
+	-- 	},
+	-- },
 }
