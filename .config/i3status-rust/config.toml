@@ -81,7 +81,11 @@ alert = 10.0
 block = "custom"
 # name = "ip address ipv4 ipv6"
 format = "󰩟 $text"
-cycle = ["", "dig +short myip.opendns.com @resolver1.opendns.com", "dig TXT +short o-o.myaddr.l.google.com @ns1.google.com"]
+cycle = [
+  "",
+  "dig +short myip.opendns.com @resolver1.opendns.com",
+  "dig TXT +short o-o.myaddr.l.google.com @ns1.google.com",
+]
 
 [[block]]
 block = "custom"
@@ -112,12 +116,12 @@ interval = 30
 [[block]]
 block = "cpu"
 format = "$icon"
-format_alt = "$icon $utilization $frequency $boost"
+format_alt = "$icon$utilization $frequency $boost"
 
 [[block]]
 block = "temperature"
 format = "$icon"
-format_alt = "$icon $average avg, $max max"
+format_alt = "$icon$average avg, $max max"
 
 [[block]]
 block = "backlight"

@@ -3,7 +3,7 @@ set $mod Mod4
 set $terminal kitty --single-instance
 set $browser firefox
 set $wallpapers ~/Media/Wallpapers
-set $font pango:TerminessNerdFontMono 15
+set $font pango:TerminessNerdFont 12
 font $font
 
 # i3 color palette  ( ~/.Xresources file )
@@ -157,20 +157,20 @@ bar {
     i3bar_command i3bar
     status_command i3status-rs
     position top
-    separator_symbol "▕ "
-    strip_workspace_numbers no  # never remove workspace numbers
-    colors {
-        background $term_background
-        statusline $term_color15
-        separator  $term_foreground
+    # separator_symbol "▕ "
+    # strip_workspace_numbers no  # never remove workspace numbers
+    # colors {
+    #     background $term_background
+    #     statusline $term_color15
+    #     separator  $term_foreground
 
-        # name_of_area     border             backgr.            text
-        focused_workspace  $term_foreground   $term_color12      $term_color7
-        active_workspace   $term_foreground   $term_color5       $term_color7
-        inactive_workspace $term_background   $term_background   $term_color15
-        binding_mode       $term_foreground   $term_color9       $term_color7
-        urgent_workspace   $term_foreground   $term_color1       $term_color7
-    }
+    #     # name_of_area     border             backgr.            text
+    #     focused_workspace  $term_foreground   $term_color12      $term_color7
+    #     active_workspace   $term_foreground   $term_color5       $term_color7
+    #     inactive_workspace $term_background   $term_background   $term_color15
+    #     binding_mode       $term_foreground   $term_color9       $term_color7
+    #     urgent_workspace   $term_foreground   $term_color1       $term_color7
+    # }
 }
 
 bindsym $mod+m bar mode toggle

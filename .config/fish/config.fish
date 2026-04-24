@@ -1,7 +1,7 @@
 set --export GPG_TTY (tty)
 set --export PATH $PATH $HOME/.local/bin $HOME/.cargo/bin
 
-# set -U --export BROWSER firefox
+set -U --export BROWSER firefox
 set -U --export EDITOR nvim
 set -U --export GLFW_IM_MODULE ibus
 set -U --export XDG_CACHE_HOME $HOME/.cache
@@ -19,19 +19,8 @@ abbr -a dil 'docker image ls'
 abbr -a dl 'docker logs'
 abbr -a dp 'docker ps'
 abbr -a dpa 'docker ps --all'
-abbr -a dprod 'doppler setup -c prd --no-read-env --no-interactive'
-abbr -a dr 'doppler run --'
-abbr -a drpi 'doppler run -- pdm install'
-abbr -a drpr 'doppler run -- pdm run'
-abbr -a drps 'doppler run -- pdm sync'
-abbr -a drpu 'doppler run -- pdm update'
-abbr -a dry 'doppler run -- yarn'
-abbr -a dryb 'doppler run -- yarn build'
-abbr -a ds 'doppler setup'
 abbr -a dsl 'docker service ls'
-abbr -a dss 'doppler setup --no-read-env --no-interactive'
 abbr -a du 'du -h'
-abbr -a fbt 'doppler run -- pdm run fbt'
 abbr -a ga 'git add'
 abbr -a gaf 'git add -f'
 abbr -a gb 'git branch'
@@ -90,15 +79,13 @@ abbr -a term 'kitty --single-instance & disown'
 abbr -a x 'xsel --clipboard'
 abbr -a w wl-copy
 
-abbr -a v '$EDITOR'
+abbr -a e '$EDITOR'
 abbr -a vi '$EDITOR'
 abbr -a vim '$EDITOR'
+abbr -a nvim '$EDITOR'
 abbr -a vmi '$EDITOR'
-abbr -a ivm '$EDITOR'
 abbr -a nivm '$EDITOR'
 abbr -a vnim '$EDITOR'
-abbr -a vnim '$EDITOR'
-abbr -a vinm '$EDITOR'
 
 abbr -a cat bat
 abbr -a ls eza
@@ -114,17 +101,22 @@ abbr -a weather 'curl -s "wttr.in/?format=%c+%l:+%C+%t+%w+%h" | sed "s/,.*:/:/g"
 abbr -a pacclean 'pacman -Qtdq | paru -Rcns -'
 abbr -a packages 'pacman -Qqnett'
 abbr -a extpackages 'pacman -Qqmett'
+abbr -a paru yay
 abbr -a config 'git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 abbr -a lazyconfig 'lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 abbr -a nvimconf '$EDITOR ~/.config/nvim/lua/*/*.lua'
 abbr -a fishconf '$EDITOR ~/.config/fish/config.fish'
 abbr -a termconf '$EDITOR ~/.config/kitty/kitty.conf'
+abbr -a kittyconf '$EDITOR ~/.config/kitty/kitty.conf'
 abbr -a i3conf '$EDITOR ~/.config/i3/config ~/.config/i3status/config ~/.config/i3status-rust/config.toml'
 abbr -a hyprconf '$EDITOR ~/.config/hypr/hyprland.conf ~/.config/waybar/config ~/.config/waybar/style.css'
+abbr -a wmconf '$EDITOR ~/.config/i3/config ~/.config/i3status/config ~/.config/i3status-rust/config.toml'
 
 abbr -a pdf xreader
 abbr -a doc libreoffice
+abbr -a sheet libreoffice
 
 starship init fish | source
 mise activate fish | source
-thefuck --alias f | source
+# thefuck --alias f | source
