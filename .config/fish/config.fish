@@ -1,5 +1,4 @@
 set --export GPG_TTY (tty)
-set --export PATH $PATH $HOME/.local/bin $HOME/.cargo/bin
 
 set -U --export BROWSER firefox
 set -U --export EDITOR nvim
@@ -87,10 +86,21 @@ abbr -a vmi '$EDITOR'
 abbr -a nivm '$EDITOR'
 abbr -a vnim '$EDITOR'
 
+# replacements
 abbr -a cat bat
 abbr -a ls eza
 abbr -a sl eza
+abbr -a sl eza
 abbr -a exa eza
+abbr -a find fd
+abbr -a fnd fd
+abbr -a paru yay
+abbr -a man tldr
+abbr -a tl tldr
+abbr -a grep rg
+abbr -a rgep rg
+abbr -a grpe rg
+abbr -a j z
 abbr -a ll 'eza -la --header --git --git-repos --smart-group --icons=auto'
 
 abbr -a boxdraw 'curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt'
@@ -98,10 +108,9 @@ abbr -a publicipv4 'dig +short myip.opendns.com @resolver1.opendns.com'
 abbr -a publicipv6 'dig TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 abbr -a weather 'curl -s "wttr.in/?format=%c+%l:+%C+%t+%w+%h" | sed "s/,.*:/:/g" | sed "s/  / /g"' # > ~/.config/weather'
 
-abbr -a pacclean 'pacman -Qtdq | paru -Rcns -'
+abbr -a pacclean 'pacman -Qtdq | sudo pacman -Rcns -'
 abbr -a packages 'pacman -Qqnett'
 abbr -a extpackages 'pacman -Qqmett'
-abbr -a paru yay
 abbr -a config 'git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 abbr -a lazyconfig 'lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
@@ -115,8 +124,14 @@ abbr -a wmconf '$EDITOR ~/.config/i3/config ~/.config/i3status/config ~/.config/
 
 abbr -a pdf xreader
 abbr -a doc libreoffice
+abbr -a docx libreoffice
 abbr -a sheet libreoffice
+abbr -a xlsx libreoffice
+
+abbr -a img feh
+abbr -a vid mpv
+abbr -a video mpv
 
 starship init fish | source
 mise activate fish | source
-# thefuck --alias f | source
+zoxide init fish | source
