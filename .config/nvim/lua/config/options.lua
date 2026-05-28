@@ -9,3 +9,9 @@ vim.opt.textwidth = 80
 
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.snacks_animate = false
+
+vim.filetype.add({
+  extension = {
+    mdx = "markdown.mdx",
+  },
+})
