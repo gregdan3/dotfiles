@@ -44,10 +44,10 @@ set $normalnotif notify-send -t 8000 -u normal -a
 set $criticalnotif notify-send -t 60000 -u critical -a
 
 # audio shortcuts
-set $soundcheck "Sound $(pactl get-sink-mute 0 | sed 's/Mute: yes/muted/g' | sed 's/Mute: no/unmuted/g')"
-set $volumecheck "Volume $(pactl get-sink-volume 0 | grep -Po '\d*%' | head -1)"
-set $miccheck "Mic $(pactl get-source-mute 0 | sed 's/Mute: yes/muted/g' | sed 's/Mute: no/unmuted/g')"
-set $micvolcheck "Mic Volume $(pactl get-source-volume 0 | grep -Po '\d*%' | head -1)"
+set $soundcheck "Sound $(pactl get-sink-mute @DEFAULT_SINK@ | sed 's/Mute: yes/muted/g' | sed 's/Mute: no/unmuted/g')"
+set $volumecheck "Volume $(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d*%' | head -1)"
+set $miccheck "Mic $(pactl get-source-mute @DEFAULT_SOURCE@ | sed 's/Mute: yes/muted/g' | sed 's/Mute: no/unmuted/g')"
+set $micvolcheck "Mic Volume $(pactl get-source-volume @DEFAULT_SOURCE@ | grep -Po '\d*%' | head -1)"
 
 bindsym --release Caps_Lock exec $normalnotif "Caps Lock" "$(xset q | grep 'Caps Lock' | awk '{print $4}')"
 bindsym --release Num_Lock exec $normalnotif "Num Lock" "$(xset q | grep 'Num Lock' | awk '{print $8}')"
@@ -63,12 +63,12 @@ bindsym $mod+d exec rofi -show
 bindsym $mod+Shift+w exec feh --bg-scale --randomize --no-fehbg $wallpapers && $normalnotif "Feh"
 bindsym $mod+Shift+b exec feh --bg-scale --no-fehbg $wallpapers/blank.jpg && $normalnotif "Feh" "Blanking wallpaper"
 bindsym $mod+Shift+m exec autorandr horizontal && $normalnotif "Autorandr" "Checking monitors"
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && $lownotif "Light" "$(light)%"
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && $lownotif "Light" "$(light)%"
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && $normalnotif "PulseAudio" $soundcheck
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% && $lownotif "PulseAudio" $volumecheck
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% && $lownotif "PulseAudio" $volumecheck
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 0 toggle && $normalnotif "PulseAudio" $miccheck
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+ && $lownotif "Light" "(brightnessctl -m | cut -d, -f4)"
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%- && $lownotif "Light" "(brightnessctl -m | cut -d, -f4)"
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $normalnotif "PulseAudio" $soundcheck
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $lownotif "PulseAudio" $volumecheck
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $lownotif "PulseAudio" $volumecheck
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $normalnotif "PulseAudio" $miccheck
 
 bindsym $mod+Print exec maim -u | tee "$HOME/Media/$(date --iso-8601=seconds).png" | xclip -selection clipboard -t image/png && $normalnotif "Screenshot" "Took screenshot"
 bindsym $mod+Ctrl+Print exec maim -u -i "$(xdotool getactivewindow)" | tee "$HOME/Media/$(date --iso-8601=seconds).png" | xclip -selection clipboard -t image/png && $normalnotif "Screenshot" "Took screenshot of focused window"
