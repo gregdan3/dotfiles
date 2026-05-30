@@ -2,79 +2,117 @@
 
 @keyframes blink-critical {
   to {
-    /*color: @white;*/
+    /*color: @white1;*/
     background-color: @critical;
   }
 }
 
-/* Styles */
+/* hard */
+@define-color hdblack  #1d2021;
+@define-color hdwhite #f9f5d7;
 
-/* Colors (gruvbox) */
-@define-color black	#282828;
-@define-color red	#cc241d;
-@define-color yellow	#d79921;
-@define-color green	#98971a;
-@define-color aqua	#689d6a;
-@define-color blue	#458588;
-@define-color purple	#b16286;
-@define-color gray	#928374;
+@define-color black0  #282828;
+@define-color black1 #3c3836;
+@define-color black4 #7c6f64;
+
+@define-color white0  #fbf1c7;
+@define-color white1  #ebdbb2;
+@define-color white4  #a89984;
+
+/* neutral */
+@define-color red  #cc241d;
+@define-color green  #98971a;
+@define-color yellow  #d79921;
+@define-color blue  #458588;
+@define-color purple  #b16286;
+@define-color aqua  #689d6a;
+@define-color orange  #d65d0e;
+@define-color gray  #928374; 
 
 /* bright */
-@define-color white	#ebdbb2;
-@define-color brred	#fb4934;
-@define-color bryellow	#fabd2f;
-@define-color brgreen	#b8bb26;
-@define-color braqua	#8ec07c;
-@define-color brblue	#83a598;
-@define-color brpurple	#d3869b;
-@define-color brgray	#a89984;
+@define-color brred  #fb4934;
+@define-color brgreen  #b8bb26;
+@define-color bryellow  #fabd2f;
+@define-color brblue  #83a598;
+@define-color brpurple  #d3869b;
+@define-color braqua  #8ec07c;
+@define-color brorange  #fe8019;
+@define-color brgray  @white4;
 
-@define-color bg2	#504945;
+/* faded */
+@define-color fdred  #9d0006;
+@define-color fdgreen  #79740e;
+@define-color fdyellow  #b57614;
+@define-color fdblue  #076678;
+@define-color fdpurple  #8f3f71;
+@define-color fdaqua  #427b58;
+@define-color fdorange  #af3a03;
+@define-color fdgray  @black4;
 
-@define-color warning 	@bryellow;
-@define-color critical	@brred;
-@define-color unfocused	@bg2;
-@define-color focused	@white;
-@define-color inactive	@purple;
+@define-color missing #ff00ff;
 
-@define-color workspaces	@white;
-@define-color taskbar	@white;
+/* aliases */
+@define-color bg  @black1;
+@define-color fg  @white1;
 
-@define-color time	@white;
-@define-color backlight	@gray;
-@define-color date	@black;
-@define-color language	@yellow;
-@define-color network	@purple;
-@define-color cpu	@green;
-@define-color temp	@green;
-@define-color battery	@aqua;
-@define-color memory	@blue;
-@define-color disk	@blue;
-@define-color sound	@purple;
-@define-color source	@purple;
-@define-color beattime	@blue;
-@define-color utctime	@bg2;
+@define-color warning   @bryellow;
+@define-color critical  @brred;
+
+@define-color invisible  @black1;
+@define-color active  @white1;
+@define-color visible  @gray;
+
+
+@define-color title @black1;
+@define-color workspaces  @white1;
+@define-color taskbar  @white1;
+@define-color tray  @black1;
+
+@define-color network  @blue;
+
+@define-color cpu  @gray;
+@define-color temp  @gray;
+@define-color memory  @gray;
+@define-color disk  @gray;
+
+@define-color sound  @gray;
+@define-color source  @gray;
+
+@define-color date  @black1;
+@define-color time  @black1;
+@define-color language  @yellow;
+@define-color battery  @aqua;
+@define-color beattime  @blue;
+
+@define-color docker  @blue;
+@define-color tailscale  @gray;
+@define-color ssh @green;
+
+@define-color backlight  @gray;
+@define-color utctime  @missing;
+@define-color weather @missing;
 
 /* Reset all styles */
 * {
   border: none;
   border-radius: 0;
-  min-height: 0;
-  margin: -1px;
+  min-height: 28px;
+  min-width: 12px;
+  margin: 0px;
   margin-top: -2px;
   margin-bottom: -2px;
-  padding: 0;
+  padding: 0px;
   box-shadow: none;
-  text-shadow: none;
+  text-shadow: 1px 1px 0px @hdblack;
   -gtk-icon-shadow: none;
 }
 
 /* The whole bar */
 #waybar {
-  background: rgba(40, 40, 40, 0.5); /* #282828e0 */
-  color: @white;
-  font-family: TerminessNerdFont;
-  font-size: 12pt;
+  background: alpha(@bg, 0.6);
+  color: @missing;
+  font-family: Terminess Nerd Font;
+  font-size: 18px;
 }
 
 /* Each module */
@@ -92,7 +130,17 @@
 #idle_inhibitor,
 #disk,
 #user,
-#mpris {
+#mpris,
+#taskbar,
+#window,
+#workspaces,
+#custom-beattime,
+#custom-docker,
+#custom-tailscale,
+#custom-weather,
+#custom-utc,
+#custom-ssh
+{
   padding-left: 8pt;
   padding-right: 8pt;
 }
@@ -119,114 +167,133 @@
   color: @warning;
 }
 
-/* Workspaces stuff */
-#workspaces button, 
+#workspaces button,
 #taskbar button {
-  padding-left: 4pt;
-  padding-right: 4pt;
-  color: @white;
-  background: @unfocused;
+  padding-left: 0;
+  background: @invisible;
+  color: @fg;
 }
 
-/* Inactive (on unfocused output) */
 #workspaces button.visible,
 #taskbar button.visible {
-  color: @white;
-  background: @inactive;
+  background: @visible;
+  color: @fg;
 }
 
-/* Active (on focused output) */
 #workspaces button.active,
 #taskbar button.active {
-  color: @black;
-  background: @focused;
+  background: @active;
+  color: @bg;
+}
+/* TODO: wtf */
+#workspaces button.active *,
+#taskbar button.active * {
+  text-shadow: none;
 }
 
 /* Contains an urgent window */
 #workspaces button.urgent {
-  color: @white;
   background: @warning;
+  color: @fg;
 }
 
 #window {
-  margin-right: 35pt;
-  margin-left: 35pt;
+  background: @title;
+  color: @fg;
 }
 
 #pulseaudio {
   background: @sound;
-  color: @white;
+  color: @fg;
 }
 
 #pulseaudio.source {
   background: @source;
-  color: @white;
+  color: @fg;
 }
 
 #network {
   background: @network;
-  color: @white;
+  color: @fg;
 }
 
 #memory {
   background: @memory;
-  color: @white;
+  color: @fg;
 }
 
 #cpu {
   background: @cpu;
-  color: @white;
+  color: @fg;
 }
 
 #disk {
   background: @disk;
+  color: @fg;
 }
 
 #temperature {
   background: @temp;
-  color: @white;
+  color: @fg;
 }
 
 #language {
   background: @language;
-  color: @white;
+  color: @fg;
 }
 
 #battery {
   background: @battery;
-  color: @white;
+  color: @fg;
 }
 
 #backlight {
   background: @backlight;
-  color: @white;
+  color: @fg;
 }
 
 #tray {
-  background: @bg2;
+  background: @tray;
+  color: @fg;
 }
 
 #taskbar {
-  background: @bg2;
-  color: @white;
+  background: @bg;
+  color: @fg;
 }
 
 #clock.date {
-  background: @bg2;
-  color: @white;
+  background: @date;
+  color: @fg;
+  /* font-weight: bold; */
 }
 
 #clock.time {
   background: @time;
-  color: @black;
+  color: @fg;
+  font-weight: bold;
 }
 
 #custom-beattime {
   background: @beattime;
-  color: @white;
+  color: @fg;
+}
+
+#custom-docker {
+  background: @docker;
+  color: @fg;
+}
+
+#custom-tailscale {
+  background: @tailscale;
+  color: @fg;
 }
 
 #custom-utc {
   background: @utc;
-  color: @white;
+  color: @fg;
+}
+#custom-ssh {
+  background: @ssh;
+  color: @fg;
 }
