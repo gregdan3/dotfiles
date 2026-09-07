@@ -1,6 +1,24 @@
 add_newline = false
 
-format = "$all"
+# format = "$username@$hostname $character"
+right_format = "$time"
 
 [line_break]
 disabled = true
+
+# [username]
+# disabled = false
+# show_always = true
+# format = "[$user]($style)"
+#
+# [hostname]
+# disabled = false
+# ssh_only = false
+# format = "[$ssh_symbol$hostname]($style)"
+# ssh_symbol = "🌐"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+format = '[$time]($style)'
+style = "dimmed white"
