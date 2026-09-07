@@ -132,6 +132,8 @@ abbr -a img feh
 abbr -a vid mpv
 abbr -a video mpv
 
+abbr -a feh "feh --image-bg black"
+
 starship init fish | source
 mise activate fish | source
 zoxide init fish | source
