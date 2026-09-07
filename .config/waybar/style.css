@@ -172,6 +172,8 @@
   padding-left: 0;
   background: @invisible;
   color: @fg;
+  /* margin: 1px; */
+  /* border: 1px solid @hdblack; */
 }
 
 #workspaces button.visible,
@@ -189,6 +191,9 @@
 #workspaces button.active *,
 #taskbar button.active * {
   text-shadow: none;
+  /* text-shadow: */
+  /*      1px 1px 1px @orange, */
+  /*      2px 2px 2px @orange; */
 }
 
 /* Contains an urgent window */
