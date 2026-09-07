@@ -8,6 +8,7 @@ separator = " "
 
 [icons]
 icons = "material-nf"
+# icons = "awesome"
 
 # [[block]]
 # block = "pomodoro"
@@ -37,16 +38,17 @@ icons = "material-nf"
 [[block]]
 block = "weather"
 format = "$icon$weather  $temp"
-format_alt = "$icon$weather  $temp  $humidity  {$wind}mph"
+format_alt = "$icon$weather $temp  $humidity  {$wind}mph"
 interval = 1800
 autolocate = true
 autolocate_interval = 7200
 [block.service]
 name = "metno"
+# units = "imperial"
 
 [[block]]
 block = "docker"
-format = "$icon$running "
+format = "$icon$running"
 interval = 60
 
 # [[block]]
@@ -69,13 +71,13 @@ format_alt = "$icon$available / $total"
 warning = 20.0
 alert = 10.0
 
-[[block]]
-block = "disk_space"
-path = "/home"
-format = "󰋜 "
-format_alt = "󰋜 $available / $total"
-warning = 20.0
-alert = 10.0
+# [[block]]
+# block = "disk_space"
+# path = "/home"
+# format = "󰋜 "
+# format_alt = "󰋜 $available / $total"
+# warning = 20.0
+# alert = 10.0
 
 [[block]]
 block = "custom"
@@ -126,10 +128,13 @@ format_alt = "$icon$average avg, $max max"
 [[block]]
 block = "backlight"
 format = "$icon"
+missing_format = ""
+cycle = [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
 [[block]]
 block = "sound"
 format = "$icon"
+format_alt = "$icon$volume"
 
 [[block]]
 block = "time"

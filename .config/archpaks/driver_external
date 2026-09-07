@@ -4,7 +4,6 @@ bfg
 cheese
 fontforge-git
 iwgtk
-light
 pacman-cleanup-hook
 pandoc-bin
 systemd-boot-pacman-hook

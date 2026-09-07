@@ -2,10 +2,8 @@
 acpi
 acpica
 amd-ucode
-android-tools
 ansible
 arandr
-arch-audit
 ast-grep
 autorandr
 autotiling
@@ -15,7 +13,8 @@ bat
 bind
 blender
 blueman
-btop
+bluez-utils
+brightnessctl
 bun
 calibre
 chromium
@@ -39,6 +38,7 @@ fd
 feh
 firefox
 fisher
+fwupd
 fzf
 github-cli
 go
@@ -68,6 +68,8 @@ libreoffice-fresh
 linux
 linux-firmware
 lshw
+lua51
+luarocks
 maim
 man-db
 mesa-utils
@@ -75,8 +77,6 @@ mise
 moreutils
 mpv
 neovim
-network-manager-applet
-niri
 nmap
 noto-fonts-cjk
 noto-fonts-emoji
@@ -86,6 +86,7 @@ ntfs-3g
 obs-studio
 onefetch
 openbsd-netcat
+openssh
 parallel
 pavucontrol
 pipewire-alsa
@@ -96,12 +97,14 @@ powertop
 pre-commit
 python-fonttools
 python-pdm
+python-pip
 python-pynvim
 qbittorrent
 rclone
 reflector
 ripgrep
 rofi
+rustup
 screen
 slurp
 smartmontools
@@ -124,10 +127,9 @@ tldr
 tlp
 tmux
 traceroute
-ttf-terminus-nerd
+tree
 tumbler
 unrar
-unzip
 vim
 vlc
 vulkan-intel
@@ -149,6 +151,5 @@ xreader
 xsel
 yazi
 yt-dlp
-zip
 zoxide
 zram-generator
